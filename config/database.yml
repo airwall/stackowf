@@ -1,7 +1,7 @@
 development:
   adapter: postgresql
   encoding: utf8
-  database: saop_development
+  database: stackowf_development
   pool: 5
   username:
   password:
@@ -9,7 +9,7 @@ development:
 test: &TEST
   adapter: postgresql
   encoding: utf8
-  database: saop_test
+  database: stackowf_test
   pool: 5
   username:
   password:
@@ -17,7 +17,7 @@ test: &TEST
 production:
   adapter: postgresql
   encoding: utf8
-  database: saop_production
+  database: stackowf_production
   pool: 5
   username:
   password:
