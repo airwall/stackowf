@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.0'
 group :test do
   gem 'capybara'
   gem 'poltergeist'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :development, :test do
