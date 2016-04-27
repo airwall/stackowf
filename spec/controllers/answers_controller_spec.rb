@@ -2,10 +2,10 @@ require "rails_helper"
 
 RSpec.describe AnswersController do
   describe 'POST #create' do
-    let(:question) { Question.last || create(:question) }
+    let(:question) { create(:question) }
+    let(:answer_attr) { attributes_for(:answer) }
+    before { post :create, params: { answer: answer_attr, question_id: question.id } }
     context "With valide attributes" do
-      let(:answer_attr) { attributes_for(:answer) }
-
       it "creates a new answer" do
         expect do
           post :create, params: { answer: answer_attr, question_id: question.id }
@@ -13,8 +13,13 @@ RSpec.describe AnswersController do
       end
 
       it "redirect to question view" do
-        post :create, params: { answer: answer_attr, question_id: question.id }
         expect(response).to redirect_to question
+      end
+    end
+
+    context "assigns the requested answer to @question" do
+      it "assigns" do
+        expect(question.id).to eq(Answer.last.question_id)
       end
     end
 
