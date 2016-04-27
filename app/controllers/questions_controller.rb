@@ -17,30 +17,24 @@ class QuestionsController < ApplicationController
 
   def create
     @question = Question.new(question_params)
-    respond_to do |format|
-      if @question.save
-        format.html { redirect_to @question, notice: "Question was successfully created." }
-      else
-        format.html { render :new }
-      end
+    if @question.save
+      redirect_to @question, notice: "Question was successfully created."
+    else
+      render :new
     end
   end
 
   def update
-    respond_to do |format|
-      if @question.update_attributes(question_params)
-        format.html { redirect_to @question, notice: "Question was successfully updated." }
-      else
-        format.html { render :edit }
-      end
+    if @question.update_attributes(question_params)
+      redirect_to @question, notice: "Question was successfully updated."
+    else
+      render :edit
     end
   end
 
   def destroy
-    @question.destroy
-    respond_to do |format|
-      format.html { redirect_to questions_url, notice: "Question was successfully destroyed." }
-    end
+    @question.destroy!
+    redirect_to questions_url, notice: "Question was successfully destroyed."
   end
 
   private
@@ -50,6 +44,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body, :question_id)
+    params.require(:question).permit(:title, :body)
   end
 end
