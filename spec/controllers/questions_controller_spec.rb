@@ -77,7 +77,6 @@ RSpec.describe QuestionsController do
   end
 
   describe 'PATCH #update' do
-    # let(:question) { create(:question) }
     context "With valide attributes" do
       it "assigns the requested attributes to @question" do
         patch :update, params: { id: question, question:  attributes_for(:question) }
