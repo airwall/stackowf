@@ -1,0 +1,20 @@
+= form_for(question) do |f|
+  - if question.errors.any?
+    #error_explanation
+      p
+        = pluralize(question.errors.count, "error")
+        |  prohibited this question from being saved:
+      ul
+        - question.errors.full_messages.each do |message|
+          li= message
+  h4.pull-left
+    | New Question
+  fieldset
+    .row
+      .form-group.col-xs-12.col-sm-12.col-lg-12
+        = f.label :question, class: 'hidden'
+        = f.text_field :title, class: "form-control",  placeholder: "Title"
+      .form-group.col-xs-12.col-sm-12.col-lg-12
+        = f.text_area :body, class: "form-control", placeholder: "Your Question", required: ""
+  button.btn.btn-normal.pull-left[type="submit"]
+    | Submit

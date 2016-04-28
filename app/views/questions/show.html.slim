@@ -1,0 +1,21 @@
+.row
+  .col-centered.col-xs-12.col-sm-12.col-lg-11
+    .media-body
+      h4 = @question.title
+      p = @question.body
+      ul.list-unstyled.list-inline.media-detail.pull-left
+        li
+          i.fa.fa-calendar
+          =  @question.created_at.strftime("%d/%m/%Y")
+        li
+          i.fa.fa-thumbs-up
+          | 13
+      ul.list-unstyled.list-inline.media-detail.pull-right
+        li
+          a href=""  Like
+        li
+          a href=""  Reply
+        li
+          = link_to "Edit", edit_question_path(@question)
+        li
+          = link_to "Destroy", @question, method: :delete, data: { confirm: 'Are you sure?' }
