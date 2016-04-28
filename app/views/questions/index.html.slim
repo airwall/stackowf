@@ -1,18 +1,20 @@
-.row
-- @questions.each do |question|
-  .col-centered.col-xs-12.col-sm-12.col-md-11
-    .media-body.line-break
-      h4 = link_to question.title, question
-      ul.list-unstyled.list-inline.media-detail.pull-left
-        li
-          i.fa.fa-calendar
-          =  question.created_at.strftime("%d/%m/%Y")
-        li
-          i.fa.fa-thumbs-up
-          | 13
-      ul.list-unstyled.list-inline.media-detail.pull-right
-        li
-          a href=""  Like
-        li
-          a href=""  Reply
-    hr.hr-line
+section#content.content-item.line
+  .container
+    .row
+    - @questions.each do |question|
+      .col-centered.col-xs-12.col-sm-12.col-md-11
+        .media-body.line-break
+          h4 = link_to question.title, question
+          ul.list-unstyled.list-inline.media-detail.pull-left
+            li
+              i.fa.fa-calendar
+              =  question.created_at.strftime("%d/%m/%Y")
+            li
+              i.fa.fa-thumbs-up
+              | 13
+          ul.list-unstyled.list-inline.media-detail.pull-right
+            li
+              a href=""  Like
+            li
+              a href=""  Reply
+        hr.hr-line

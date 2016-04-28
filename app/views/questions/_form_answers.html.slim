@@ -1,0 +1,10 @@
+= form_for(answer) do |f|
+  h4.pull-left
+    | Write your answer
+  fieldset
+    .row
+      .form-group.col-xs-12.col-sm-12.col-lg-12
+
+        = f.text_area :body, class: "form-control", placeholder: "Your Answer", required: ""
+  button.btn.btn-normal.pull-left[type="submit"]
+    | Submit
