@@ -4,7 +4,7 @@ section#content.content-item.line
     - @questions.each do |question|
       .col-centered.col-xs-12.col-sm-12.col-md-11
         .media-body.line-break
-          h4 = link_to question.title, question
+          h4.media-heading = link_to question.title, question
           ul.list-unstyled.list-inline.media-detail.pull-left
             li
               i.fa.fa-calendar
