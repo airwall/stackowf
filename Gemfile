@@ -35,6 +35,7 @@ gem 'slim-rails'
 
 
 group :test do
+  gem 'database_cleaner'
   gem 'capybara'
   gem 'poltergeist'
   gem 'shoulda-matchers', '~> 3.1'

@@ -9,17 +9,11 @@ RSpec.describe AnswersController do
       it "creates a new answer" do
         expect do
           post :create, params: { answer: answer_attr, question_id: question.id }
-        end.to change(Answer, :count).by(1)
+        end.to change(question.answers, :count).by(1)
       end
 
       it "redirect to question view" do
         expect(response).to redirect_to question
-      end
-    end
-
-    context "assigns the requested answer to @question" do
-      it "assigns" do
-        expect(question.id).to eq(Answer.last.question_id)
       end
     end
 
