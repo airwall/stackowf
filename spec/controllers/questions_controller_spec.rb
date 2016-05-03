@@ -52,6 +52,7 @@ RSpec.describe QuestionsController do
       expect(response).to render_template :edit
     end
   end
+
   describe 'POST #create' do
     context "With valide attributes" do
       it "saves the new questions in the database" do

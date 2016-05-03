@@ -3,7 +3,7 @@ ENV["RAILS_ENV"] ||= "test"
 require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "rspec/rails"
-require 'database_cleaner'
+require "database_cleaner"
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -42,25 +42,24 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = true
 
-    #======================
-    config.before(:suite) do
-      # Truncate database to clean up garbage from
-      # interrupted or badly written examples
-      DatabaseCleaner.clean_with(:truncation)
+  #======================
+  config.before(:suite) do
+    # Truncate database to clean up garbage from
+    # interrupted or badly written examples
+    DatabaseCleaner.clean_with(:truncation)
 
-      # Seed dataase. Use it only for essential
-      # to run application data.
-      load "#{Rails.root}/db/seeds.rb"
-    end
+    # Seed dataase. Use it only for essential
+    # to run application data.
+    load "#{Rails.root}/db/seeds.rb"
+  end
 
-    config.around(:each) do |example|
+  config.around(:each) do |example|
     # Use really fast transaction strategy for all
     # examples except `js: true` capybara specs
     DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
 
     # Start transaction
     DatabaseCleaner.cleaning do
-
       # Run example
       example.run
     end
