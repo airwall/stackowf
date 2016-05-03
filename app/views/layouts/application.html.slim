@@ -1,0 +1,27 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    title Stackowf
+    = csrf_meta_tags
+    = action_cable_meta_tag
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" /
+  body
+    nav.navbar.navbar-inverse.navbar-fixed-top
+      .navbar-header
+        a.navbar-brand href="#"  Stackowerflow
+        button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
+          span.icon-bar
+          span.icon-bar
+          span.icon-bar
+      .navbar-collapse.collapse
+        ul.nav.navbar-nav
+          li= link_to "Questions", questions_path
+          li= link_to "New Question", new_question_path
+        .navbar-header.pull-right
+          p.navbar-text
+            a.navbar-link href="#"  Username
+    .container
+      = yield
