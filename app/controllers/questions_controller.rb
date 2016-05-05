@@ -18,8 +18,10 @@ class QuestionsController < ApplicationController
   def create
     @question = Question.new(question_params)
     if @question.save
-      redirect_to @question, notice: "Question was successfully created."
+      flash[:notice] = "Question was successfully created."
+      redirect_to @question
     else
+      flash[:alert] = "Question can't be blak."
       render :new
     end
   end
