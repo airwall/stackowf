@@ -28,9 +28,7 @@ feature 'Create answer', %q{
 
   scenario 'Non-authenticated user ties  to create answer' do
     visit question_path(question)
-    fill_in 'Body', with: 'Answer'
-    click_on 'Submit'
-    expect(page).to have_content 'You need to sign in or sign up before continuing.'
+    expect(page).to_not have_content 'Submit'
   end
 
 end

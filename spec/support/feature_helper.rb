@@ -5,4 +5,5 @@ module FeatureHelper
     fill_in 'Password', with: user.password
     click_on 'Log in'
   end
+  
 end

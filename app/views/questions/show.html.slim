@@ -20,8 +20,9 @@ section#content.content-item.line
                 a href=""  Reply
               li
                 = link_to "Edit", edit_question_path(@question)
+            - if user_signed_in?
               li
-                = link_to "Destroy", @question, method: :delete, data: { confirm: 'Are you sure?' }
+                = link_to "Delete Question", @question, method: :delete, data: { confirm: 'Are you sure?' }
 
 section#content.content-item
   .container
@@ -46,6 +47,9 @@ section#content.content-item
                 a href=""  Like
               li
                 a href=""  Reply
+            - if user_signed_in?
+              li
+                = link_to "Delete Answer", answer, method: :delete, data: { confirm: 'Are you sure?' }
   - if user_signed_in?
     .col-centered.col-xs-12.col-sm-9.col-lg-10
       = render 'form_answers', answer: [@question, Answer.new]

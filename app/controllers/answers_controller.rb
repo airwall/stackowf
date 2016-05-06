@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :get_question, only: [:create]
-  before_action :get_answer, only: [:edit]
+  before_action :get_question, only: [:create, :destroy]
+  before_action :get_answer, only: [:edit, :destroy]
 
   def create
     @answer = @question.answers.new(answer_params)
@@ -16,6 +16,12 @@ class AnswersController < ApplicationController
   end
 
   def edit
+  end
+
+  def destroy
+    @answer.destroy!
+    flash[:alert] = "Answer was successfully destroyed."
+    redirect_to question_path(@answer.question)
   end
 
   private

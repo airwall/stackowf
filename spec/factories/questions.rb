@@ -6,8 +6,11 @@ FactoryGirl.define do
   factory :question do
     title
     body "MyBodyOfQuestion"
-    after(:create) do |question|
-      FactoryGirl.create(:answer, question: question)
+    transient do
+      count 3
+    end
+    after(:create) do |question, i|
+      FactoryGirl.create_list(:answer, i.count, question: question)
     end
   end
 
