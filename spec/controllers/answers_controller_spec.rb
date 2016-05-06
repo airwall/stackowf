@@ -4,6 +4,7 @@ RSpec.describe AnswersController do
   let(:question) { create(:question) }
 
   describe 'GET #edit' do
+    sign_in_user
     let(:answer) { create(:answer) }
     before { get :edit, params: { id: answer } }
 
@@ -17,6 +18,7 @@ RSpec.describe AnswersController do
   end
 
   describe 'POST #create' do
+    sign_in_user
     let(:answer_attr) { attributes_for(:answer) }
     before { post :create, params: { answer: answer_attr, question_id: question.id } }
 

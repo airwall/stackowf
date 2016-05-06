@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :show]
   before_action :get_question, only: [:create]
   before_action :get_answer, only: [:edit]
 
@@ -6,9 +7,11 @@ class AnswersController < ApplicationController
     @answer = @question.answers.new(answer_params)
 
     if @answer.save
-      redirect_to @question, notice: "Answer was successfully added."
+      flash[:notice] = "Answer was successfully added."
+      redirect_to question_path(@question)
     else
-      redirect_to @question
+      flash[:notice] = "Answer can't be blank."
+      redirect_to question_path(@question)
     end
   end
 
