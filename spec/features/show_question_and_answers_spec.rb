@@ -9,7 +9,6 @@ feature 'User can see list question and answers' do
     click_on question.title
     expect(page).to have_content question.title
     expect(page).to have_content question.body
-    # binding.pry
     question.answers do |answer|
       expect(page).to have_content answer.body
     end

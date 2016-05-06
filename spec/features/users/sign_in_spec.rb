@@ -14,7 +14,7 @@ feature 'User sign in', %q{
     expect(current_path).to eq root_path
   end
 
-  scenario 'Non-refistered user try to sign in' do
+  scenario 'Non-registered user try to sign in' do
     visit new_user_session_path
     fill_in 'Email', with: 'wrong@test.com'
     fill_in 'Password', with: '12345678'
