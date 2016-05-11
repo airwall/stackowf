@@ -1,11 +1,11 @@
 require "rails_helper"
 
 RSpec.describe AnswersController do
+  sign_in_user
   let(:question) { create(:question) }
   let(:answer) { question.answers.first }
 
   describe 'GET #edit' do
-    sign_in_user
     let(:answer) { create(:answer) }
     before { get :edit, params: { id: answer } }
 
@@ -19,9 +19,8 @@ RSpec.describe AnswersController do
   end
 
   describe 'POST #create' do
-    sign_in_user
     let(:answer_attr) { attributes_for(:answer) }
-    before { post :create, params: { answer: answer_attr, question_id: question.id } }
+    before { post :create, params: { answer: answer_attr, question_id: question.id, user: @user } }
 
     context "With valide attributes" do
       it "creates a new answer" do
@@ -46,16 +45,30 @@ RSpec.describe AnswersController do
   end
 
   describe 'DELETE #destroy' do
-    sign_in_user
-    before { answer }
+    context "Author" do
+      let!(:question) { create(:question) }
+      let!(:answer) { create(:answer, question: question, user: @user) }
 
-    it 'User can delete answer' do
-      expect {delete :destroy, params:  { id: answer, question_id: question }}.to change(Answer, :count).by(-1)
+      it "User can delete answer" do
+        expect { delete :destroy, params:  { id: answer, question_id: question } }.to change(Answer, :count).by(-1)
+      end
+
+      it "redirect to question view" do
+        delete :destroy, params: { id: answer, question_id: question }
+        expect(response).to redirect_to question_path(question)
+      end
     end
 
-    it "redirect to index view" do
-      delete :destroy, params: { id: answer, question_id: question }
-      expect(response).to redirect_to question_path(question)
+    context "Non-author" do
+      it "non-author deletes answer" do
+        new_answer = create(:answer, question: question, user: create(:user))
+        expect { delete :destroy, params: { id: new_answer, question_id: question } }.to_not change(Answer, :count)
+      end
+
+      it "redirect to question view" do
+        delete :destroy, params: { id: answer, question_id: question }
+        expect(response).to redirect_to question_path(question)
+      end
     end
   end
 end

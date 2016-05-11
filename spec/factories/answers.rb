@@ -4,8 +4,9 @@ FactoryGirl.define do
   end
 
   factory :answer do
-    body 
+    body
     question
+    user
   end
 
   factory :invalid_answer, class: "Answer" do

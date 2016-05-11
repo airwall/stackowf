@@ -1,5 +1,6 @@
 class Question < ApplicationRecord
-  validates :title, :body, presence: true
-
   has_many :answers, dependent: :destroy
+  belongs_to :user, optional: true
+
+  validates :title, :body, :user_id, presence: true
 end

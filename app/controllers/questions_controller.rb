@@ -7,17 +7,18 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @question = Question.find(params[:id])
   end
 
   def new
-    @question = Question.new
+    @question = current_user.questions.new
   end
 
   def edit
   end
 
   def create
-    @question = Question.new(question_params)
+    @question = current_user.questions.new(question_params)
     if @question.save
       flash[:notice] = "Question was successfully created."
       redirect_to @question
@@ -37,9 +38,14 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    @question.destroy!
-    flash[:notice] = "Question was successfully destroyed."
-    redirect_to questions_url
+    if current_user.author_of?(@question)
+      @question.destroy
+      flash[:notice] = "Question was successfully destroyed."
+      redirect_to questions_url
+    else
+      flash[:notice] = "You cannot delete this question."
+      redirect_to @question
+    end
   end
 
   private

@@ -1,9 +1,10 @@
 FactoryGirl.define do
   sequence :title do |n|
-  "Question #{n}"
+    "Question #{n}"
   end
 
   factory :question do
+    user
     title
     body "MyBodyOfQuestion"
     transient do

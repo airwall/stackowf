@@ -4,7 +4,7 @@ class AnswersController < ApplicationController
   before_action :get_answer, only: [:edit, :destroy]
 
   def create
-    @answer = @question.answers.new(answer_params)
+    @answer = @question.answers.new(answer_params.merge(user: current_user))
 
     if @answer.save
       flash[:notice] = "Answer was successfully added."
@@ -19,9 +19,13 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    @answer.destroy!
-    flash[:alert] = "Answer was successfully destroyed."
-    redirect_to question_path(@answer.question)
+    if current_user.author_of?(@answer)
+      @answer.destroy!
+      flash[:alert] = "Answer was successfully destroyed."
+    else
+      flash[:notice] = "You cannot delete this answer."
+    end
+    redirect_to question_path(@question)
   end
 
   private
