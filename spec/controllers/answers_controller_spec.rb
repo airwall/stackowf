@@ -20,13 +20,19 @@ RSpec.describe AnswersController do
 
   describe 'POST #create' do
     let(:answer_attr) { attributes_for(:answer) }
-    before { post :create, params: { answer: answer_attr, question_id: question.id, user: @user } }
+    before { post :create, params: { answer: answer_attr, question_id: question.id } }
 
     context "With valide attributes" do
       it "creates a new answer" do
         expect do
           post :create, params: { answer: answer_attr, question_id: question.id }
         end.to change(question.answers, :count).by(1)
+      end
+
+      it "Answer assignes to author" do
+        expect do
+          post :create, params: { answer: answer_attr, question_id: question.id }
+        end.to change(@user.answers, :count).by(1)
       end
 
       it "redirect to question view" do

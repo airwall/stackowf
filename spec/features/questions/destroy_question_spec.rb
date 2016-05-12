@@ -25,8 +25,7 @@ feature "Destroy Question", '
   scenario "Non-author ties destroy question" do
     sign_in(non_author)
     visit question_path(question)
-    click_on "Delete Question"
 
-    expect(page).to have_content "You cannot delete this question."
+    expect(page).to_not have_content "Delete Question"
   end
 end

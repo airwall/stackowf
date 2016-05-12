@@ -25,6 +25,14 @@ feature "Destroy Answer", '
     end
   end
 
+  scenario "Non-author user ties to destroy answer" do
+    sign_in(non_author)
+    visit question_path(question)
+    question.answers do |_answer|
+      expect(page).to_not have_content "Delete Answer"
+    end
+  end
+
   scenario "Non-author ties destroy answer" do
     sign_in(non_author)
     visit question_path(question)

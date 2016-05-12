@@ -11,9 +11,10 @@ feature "Create answer", '
   scenario "Authenticated user can create answer" do
     sign_in(user)
     visit question_path(question)
-    fill_in "Body", with: "Answer"
+    fill_in "Body", with: "NewAnswer123"
     click_on "Submit"
     expect(page).to have_content "Answer was successfully added."
+    expect(page).to have_content "NewAnswer123"
     expect(current_path).to eq question_path(question)
   end
 

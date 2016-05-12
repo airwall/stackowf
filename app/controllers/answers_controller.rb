@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :get_question, only: [:create, :destroy]
+  before_action :get_question, only: [:create]
   before_action :get_answer, only: [:edit, :destroy]
 
   def create
@@ -8,11 +8,10 @@ class AnswersController < ApplicationController
 
     if @answer.save
       flash[:notice] = "Answer was successfully added."
-      redirect_to question_path(@question)
     else
-      flash[:notice] = "Answer can't be blank."
-      redirect_to question_path(@question)
+      flash[:alert] = "Answer can't be blank."
     end
+    redirect_to question_path(@question)
   end
 
   def edit
@@ -21,11 +20,11 @@ class AnswersController < ApplicationController
   def destroy
     if current_user.author_of?(@answer)
       @answer.destroy!
-      flash[:alert] = "Answer was successfully destroyed."
+      flash[:notice] = "Answer was successfully destroyed."
     else
-      flash[:notice] = "You cannot delete this answer."
+      flash[:alert] = "You cannot delete this answer."
     end
-    redirect_to question_path(@question)
+    redirect_to question_path(@answer.question)
   end
 
   private

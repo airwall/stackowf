@@ -12,13 +12,14 @@ feature "Create question", '
     visit questions_path
     click_on "New Question"
     fill_in "Title", with: "Title"
-    fill_in "Body", with: "Question"
+    fill_in "Body", with: "NewQuestion123"
     click_on "Submit"
 
     expect(page).to have_content "Question was successfully created."
+    expect(page).to have_content "NewQuestion123"
   end
 
-  scenario "Non-authenticated user ties ties to create question" do
+  scenario "Non-authenticated user ties to create question" do
     visit questions_path
     click_on "New Question"
     expect(page).to have_content "You need to sign in or sign up before continuing."

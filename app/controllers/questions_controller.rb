@@ -43,7 +43,7 @@ class QuestionsController < ApplicationController
       flash[:notice] = "Question was successfully destroyed."
       redirect_to questions_url
     else
-      flash[:notice] = "You cannot delete this question."
+      flash[:alert] = "You cannot delete this question."
       redirect_to @question
     end
   end
