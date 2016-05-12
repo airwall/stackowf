@@ -32,6 +32,7 @@ gem 'jbuilder', '~> 2.0'
 # gem 'capistrano-rails', group: :development
 gem 'slim-rails'
 gem 'devise'
+gem 'devise-bootstrap-views'
 
 
 
