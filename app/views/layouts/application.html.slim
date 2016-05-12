@@ -11,7 +11,7 @@ html
   body
     nav.navbar.navbar-inverse.navbar-fixed-top
       .navbar-header
-        a.navbar-brand href="#"  Stackowerflow
+        .navbar-brand  Stackowerflow
         button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
           span.icon-bar
           span.icon-bar
@@ -25,7 +25,7 @@ html
             p.navbar-text
               = link_to(edit_user_registration_path) do
                 span.glyphicon.glyphicon-user
-                |  Account
+                = " #{current_user.username.capitalize}"
             p.navbar-text
               = link_to destroy_user_session_path, data: { confirm: 'Are you certain you want sign out?' }, :method => :delete, class: "signout" do
                 span.glyphicon.glyphicon-log-out

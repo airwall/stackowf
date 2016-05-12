@@ -1,6 +1,6 @@
 module ApplicationHelper
   def username(id)
-    username = !id.nil? ? User.find(id).email : "%username%"
+    username = !id.nil? ? User.find(id).username : "%username%"
   end
 
   def views_action(object)

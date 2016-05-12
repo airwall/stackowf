@@ -16,6 +16,6 @@
         = f.text_field :title, class: "form-control",  placeholder: "Title"
       .form-group.col-xs-12.col-sm-12.col-lg-12
         = f.label :body, class: 'hidden'
-        = f.text_area :body, class: "form-control", placeholder: "Your Question"
+        = f.text_area :body, class: "form-control", placeholder: "Your Question", rows: 10
   button.btn.btn-normal.pull-left[type="submit"]
     | Submit
