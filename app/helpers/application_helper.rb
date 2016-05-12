@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def username(id)
-    username = !id.nil? ? User.find(id).username : "%username%"
+  def show_username(assign)
+    show_username = assign.user.try(:username?) ? assign.user.username : "%username%"
   end
 
   def views_action(object)

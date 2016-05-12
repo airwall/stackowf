@@ -7,6 +7,9 @@ section#content.content-item.line
           h4.media-heading = link_to question.title, question
           ul.list-unstyled.list-inline.media-detail.pull-left
             li
+              i.fa
+              = show_username(question)
+            li
               i.fa.fa-calendar
               =  question.created_at.strftime("%d/%m/%Y")
             li
