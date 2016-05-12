@@ -1,0 +1,4 @@
+li
+  = link_to "Edit #{object.class.name}", edit_question_path(object)
+li
+  = link_to "Delete #{object.class.name}", object, method: :delete, data: { confirm: 'Are you sure?' }
