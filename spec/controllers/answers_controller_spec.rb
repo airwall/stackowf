@@ -69,10 +69,12 @@ RSpec.describe AnswersController do
       it "non-author deletes answer" do
         new_answer = create(:answer, question: question, user: create(:user))
         expect { delete :destroy, params: { id: new_answer, question_id: question } }.to_not change(Answer, :count)
+        expect(response).to redirect_to question_path(question)
       end
 
       it "redirect to question view" do
-        delete :destroy, params: { id: answer, question_id: question }
+        new_answer = create(:answer, question: question, user: create(:user))
+        delete :destroy, params: { id: new_answer, question_id: question }
         expect(response).to redirect_to question_path(question)
       end
     end
