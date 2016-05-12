@@ -7,9 +7,6 @@ FactoryGirl.define do
     user
     title
     body "MyBodyOfQuestion"
-    after(:create) do |question|
-      FactoryGirl.create(:answer, question: question)
-    end
   end
 
   factory :invalid_question, class: "Question" do
