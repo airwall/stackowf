@@ -9,6 +9,7 @@ feature "User sign up", '
 
   scenario "Non-registered user can sign up" do
     visit new_user_registration_path
+    fill_in "Username", with: "NewUsernameTest"
     fill_in "Email", with: "new@test.com"
     fill_in "Password", with: "12345678"
     fill_in "Password confirmation", with: "12345678"
