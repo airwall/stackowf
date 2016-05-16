@@ -1,6 +1,6 @@
 module ApplicationHelper
   def show_username(assign)
-    show_username = assign.user.try(:username?) ? assign.user.username : "%username%"
+    assign.user.try(:username) || "%username%"
   end
 
   def views_action(object)
