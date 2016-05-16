@@ -1,22 +1,24 @@
 require "rails_helper"
 
 feature "User can see list question and answers" do
+  given(:user) { create(:user) }
   given(:question) { create(:question) }
+  given(:answer) { create(:answer, question: question, user: user) }
 
-  scenario "I see question" do
-    visit root_path(question)
-    click_on "Questions"
-    click_on question.title
-    expect(page).to have_content question.title
-    expect(page).to have_content question.body
+  scenario "Autenticated user can see answers" do
+    sign_in(user)
+    answer
+
+    visit question_path(question)
+
+    expect(page).to have_content answer.body
   end
 
-  given!(:answers) { create_list(:answer, 5, question: question) }
+  scenario "Non-autenticated user can see answers" do
+    answer
 
-  scenario 'I see list of answers associated with question' do
     visit question_path(question)
-    answers.each do |answer|
-      expect(page).to have_content(answer.body)
-    end
+
+    expect(page).to have_content answer.body
   end
 end

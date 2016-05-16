@@ -6,39 +6,30 @@ feature "Destroy Answer", '
   I want to be able to ask answer
 ' do
   given(:user) { create(:user) }
-  given(:non_author) { create(:user) }
   given(:question) { create(:question) }
+  given(:answer) { create(:answer) }
 
-  scenario "Authenticated user try destroy answer" do
+  scenario "Authenticated user can deletes his answer" do
     sign_in(user)
+
+    create(:answer, user: user, question: question)
+
     visit question_path(question)
-    question.answers do |_answer|
-      click_on "Delete Answer"
-      expect(page).to have_content "Answer was successfully destroyed."
-    end
+    click_on "Delete Answer"
+
+    expect(page).to have_content "Answer was successfully destroyed."
   end
 
-  scenario "Non-authenticated user ties to destroy answer" do
-    visit question_path(question)
-    question.answers do |_answer|
-      expect(page).to_not have_content "Delete Answer"
-    end
+  scenario "Authenticated user ties deletes not his answer" do
+    sign_in(user)
+    visit question_path(answer.question_id)
+
+    expect(page).to_not have_link "Delete Answer"
   end
 
-  scenario "Non-author user ties to destroy answer" do
-    sign_in(non_author)
-    visit question_path(question)
-    question.answers do |_answer|
-      expect(page).to_not have_content "Delete Answer"
-    end
-  end
+  scenario "Non-authenticated user ties deletes answer" do
+    visit question_path(answer.question_id)
 
-  scenario "Non-author ties destroy answer" do
-    sign_in(non_author)
-    visit question_path(question)
-    question.answers do |_answer|
-      click_on "Delete Answer"
-      expect(page).to have_content "You cannot delete this answer."
-    end
+    expect(page).to_not have_link "Delete Answer"
   end
 end
