@@ -1,4 +1,4 @@
-= form_for(answer) do |f|
+= form_for [@question, @answer], remote: true do |f|
   h4.pull-left.media-heading
     | Write your answer
   fieldset

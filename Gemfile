@@ -34,8 +34,6 @@ gem 'slim-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
 
-
-
 group :test do
   gem 'database_cleaner'
   gem 'capybara'

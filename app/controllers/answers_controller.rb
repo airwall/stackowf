@@ -6,12 +6,17 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
 
-    if @answer.save
-      flash[:notice] = "Answer was successfully added."
-    else
-      flash[:alert] = "Answer can't be blank."
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to @question }
+        format.js
+        flash[:notice] = "Answer was successfully added."
+      else
+        format.html { redirect_to @question }
+        format.js { render :nothing => true }
+        flash[:alert] = "Answer can't be blank."
+      end
     end
-    redirect_to question_path(@question)
   end
 
   def edit

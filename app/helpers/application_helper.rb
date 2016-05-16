@@ -5,7 +5,7 @@ module ApplicationHelper
 
   def views_action(object)
     if user_signed_in? && current_user.author_of?(object)
-      render "views_action", object: object
+      render "layouts/views_action", object: object
     end
   end
 end
