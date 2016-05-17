@@ -33,6 +33,7 @@ gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
+gem 'record_tag_helper'
 
 
 group :test do

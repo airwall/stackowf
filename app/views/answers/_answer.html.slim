@@ -1,20 +1,19 @@
-.col-centered.col-xs-12.col-sm-10.col-lg-11
-  .media
-    a.pull-left href="#"
-      img.media-object alt="" src="https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png" /
-    .media-body
-      h4.media-heading = show_username(answer)
-      p = answer.body
-      ul.list-unstyled.list-inline.media-detail.pull-left
-        li
-          i.fa.fa-calendar
-          = answer.created_at.strftime("%d/%m/%Y")
-        li
-          i.fa.fa-thumbs-up
-          | 13
-      ul.list-unstyled.list-inline.media-detail.pull-right
-        li
-          a href=""  Like
-        li
-          a href=""  Reply
-        = views_action(answer)
+= div_for(answer, class: "col-centered col-xs-12 col-sm-10 col-lg-11 line-answer") do
+    .media
+      a.pull-left href="#"
+        img.media-object alt="" src="https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png" /
+      .media-body
+        p = answer.body
+        ul.list-unstyled.list-inline.media-detail.pull-left
+          li
+            i.fa
+            = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
+          li
+            i.fa.fa-thumbs-up
+            | 13
+        ul.list-unstyled.list-inline.media-detail.pull-right
+          li
+            a href=""  Like
+          li
+            a href=""  Reply
+          = views_action(answer)
