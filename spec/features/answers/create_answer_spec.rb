@@ -14,9 +14,8 @@ feature "Create answer", '
     fill_in "Body", with: "NewAnswer123"
     click_on "Submit"
     within '#answers' do
-     expect(page).to have_content 'NewAnswer123'
+      expect(page).to have_content "NewAnswer123"
     end
-
   end
 
   scenario "Authenticated user ties create answer with invalid attributes", js: true do

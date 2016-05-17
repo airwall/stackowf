@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
         flash[:notice] = "Answer was successfully added."
       else
         format.html { redirect_to @question }
-        format.js { render :nothing => true }
+        format.js { render nothing: true }
         flash[:alert] = "Answer can't be blank."
       end
     end

@@ -4,11 +4,11 @@ require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "database_cleaner"
 require "rspec/rails"
-require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
-require 'capybara/poltergeist'
+require "capybara/rspec"
+require "capybara-screenshot/rspec"
+require "capybara/poltergeist"
 Capybara.configure do |c|
- c.javascript_driver = :poltergeist
+  c.javascript_driver = :poltergeist
 end
 Capybara.save_and_open_page_path = "screenshots/tmp/capybara"
 # Add additional requires below this line. Rails is not loaded until this point!

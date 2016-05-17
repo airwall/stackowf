@@ -40,8 +40,8 @@ RSpec.describe AnswersController do
       end
     end
 
-    context 'with valid attributes via AJAX' do
-      let(:ajax_answer) {  post :create, params: {question_id: question.id, answer: attributes_for(:answer)}, format: :js }
+    context "with valid attributes via AJAX" do
+      let(:ajax_answer) { post :create, params: { question_id: question.id, answer: attributes_for(:answer) }, format: :js }
 
       it "Save answer for question in database" do
         expect { ajax_answer }.to change(question.answers, :count).by(1)
@@ -57,8 +57,8 @@ RSpec.describe AnswersController do
       end
     end
 
-    context 'with invalid attributes via AJAX' do
-      let(:invalid_ajax_answer) {  post :create, params: {question_id: question.id, answer: attributes_for(:invalid_answer)}, format: :js }
+    context "with invalid attributes via AJAX" do
+      let(:invalid_ajax_answer) {  post :create, params: { question_id: question.id, answer: attributes_for(:invalid_answer) }, format: :js }
 
       it "Save answer for question in database" do
         expect { invalid_ajax_answer }.to_not change(Answer, :count)
@@ -66,7 +66,7 @@ RSpec.describe AnswersController do
 
       it "render @question_path" do
         invalid_ajax_answer
-        expect(response.status).to eq(200) 
+        expect(response.status).to eq(200)
       end
     end
 
