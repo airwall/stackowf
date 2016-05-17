@@ -85,27 +85,27 @@ RSpec.describe AnswersController do
       let!(:question) { create(:question) }
       let!(:answer) { create(:answer, question: question, user: @user) }
 
-      it "User can delete answer" do
-        expect { delete :destroy, params:  { id: answer, question_id: question } }.to change(Answer, :count).by(-1)
+      it "User can delete answer via ajax" do
+        expect { delete :destroy, params:  { id: answer, question_id: question }, format: :js }.to change(Answer, :count).by(-1)
       end
 
       it "redirect to question view" do
-        delete :destroy, params: { id: answer, question_id: question }
-        expect(response).to redirect_to question_path(question)
+        delete :destroy, params: { id: answer, question_id: question }, format: :js
+        expect(response.status).to eq(200)
       end
     end
 
     context "Non-author" do
       it "non-author deletes answer" do
         new_answer = create(:answer, question: question, user: create(:user))
-        expect { delete :destroy, params: { id: new_answer, question_id: question } }.to_not change(Answer, :count)
-        expect(response).to redirect_to question_path(question)
+        expect { delete :destroy, params: { id: new_answer, question_id: question }, format: :js }.to_not change(Answer, :count)
+        expect(response.status).to eq(200)
       end
 
       it "redirect to question view" do
         new_answer = create(:answer, question: question, user: create(:user))
-        delete :destroy, params: { id: new_answer, question_id: question }
-        expect(response).to redirect_to question_path(question)
+        delete :destroy, params: { id: new_answer, question_id: question }, format: :js
+        expect(response.status).to eq(200)
       end
     end
   end

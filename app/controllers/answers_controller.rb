@@ -13,7 +13,7 @@ class AnswersController < ApplicationController
         flash[:notice] = "Answer was successfully added."
       else
         format.html { redirect_to @question }
-        format.js { render nothing: true }
+        format.js { render body: nil }
         flash[:alert] = "Answer can't be blank."
       end
     end
@@ -31,7 +31,7 @@ class AnswersController < ApplicationController
         flash[:alert] = "Answer was successfully destroyed."
       else
         format.html { redirect_to question_path(@answer.question) }
-        format.js { render nothing: true }
+        format.js { render body: nil }
         flash[:alert] = "You cannot delete this answer."
       end
       # redirect_to question_path(@answer.question)
