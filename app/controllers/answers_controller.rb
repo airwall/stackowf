@@ -23,13 +23,19 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    if current_user.author_of?(@answer)
-      @answer.destroy!
-      flash[:alert] = "Answer was successfully destroyed."
-    else
-      flash[:alert] = "You cannot delete this answer."
+    respond_to do |format|
+      if current_user.author_of?(@answer)
+        @answer.destroy!
+        format.html { redirect_to question_path(@answer.question) }
+        format.js
+        flash[:alert] = "Answer was successfully destroyed."
+      else
+        format.html { redirect_to question_path(@answer.question) }
+        format.js { render nothing: true }
+        flash[:alert] = "You cannot delete this answer."
+      end
+      # redirect_to question_path(@answer.question)
     end
-    redirect_to question_path(@answer.question)
   end
 
   private
