@@ -17,5 +17,4 @@
 # Ignore Byebug command history file.
 .byebug_history
 
-$APPLICATION_ROOT/tmp/capybara/screenshot_2016-05-17-15-10-11.818.html
-$APPLICATION_ROOT/tmp/capybara/screenshot_2016-05-17-15-10-11.818.png
+/screenshots/*/**

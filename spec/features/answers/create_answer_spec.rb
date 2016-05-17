@@ -19,12 +19,12 @@ feature "Create answer", '
 
   end
 
-  scenario "Authenticated user ties create answer with invalid attributes" do
+  scenario "Authenticated user ties create answer with invalid attributes", js: true do
     sign_in(user)
     visit question_path(question)
     fill_in "Body", with: nil
     click_on "Submit"
-    expect(page).to have_content "Answer can't be blank."
+
     expect(current_path).to eq question_path(question)
   end
 
