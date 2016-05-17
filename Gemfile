@@ -34,11 +34,13 @@ gem 'slim-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
 
+
 group :test do
-  gem 'database_cleaner'
+  gem 'capybara-screenshot'
   gem 'capybara'
-  gem 'poltergeist'
+  gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
+  gem 'poltergeist'
 end
 
 group :development, :test do

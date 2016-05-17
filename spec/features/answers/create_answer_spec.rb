@@ -8,14 +8,15 @@ feature "Create answer", '
   given(:user) { create(:user) }
   given(:question) { create(:question) }
 
-  scenario "Authenticated user can create answer" do
+  scenario "Authenticated user can create answer", js: true do
     sign_in(user)
     visit question_path(question)
     fill_in "Body", with: "NewAnswer123"
     click_on "Submit"
-    expect(page).to have_content "Answer was successfully added."
-    expect(page).to have_content "NewAnswer123"
-    expect(current_path).to eq question_path(question)
+    within '#answers' do
+     expect(page).to have_content 'NewAnswer123'
+    end
+
   end
 
   scenario "Authenticated user ties create answer with invalid attributes" do
