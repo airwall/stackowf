@@ -5,14 +5,11 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
-
     if @answer.save
-      redirect_to @question
       flash[:notice] = "Answer was successfully added."
     else
-      render body: nil
       flash[:alert] = "Answer can't be blank."
-    end
+    end    
   end
 
   def edit

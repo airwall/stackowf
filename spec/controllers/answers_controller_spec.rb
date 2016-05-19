@@ -22,24 +22,6 @@ RSpec.describe AnswersController do
     let(:answer_attr) { attributes_for(:answer) }
     before { post :create, params: { answer: answer_attr, question_id: question.id } }
 
-    context "With valide attributes" do
-      it "creates a new answer" do
-        expect do
-          post :create, params: { answer: answer_attr, question_id: question.id }
-        end.to change(question.answers, :count).by(1)
-      end
-
-      it "Answer assignes to author" do
-        expect do
-          post :create, params: { answer: answer_attr, question_id: question.id }
-        end.to change(@user.answers, :count).by(1)
-      end
-
-      it "redirect to question view" do
-        expect(response).to redirect_to question
-      end
-    end
-
     context "with valid attributes via AJAX" do
       let(:ajax_answer) { post :create, params: { question_id: question.id, answer: attributes_for(:answer) }, format: :js }
 
@@ -53,7 +35,7 @@ RSpec.describe AnswersController do
 
       it "redirect to question view" do
         ajax_answer
-        expect(response).to redirect_to question
+        expect(response).to render_template :create
       end
     end
 
@@ -66,16 +48,7 @@ RSpec.describe AnswersController do
 
       it "render @question_path" do
         invalid_ajax_answer
-        expect(response.status).to eq(200)
-      end
-    end
-
-    context "With invalid attributes" do
-      it "does not save the answer" do
-        expect { post :create, params: { question_id: question, answer: attributes_for(:invalid_answer) } }.to_not change(Answer, :count)
-      end
-      it "redirect to question view" do
-        expect(response).to redirect_to question
+        expect(response).to render_template :create
       end
     end
   end
