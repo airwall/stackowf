@@ -1,4 +1,4 @@
 li
   = link_to "Edit #{object.class.name}", edit_question_path(object)
 li
-  = link_to "Delete #{object.class.name}", object, method: :delete, remote: true 
+  = link_to "Delete #{object.class.name}", object, method: :delete, class: 'delete', remote: true 

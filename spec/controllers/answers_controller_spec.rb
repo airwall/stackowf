@@ -51,9 +51,9 @@ RSpec.describe AnswersController do
         expect { ajax_answer }.to change(@user.answers, :count).by(1)
       end
 
-      it "render create.js view" do
+      it "redirect to question view" do
         ajax_answer
-        expect(response).to render_template :create
+        expect(response).to redirect_to question
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe AnswersController do
 
       it "redirect to question view" do
         delete :destroy, params: { id: answer, question_id: question }, format: :js
-        expect(response.status).to eq(200)
+        expect(response).to redirect_to question
       end
     end
 

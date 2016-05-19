@@ -6,16 +6,12 @@ class AnswersController < ApplicationController
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
 
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @question }
-        format.js
-        flash[:notice] = "Answer was successfully added."
-      else
-        format.html { redirect_to @question }
-        format.js { render body: nil }
-        flash[:alert] = "Answer can't be blank."
-      end
+    if @answer.save
+      redirect_to @question
+      flash[:notice] = "Answer was successfully added."
+    else
+      render body: nil
+      flash[:alert] = "Answer can't be blank."
     end
   end
 
@@ -23,18 +19,13 @@ class AnswersController < ApplicationController
   end
 
   def destroy
-    respond_to do |format|
-      if current_user.author_of?(@answer)
-        @answer.destroy!
-        format.html { redirect_to question_path(@answer.question) }
-        format.js
-        flash[:alert] = "Answer was successfully destroyed."
-      else
-        format.html { redirect_to question_path(@answer.question) }
-        format.js { render body: nil }
-        flash[:alert] = "You cannot delete this answer."
-      end
-      # redirect_to question_path(@answer.question)
+    if current_user.author_of?(@answer)
+      @answer.destroy!
+      redirect_to question_path(@answer.question)
+      flash[:alert] = "Answer was successfully destroyed."
+    else
+      render body: nil
+      flash[:alert] = "You cannot delete this answer."
     end
   end
 
