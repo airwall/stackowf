@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'features_helper'
 
 feature "User can see list question and answers" do
   given(:user) { create(:user) }
