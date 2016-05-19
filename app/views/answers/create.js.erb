@@ -1,3 +1,9 @@
+<% if @answer.errors.present? %>
+
+    $('.answers-errors').append("<%= j render 'errors' %>").hide().fadeIn('slow')
+
+<% else %>
 $('#answers').append("<%= j render partial: 'answer', locals: {answer: @answer} %>");
 $("#answer_<%= @answer.id %>").hide().fadeIn('slow');
 $('#answer_body').val('');
+<% end %>

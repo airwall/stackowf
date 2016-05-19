@@ -5,8 +5,8 @@ feature "Create answer", '
   As an authenticated user
   I want to be able to ask answer
 ' do
-  given(:user) { create(:user) }
   given(:question) { create(:question) }
+  given(:user) { create(:user) }
 
   scenario "Authenticated user can create answer", js: true do
     sign_in(user)
@@ -24,10 +24,12 @@ feature "Create answer", '
     fill_in "Body", with: nil
     click_on "Submit"
 
-    expect(current_path).to eq question_path(question)
+    within '.answers-errors' do
+      expect(page).to have_content " Body can't be blank"
+    end
   end
 
-  scenario "Non-authenticated user ties  to create answer" do
+  scenario "Non-authenticated user ties  to create answer", js: true do
     visit question_path(question)
     expect(page).to_not have_content "Submit"
   end

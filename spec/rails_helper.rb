@@ -10,7 +10,7 @@ require "capybara/poltergeist"
 Capybara.configure do |c|
   c.javascript_driver = :poltergeist
 end
-Capybara.save_and_open_page_path = "screenshots/tmp/capybara"
+
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
