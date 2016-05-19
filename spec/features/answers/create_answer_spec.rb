@@ -1,4 +1,4 @@
-require 'features_helper'
+require "features_helper"
 
 feature "Create answer", '
   In order to get answer from community
@@ -24,7 +24,7 @@ feature "Create answer", '
     fill_in "Body", with: nil
     click_on "Submit"
 
-    within '.answers-errors' do
+    within ".answers-errors" do
       expect(page).to have_content " Body can't be blank"
     end
   end

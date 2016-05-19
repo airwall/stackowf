@@ -5,11 +5,7 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
-    if @answer.save
-      flash[:notice] = "Answer was successfully added."
-    else
-      flash[:alert] = "Answer can't be blank."
-    end    
+    @answer.save
   end
 
   def edit

@@ -1,4 +1,4 @@
-require 'features_helper'
+require "features_helper"
 
 feature "User sign out", '
   In order to able to ask question

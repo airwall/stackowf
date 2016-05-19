@@ -1,4 +1,4 @@
-require 'features_helper'
+require "features_helper"
 
 feature "All users can see list of questions" do
   given(:question) { create_list(:question, 5) }
