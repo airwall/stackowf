@@ -64,7 +64,7 @@ RSpec.describe AnswersController do
 
       it "redirect to question view" do
         delete :destroy, params: { id: answer, question_id: question }, format: :js
-        expect(response).to redirect_to question
+        expect(response).to render_template :destroy
       end
     end
 
@@ -72,13 +72,63 @@ RSpec.describe AnswersController do
       it "non-author deletes answer" do
         new_answer = create(:answer, question: question, user: create(:user))
         expect { delete :destroy, params: { id: new_answer, question_id: question }, format: :js }.to_not change(Answer, :count)
-        expect(response.status).to eq(200)
+        expect(response).to render_template :destroy
       end
 
       it "redirect to question view" do
         new_answer = create(:answer, question: question, user: create(:user))
         delete :destroy, params: { id: new_answer, question_id: question }, format: :js
-        expect(response.status).to eq(200)
+        expect(response).to render_template :destroy
+      end
+    end
+  end
+
+  describe 'PATCH #update' do
+    let!(:question) { create(:question) }
+    let!(:answer) { create(:answer, question: question, user: @user) }
+    let(:valid_update) { patch :update, params: {id: answer, answer: {body: "12345678910"}}, format: :js }
+
+    context 'by not the author of answer' do
+      before { valid_update }
+
+      it "does not change answer attributes" do
+        expect(answer.body).to_not eq '12345678910'
+      end
+
+      it "render update.js view" do
+        expect(response).to render_template :update
+      end
+    end
+
+    context 'with valid attributes by author' do
+      let(:answer) { create(:answer, user_id: @user.id) }
+      before { valid_update }
+
+      it "assign requested answer to @answer" do
+        expect(assigns(:answer)).to eq answer
+      end
+
+      it "change answer attributes" do
+        answer.reload
+        expect(answer.body).to eq "12345678910"
+      end
+
+      it "render update.js view" do
+        expect(response).to render_template :update
+      end
+    end
+
+    context 'with invalid attributes by author' do
+      let(:answer) { create(:answer, user_id: @user.id) }
+      before { patch :update, params: {id: answer, answer: {body: nil}}, format: :js }
+
+      it "does not change answer attributes" do
+        answer.reload
+        expect(answer.body).to_not eq nil
+      end
+
+      it "render update.js view" do
+        expect(response).to render_template :update
       end
     end
   end
