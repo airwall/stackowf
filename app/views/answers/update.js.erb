@@ -1,0 +1,6 @@
+
+<% if @answer.errors.present? %>
+    $('<%= "#answer_#{ @answer.id }" %>').after("<%= j render 'errors' %>").hide().fadeIn('slow')
+<% else %>
+  $('<%= "#answer_#{ @answer.id }" %>').fadeOut('slow',function(){ $(this).replaceWith("<%= j render partial: 'answer', locals: {answer: @answer} %>").fadeIn(100); });
+<% end %>

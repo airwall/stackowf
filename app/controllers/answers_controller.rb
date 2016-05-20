@@ -13,7 +13,6 @@ class AnswersController < ApplicationController
 
   def update
     @answer.update(answer_params) if current_user.author_of?(@answer)
-
   end
 
   def destroy

@@ -86,13 +86,13 @@ RSpec.describe AnswersController do
   describe 'PATCH #update' do
     let!(:question) { create(:question) }
     let!(:answer) { create(:answer, question: question, user: @user) }
-    let(:valid_update) { patch :update, params: {id: answer, answer: {body: "12345678910"}}, format: :js }
+    let(:valid_update) { patch :update, params: { id: answer, answer: { body: "12345678910" } }, format: :js }
 
-    context 'by not the author of answer' do
+    context "by not the author of answer" do
       before { valid_update }
 
       it "does not change answer attributes" do
-        expect(answer.body).to_not eq '12345678910'
+        expect(answer.body).to_not eq "12345678910"
       end
 
       it "render update.js view" do
@@ -100,7 +100,7 @@ RSpec.describe AnswersController do
       end
     end
 
-    context 'with valid attributes by author' do
+    context "with valid attributes by author" do
       let(:answer) { create(:answer, user_id: @user.id) }
       before { valid_update }
 
@@ -118,9 +118,9 @@ RSpec.describe AnswersController do
       end
     end
 
-    context 'with invalid attributes by author' do
+    context "with invalid attributes by author" do
       let(:answer) { create(:answer, user_id: @user.id) }
-      before { patch :update, params: {id: answer, answer: {body: nil}}, format: :js }
+      before { patch :update, params: { id: answer, answer: { body: nil } }, format: :js }
 
       it "does not change answer attributes" do
         answer.reload

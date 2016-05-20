@@ -16,4 +16,18 @@
             a href=""  Like
           li
             a href=""  Reply
-          = views_action(answer)
+          li
+            = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id } if user_signed_in? && current_user.author_of?(answer)
+          li
+            = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if user_signed_in? && current_user.author_of?(answer)
+
+    = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
+      h4.pull-left.media-heading
+        | Edit Answer
+      fieldset
+        .row
+          .form-group.col-xs-12.col-sm-12.col-lg-12
+            = f.label :body, class: 'hidden'
+            = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
+      button.btn.btn-normal.pull-left[type="submit"]
+        | Submit
