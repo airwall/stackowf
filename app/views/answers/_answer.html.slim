@@ -1,7 +1,9 @@
 = div_for(answer, class: "col-centered col-xs-12 col-sm-10 col-lg-11 line-answer") do
     .media
-      a.pull-left href="#"
-        img.media-object alt="" src="https://cdn2.iconfinder.com/data/icons/website-icons/512/User_Avatar-512.png" /
+      .pull-left
+        span.glyphicon.glyphicon-ok.green
+        p
+        = link_to 'Best', '', class: 'best-answer-link btn btn-success btn-xs', data: { answer_id: answer.id } 
       .media-body
         p = answer.body
         ul.list-unstyled.list-inline.media-detail.pull-left
