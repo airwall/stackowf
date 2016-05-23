@@ -1,2 +1,1 @@
-$("#answer_<%= @answer.id %>").fadeOut('slow');
-$("#answers").append(" Answer was successfully destroyed.").fadiIn('slow')
+$("#answer_<%= @answer.id %>").replaceWith('<div class = "alert alert-alert"><a class ="close" data-dismiss="alert" href= "#">×</a><ul><li>Answer was successfully destroyed.</li></ul>');
