@@ -3,7 +3,7 @@
       .pull-left
         span.glyphicon.glyphicon-ok.green
         p
-        = link_to 'Best', '', class: 'best-answer-link btn btn-success btn-xs', data: { answer_id: answer.id } 
+        = link_to 'Best', '', class: 'best-answer-link btn btn-success btn-xs' if user_signed_in? && current_user.author_of?(answer.question)
       .media-body
         p = answer.body
         ul.list-unstyled.list-inline.media-detail.pull-left
