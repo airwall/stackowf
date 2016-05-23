@@ -3,7 +3,7 @@
       .pull-left
         span.glyphicon.glyphicon-ok.green
         p
-        = link_to 'Best', '', class: 'best-answer-link btn btn-success btn-xs' if user_signed_in? && current_user.author_of?(answer.question)
+        = link_to 'Best', '', class: 'best-answer-link btn btn-success btn-xs' if show_link?(answer.question)
       .media-body
         p = answer.body
         ul.list-unstyled.list-inline.media-detail.pull-left
@@ -19,9 +19,9 @@
           li
             a href=""  Reply
           li
-            = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id } if user_signed_in? && current_user.author_of?(answer)
+            = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id } if show_link?(answer)
           li
-            = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if user_signed_in? && current_user.author_of?(answer)
+            = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if show_link?(answer)
 
     = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
       h4.pull-left.media-heading
