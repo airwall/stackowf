@@ -1,1 +1,1 @@
-$("#answer_<%= @answer.id %>").replaceWith('<div class = "alert alert-alert"><a class ="close" data-dismiss="alert" href= "#">×</a><ul><li>Answer was successfully destroyed.</li></ul>');
+$("#answer_<%= @answer.id %>").html('<div class = "alert alert-alert"><ul><li>Answer was successfully destroyed.</li></ul></div>').hide().fadeIn('slow').delay(1000).fadeOut('slow');

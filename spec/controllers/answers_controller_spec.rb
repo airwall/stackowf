@@ -139,7 +139,7 @@ RSpec.describe AnswersController do
       end
 
       it "redirect to question view" do
-        expect(response).to redirect_to answer.question
+        expect(response).to render_template :best
       end
     end
 
@@ -153,7 +153,7 @@ RSpec.describe AnswersController do
       end
 
       it "redirect to question view" do
-        expect(response).to redirect_to answer.question
+        expect(response).to render_template :best
       end
     end
   end

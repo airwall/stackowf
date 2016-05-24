@@ -13,11 +13,13 @@ class AnswersController < ApplicationController
   end
 
   def best
+    question = @answer.question
     if current_user.author_of?(@answer.question)
       @answer.best!
-      redirect_to @answer.question
+      @answers = question.answers.includes(:user).order("best DESC, created_at ASC")
+      render :best
     else
-      redirect_to @answer.question
+      render :best
     end
   end
 

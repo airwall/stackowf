@@ -1,10 +1,10 @@
 - if answer.persisted?
-  = div_for(answer, class: "col-centered col-xs-12 col-sm-10 col-lg-11 line-answer") do
-      .media
+  = div_for(answer, class: "col-centered col-xs-12 col-sm-10 col-lg-11") do
+      .media.line-answer
         .pull-left
           span class='#{answer.best? ? "glyphicon glyphicon-ok green" : "glyphicon glyphicon-chevron-right yellow"  }'
           p
-          = link_to 'Best', best_answer_path(answer), method: :patch, remote: true, class: 'best-answer-link btn btn-success btn-xs' if show_link?(answer.question)
+          = link_to 'Best', best_answer_path(answer), method: :patch, remote: true, class: 'best-answer-link btn btn-success btn-xs' if show_link?(answer.question) && answer.best != true
         .media-body
           p = answer.body
           ul.list-unstyled.list-inline.media-detail.pull-left
