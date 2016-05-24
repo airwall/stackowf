@@ -5,19 +5,6 @@ RSpec.describe AnswersController do
   let(:question) { create(:question) }
   let(:answer) { question.answers.first }
 
-  describe 'GET #edit' do
-    let(:answer) { create(:answer) }
-    before { get :edit, params: { id: answer } }
-
-    it "assigns the requested answer to @answer" do
-      expect(assigns(:answer)).to eq answer
-    end
-
-    it "render edit view" do
-      expect(response).to render_template :edit
-    end
-  end
-
   describe 'POST #create' do
     let(:answer_attr) { attributes_for(:answer) }
     before { post :create, params: { answer: answer_attr, question_id: question.id } }
@@ -129,6 +116,44 @@ RSpec.describe AnswersController do
 
       it "render update.js view" do
         expect(response).to render_template :update
+      end
+    end
+  end
+
+  describe 'PATCH #BEST set best answer' do
+    let(:answer) { create(:answer, question: question) }
+    let(:valid_update) { patch :best, params: { id: answer }, format: :js }
+
+    context "by the author of question" do
+      let(:question) { create(:question, user: @user) }
+      before { valid_update }
+
+      it "assigns answer to answer" do
+        answer.reload
+        expect(assigns(:answer)).to eq answer
+      end
+
+      it "accepts the answer" do
+        answer.reload
+        expect(answer.best).to eq true
+      end
+
+      it "redirect to question view" do
+        expect(response).to redirect_to answer.question
+      end
+    end
+
+    context "by not the author of the question" do
+      let(:answer) { create(:answer, question: question) }
+      before { valid_update }
+
+      it "doesnt change best_answer attribute of question" do
+        answer.reload
+        expect(answer.best?).to eq false
+      end
+
+      it "redirect to question view" do
+        expect(response).to redirect_to answer.question
       end
     end
   end

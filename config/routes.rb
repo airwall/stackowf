@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
   resources :questions do
-    resources :answers, shallow: true, except: [:index, :show, :new]
+    resources :answers, shallow: true, except: [:index, :show, :new] do
+      member do
+        patch :best
+      end
+    end
   end
   root to: "questions#index"
 end

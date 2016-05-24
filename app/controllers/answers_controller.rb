@@ -1,18 +1,24 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :get_question, only: [:create]
-  before_action :get_answer, only: [:edit, :destroy, :update]
+  before_action :get_answer, only: [:edit, :destroy, :update, :best]
 
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
     @answer.save
   end
 
-  def edit
-  end
-
   def update
     @answer.update(answer_params) if current_user.author_of?(@answer)
+  end
+
+  def best
+    if current_user.author_of?(@answer.question)
+      @answer.best!
+      redirect_to @answer.question
+    else
+      redirect_to @answer.question
+    end
   end
 
   def destroy
@@ -30,6 +36,6 @@ class AnswersController < ApplicationController
   end
 
   def answer_params
-    params.require(:answer).permit(:body)
+    params.require(:answer).permit(:body, :best)
   end
 end

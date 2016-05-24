@@ -7,7 +7,7 @@ feature "User can edit his answer", '
 ' do
   given(:non_author) { create(:user) }
   given(:user) { create(:user) }
-  given(:question) { create(:question, user: user) }
+  given(:question) { create(:question) }
   given(:answer) { create(:answer, user: user, question: question) }
 
   scenario "authenticated user edit his answer", js: true do
