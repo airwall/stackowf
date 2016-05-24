@@ -41,4 +41,22 @@ feature "User can make best answer", '
       expect(page).to_not have_css ".glyphicon.glyphicon-ok.green"
     end
   end
+
+  scenario "Expect if best answer is first", js: true do
+    sign_in(user)
+    answer.reload
+    answer2.reload
+
+    visit question_path(question)
+
+    within "#answer_#{answer2.id}" do
+      click_on "Best"
+      expect(page).to have_css ".glyphicon.glyphicon-ok.green"
+    end
+
+    within "#answers" do
+      expect(page.first('div')[:id]).to eq "answer_#{answer2.id}"
+    end
+  end
+
 end
