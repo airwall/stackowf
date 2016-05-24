@@ -26,7 +26,7 @@ section#content.content-item.line
 section#content.content-item
   container
     #answers.row
-      = render @question.answers.includes(:user)
+      = render @question.answers.includes(:user).order("best DESC, created_at ASC")
   .answers-errors
   - if user_signed_in?
     .col-centered.col-xs-11.col-sm-11.col-lg-11
@@ -37,6 +37,6 @@ section#content.content-item
           .row
             .form-group.col-xs-12.col-sm-12.col-lg-12
               = f.label :body, class: 'hidden'
-              = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
+              = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 5
         button.btn.btn-normal.pull-left[type="submit"]
           | Submit

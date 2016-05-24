@@ -1,35 +1,36 @@
-= div_for(answer, class: "col-centered col-xs-12 col-sm-10 col-lg-11 line-answer") do
-    .media
-      .pull-left
-        span.glyphicon.glyphicon-ok.green
-        p
-        = link_to 'Best', '', class: 'best-answer-link btn btn-success btn-xs' if show_link?(answer.question)
-      .media-body
-        p = answer.body
-        ul.list-unstyled.list-inline.media-detail.pull-left
-          li
-            i.fa
-            = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
-          li
-            i.fa.fa-thumbs-up
-            | 13
-        ul.list-unstyled.list-inline.media-detail.pull-right
-          li
-            a href=""  Like
-          li
-            a href=""  Reply
-          li
-            = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id } if show_link?(answer)
-          li
-            = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if show_link?(answer)
+- if answer.persisted?
+  = div_for(answer, class: "col-centered col-xs-12 col-sm-10 col-lg-11 line-answer") do
+      .media
+        .pull-left
+          span class='#{answer.best? ? "glyphicon glyphicon-ok green" : "glyphicon glyphicon-chevron-right yellow"  }'
+          p
+          = link_to 'Best', best_answer_path(answer), method: :patch, remote: true, class: 'best-answer-link btn btn-success btn-xs' if show_link?(answer.question)
+        .media-body
+          p = answer.body
+          ul.list-unstyled.list-inline.media-detail.pull-left
+            li
+              i.fa
+              = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
+            li
+              i.fa.fa-thumbs-up
+              | 13
+          ul.list-unstyled.list-inline.media-detail.pull-right
+            li
+              a href=""  Like
+            li
+              a href=""  Reply
+            li
+              = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id } if show_link?(answer)
+            li
+              = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if show_link?(answer)
 
-    = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
-      h4.pull-left.media-heading
-        | Edit Answer
-      fieldset
-        .row
-          .form-group.col-xs-12.col-sm-12.col-lg-12
-            = f.label :body, class: 'hidden'
-            = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
-      button.btn.btn-normal.pull-left[type="submit"]
-        | Submit
+      = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
+        h4.pull-left.media-heading
+          | Edit Answer
+        fieldset
+          .row
+            .form-group.col-xs-12.col-sm-12.col-lg-12
+              = f.label :body, class: 'hidden'
+              = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
+        button.btn.btn-normal.pull-left[type="submit"]
+          | Submit
