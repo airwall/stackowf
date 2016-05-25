@@ -34,7 +34,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'record_tag_helper'
-
+gem 'carrierwave'
 
 group :test do
   gem 'capybara-screenshot'
