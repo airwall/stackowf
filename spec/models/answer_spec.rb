@@ -5,6 +5,9 @@ RSpec.describe Answer do
   it { should validate_presence_of :body }
   it { should belong_to :question }
   it { should belong_to :user }
+  it { should have_many(:attachments) }
+  it { should accept_nested_attributes_for :attachments }
+
 
   describe "#best method" do
     it "method change answer.best from false to true" do

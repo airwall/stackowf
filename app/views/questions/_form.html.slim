@@ -17,5 +17,9 @@
       .form-group.col-xs-12.col-sm-12.col-lg-12
         = f.label :body, class: 'hidden'
         = f.text_area :body, class: "form-control", placeholder: "Your Question", rows: 10
+        p
+        = f.fields_for :attachments do |a|
+          = a.label :file, class: 'hidden'
+          = a.file_field :file
   button.btn.btn-normal.pull-left[type="submit"]
     | Submit

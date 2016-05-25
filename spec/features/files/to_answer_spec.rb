@@ -1,8 +1,8 @@
 require "features_helper"
 
-feature "Add files to question", %q{
-  In order to illustrate my question
-  As an a question author
+feature "Add files to answer", %q{
+  In order to illustrate my answer
+  As an a answer author
   I'd like to be able to attach files
 } do
 
@@ -15,12 +15,13 @@ feature "Add files to question", %q{
   end
 
   scenario "User adds file when ask question" do
-    click_on "New Question"
-    fill_in "Title", with: "Title"
-    fill_in "Body", with: "NewQuestion123"
+    click_on "New Answer"
+    fill_in "Body", with: "NewAnswer123"
     attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
     click_on "Submit"
 
-    expect(page).to have_content "File#1"
+    within "#answer_#{answer.id}" do
+      expect(page).to have_content "File#1"
+    end
   end
 end

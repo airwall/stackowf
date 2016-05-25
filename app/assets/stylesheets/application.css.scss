@@ -146,6 +146,20 @@
   	margin:0;
   }
 
+  #content .thumbnails {
+    background-color: #E0EAF1;
+    padding: 5px;
+    width: 200px;
+    position: relative;
+    float: right;
+  }
+
+  #content .thumbnails a {
+    color:#535A60;
+  	font-size:12px;
+  	font-weight:200;
+  }
+
   #content .fa-calendar {
     margin-right: 2px;
   }
@@ -156,13 +170,19 @@
   }
 
   #content .media-detail li {
-  	color:#AAAAAA;
+  	color:#535A60;
   	font-size:12px;
   	padding-right: 10px;
-  	font-weight:600;
+  	font-weight:400;
   }
+
+  #content .media-detail a {
+    color: #0077DD;
+  }
+
   #content .media-detail a:hover {
-	   text-decoration:underline;
+    color: #3AF;
+	  text-decoration: inherit;
    }
 
   /* ANSWERS =================

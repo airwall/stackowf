@@ -13,15 +13,14 @@ section#content.content-item.line
               li
                 i.fa.fa-calendar
                 =  @question.created_at.strftime("%d/%m/%Y")
-              li
-                i.fa.fa-thumbs-up
-                | 13
             ul.list-unstyled.list-inline.media-detail.pull-right
-              li
-                a href=""  Like
               li
                 a href=""  Reply
               = views_action(@question)
+          div class='#{@question.attachments.exists? ? "thumbnails" : "" }'
+            - @question.attachments.each_with_index do |a, index|
+              a href="#{a.file}" target="_blank" File##{index+1} 
+
 
 section#content.content-item
   container
