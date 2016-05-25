@@ -18,6 +18,10 @@
               = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id } if show_link?(answer)
             li
               = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if show_link?(answer)
+        div class='#{answer.attachments.exists? ? "thumbnails" : "" }'
+          - answer.attachments.each_with_index do |a, index|
+            a href="#{a.file}" target="_blank" File##{index+1}
+
 
       = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
         h4.pull-left.media-heading

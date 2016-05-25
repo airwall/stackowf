@@ -11,16 +11,15 @@ feature "Add files to answer", %q{
 
   background do
     sign_in(user)
-    visit new_question_path
+    visit question_path(question)
   end
 
-  scenario "User adds file when ask question" do
-    click_on "New Answer"
+  scenario "User adds file when add answer", js: :true do
     fill_in "Body", with: "NewAnswer123"
     attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
     click_on "Submit"
 
-    within "#answer_#{answer.id}" do
+    within "#answers" do
       expect(page).to have_content "File#1"
     end
   end

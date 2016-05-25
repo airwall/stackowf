@@ -19,7 +19,7 @@ section#content.content-item.line
               = views_action(@question)
           div class='#{@question.attachments.exists? ? "thumbnails" : "" }'
             - @question.attachments.each_with_index do |a, index|
-              a href="#{a.file}" target="_blank" File##{index+1} 
+              a href="#{a.file}" target="_blank" File##{index+1}
 
 
 section#content.content-item
@@ -37,5 +37,9 @@ section#content.content-item
             .form-group.col-xs-12.col-sm-12.col-lg-12
               = f.label :body, class: 'hidden'
               = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 5
+              p
+              = f.fields_for :attachments do |a|
+                = a.label :file, class: 'hidden'
+                = a.file_field :file
         button.btn.btn-normal.pull-left[type="submit"]
           | Submit
