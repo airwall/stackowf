@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/mshibuya/remotipart.git
+  revision: 3a6acb36d46d6769faba6bd94ed7f831321f6c6a
+  ref: 3a6acb3
+  specs:
+    remotipart (1.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -296,6 +303,7 @@ DEPENDENCIES
   rails-controller-testing
   rails_12factor
   record_tag_helper
+  remotipart!
   rspec-rails (~> 3.0)
   rubocop
   sass-rails (~> 5.0)
