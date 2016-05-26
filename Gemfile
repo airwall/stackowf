@@ -35,7 +35,8 @@ gem 'devise'
 gem 'devise-bootstrap-views'
 gem 'record_tag_helper'
 gem 'carrierwave'
-gem 'remotipart', git: 'https://github.com/mshibuya/remotipart.git', ref: '3a6acb3'
+gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
+gem 'rack', git: 'https://github.com/kikyous/rack.git'
 
 group :test do
   gem 'capybara-screenshot'

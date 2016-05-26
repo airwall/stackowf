@@ -1,9 +1,16 @@
 GIT
-  remote: https://github.com/mshibuya/remotipart.git
-  revision: 3a6acb36d46d6769faba6bd94ed7f831321f6c6a
-  ref: 3a6acb3
+  remote: git://github.com/urielhdz/remotipart.git
+  revision: aa0386690bd224e05b4d05a1f268db28fb11a5a3
+  ref: master
   specs:
     remotipart (1.2.1)
+
+GIT
+  remote: https://github.com/kikyous/rack.git
+  revision: 1aded61cedb07e8f0bea3b46522c4167b352c0ca
+  specs:
+    rack (2.0.0.alpha)
+      json
 
 GEM
   remote: https://rubygems.org/
@@ -153,8 +160,6 @@ GEM
       byebug (~> 8.0)
       pry (~> 0.10)
     puma (3.4.0)
-    rack (2.0.0.alpha)
-      json
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta3)
@@ -299,6 +304,7 @@ DEPENDENCIES
   poltergeist
   pry-byebug
   puma
+  rack!
   rails (>= 5.0.0.beta3, < 5.1)
   rails-controller-testing
   rails_12factor
