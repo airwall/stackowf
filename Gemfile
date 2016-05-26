@@ -33,10 +33,17 @@ gem 'jbuilder', '~> 2.0'
 gem 'slim-rails'
 gem 'devise'
 gem 'devise-bootstrap-views'
+
+#Add unique ID's to div tag
 gem 'record_tag_helper'
+
+#FileUploader
 gem 'carrierwave'
+#Permit AJAX to file upload
 gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 gem 'rack', git: 'https://github.com/kikyous/rack.git'
+#Nested forms
+gem "cocoon"
 
 group :test do
   gem 'capybara-screenshot'

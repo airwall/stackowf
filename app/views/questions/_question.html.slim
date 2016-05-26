@@ -1,0 +1,21 @@
+= div_for(@question, class: "col-centered col-xs-12 col-sm-10 col-lg-11") do
+  .media
+    .media-body
+      h4.media-heading = @question.title
+      p = @question.body
+      ul.list-unstyled.list-inline.media-detail.pull-left
+        li
+          i.fa
+          = show_username(@question)
+        li
+          i.fa.fa-calendar
+          =  @question.created_at.strftime("%d/%m/%Y")
+      ul.list-unstyled.list-inline.media-detail.pull-right
+        li
+          a href=""  Reply
+        = views_action(@question)
+    div class='#{@question.attachments.exists? ? "thumbnails" : "" }'
+      - @question.attachments.each_with_index do |a, index|
+        = link_to "File #{index+1}", a.file.url
+  .edit_question_form id="edit-question-#{@question.id}"
+    = render 'form', question: @question

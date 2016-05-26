@@ -8,16 +8,18 @@ feature "Edit question", '
   given(:user) { create(:user) }
   given(:question) { create(:question, user: user) }
 
-  scenario "Authenticated user can edit question" do
+  scenario "Authenticated user can edit question", js: true do
     sign_in(user)
     visit question_path(question)
     expect(page).to have_content question.title
-    click_on "Edit Question"
-    fill_in "Title", with: "NewTitle"
-    fill_in "Body", with: "NewBody"
-    click_on "Submit"
 
-    expect(page).to have_content "Question was successfully updated."
+    within "#question_#{question.id}" do
+      click_on "Edit Question"
+      fill_in "Title", with: "NewTitle"
+      fill_in "Body", with: "NewBody"
+      click_on "Submit"
+    end
+
     expect(page).to have_content "NewTitle"
   end
 

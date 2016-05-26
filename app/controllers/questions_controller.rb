@@ -16,9 +16,6 @@ class QuestionsController < ApplicationController
     @question.attachments.build
   end
 
-  def edit
-  end
-
   def create
     @question = current_user.questions.new(question_params)
     if @question.save
@@ -31,12 +28,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    if @question.update_attributes(question_params)
-      flash[:notice] = "Question was successfully updated."
-      redirect_to @question
-    else
-      render :edit
-    end
+    @question.update(question_params) if current_user.author_of?(@question)
   end
 
   def destroy
@@ -57,6 +49,6 @@ class QuestionsController < ApplicationController
   end
 
   def question_params
-    params.require(:question).permit(:title, :body, attachments_attributes: [:file])
+    params.require(:question).permit(:title, :body, attachments_attributes: [:file, :_destroy])
   end
 end

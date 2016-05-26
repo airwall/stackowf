@@ -14,13 +14,23 @@ feature "Add files to question", %q{
     visit new_question_path
   end
 
-  scenario "User adds file when ask question" do
-    click_on "New Question"
-    fill_in "Title", with: "Title"
-    fill_in "Body", with: "NewQuestion123"
-    attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
+  scenario "User adds files when add answer", js: :true do
+    fill_in "Title", with: "TitleQuestion"
+    fill_in "Body", with: "BodyQuestion"
+
+    click_on "Add File"
+    within all('.nested-fields').last do
+      attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
+    end
+
+    click_on "Add File"
+    within all('.nested-fields').last do
+      attach_file "File", "#{Rails.root}/spec/features_helper.rb"
+    end
+
     click_on "Submit"
 
-    expect(page).to have_content "File#1"
+    expect(page).to have_link 'File 1'
+    expect(page).to have_link 'File 2'
   end
 end

@@ -1,27 +1,8 @@
 section#content.content-item.line
   .container
     .row
-      .col-centered.col-xs-12.col-sm-10.col-lg-11
-        .media
-          .media-body
-            h4.media-heading = @question.title
-            p = @question.body
-            ul.list-unstyled.list-inline.media-detail.pull-left
-              li
-                i.fa
-                = show_username(@question)
-              li
-                i.fa.fa-calendar
-                =  @question.created_at.strftime("%d/%m/%Y")
-            ul.list-unstyled.list-inline.media-detail.pull-right
-              li
-                a href=""  Reply
-              = views_action(@question)
-          div class='#{@question.attachments.exists? ? "thumbnails" : "" }'
-            - @question.attachments.each_with_index do |a, index|
-              a href="#{a.file}" target="_blank" File##{index+1}
-
-
+      = render 'question'
+        .top-alert
 section#content.content-item
   container
     #answers.row
@@ -38,8 +19,9 @@ section#content.content-item
               = f.label :body, class: 'hidden'
               = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 5
               p
-              = f.fields_for :attachments do |a|
-                = a.label :file, class: 'hidden'
-                = a.file_field :file
+              .attachments
+                = f.fields_for :attachments do |a|
+                  .add-file
+                    = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
         button.btn.btn-normal.pull-left[type="submit"]
           | Submit

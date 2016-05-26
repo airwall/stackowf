@@ -1,4 +1,4 @@
 li
-  = link_to "Edit #{object.class.name}", edit_question_path(object)
+  = link_to 'Edit Question', '', class: 'edit-question-link', data: { question_id: object.id }
 li
   = link_to "Delete #{object.class.name}", object, method: :delete, class: 'delete', remote: true
