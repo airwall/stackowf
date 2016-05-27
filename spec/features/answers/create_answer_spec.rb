@@ -33,4 +33,26 @@ feature "Create answer", '
     visit question_path(question)
     expect(page).to_not have_content "Submit"
   end
+
+  scenario "User adds files when create answer", js: :true do
+    sign_in(user)
+    visit question_path(question)
+
+    fill_in "Body", with: "NewAnswer123"
+
+    click_on "Add File"
+    within all(".nested-fields").last do
+      attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
+    end
+
+    click_on "Add File"
+    within all(".nested-fields").last do
+      attach_file "File", "#{Rails.root}/spec/features_helper.rb"
+    end
+
+    click_on "Submit"
+
+    expect(page).to have_link "File 1"
+    expect(page).to have_link "File 2"
+  end
 end

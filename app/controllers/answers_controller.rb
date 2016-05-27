@@ -5,14 +5,7 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.new(answer_params.merge(user: current_user))
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @question }
-      else
-        format.html { render "questions/show" }
-      end
-      format.js
-    end
+    @answer.save
   end
 
   def update

@@ -41,4 +41,38 @@ feature "User can edit his answer", '
       expect(page).to_not have_link "Edit Answer"
     end
   end
+
+  context "Update attachments on answer" do
+    scenario "delete file from answer", js: true do
+      create(:answer_attachment, attachable: answer)
+      sign_in(user)
+      visit question_path(question)
+
+      expect(page).to have_content "File 1"
+      click_on "Edit Answer"
+      within "#answer_#{answer.id}" do
+        click_on "Remove File"
+        click_on "Submit"
+      end
+      expect(page).to_not have_content "File 1"
+    end
+
+    scenario "Add file to answer when edit it", js: true do
+      sign_in(user)
+      answer.reload
+      visit question_path(question)
+
+      within "#answer_#{answer.id}" do
+        expect(page).to_not have_content "File 1"
+
+        click_on "Edit Answer"
+        click_on "Add File"
+        within all(".nested-fields").last do
+          attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
+        end
+        click_on "Submit"
+        expect(page).to have_content "File 1"
+      end
+    end
+  end
 end
