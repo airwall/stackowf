@@ -8,7 +8,7 @@
         - question.errors.full_messages.each do |message|
           li= message
   h4.pull-left.media-heading
-    | New Question
+    = question.new_record? ? 'New Question' : 'Edit Question'
   fieldset
     .row
       .form-group.col-xs-12.col-sm-12.col-lg-12

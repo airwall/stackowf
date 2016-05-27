@@ -55,8 +55,7 @@ feature "User can make best answer", '
     end
 
     within "#answers" do
-      expect(page.first('div')[:id]).to eq "answer_#{answer2.id}"
+      expect(page.first("div")[:id]).to eq "answer_#{answer2.id}"
     end
   end
-
 end

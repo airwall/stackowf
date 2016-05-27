@@ -25,6 +25,6 @@ feature "Edit question", '
 
   scenario "Non-authenticated user ties to create question" do
     visit question_path(question)
-    expect(page).to_not have_content "Edit Question"
+    expect(page).to_not have_link "Edit Question"
   end
 end

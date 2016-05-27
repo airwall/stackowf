@@ -1,5 +1,8 @@
 .nested-fields
   .field
+  - if f.object.new_record?
     = f.label :file, class: 'hidden'
     = f.file_field :file
-  = link_to_remove_association "Remove", f
+  - else
+    = f.object.file.to_s.split('/').last(1).join.split(//).last(10).join
+    = link_to_remove_association ' Remove File', f
