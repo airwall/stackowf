@@ -16,6 +16,8 @@
         = views_action(@question)
     div class='#{@question.attachments.exists? ? "thumbnails" : "" }'
       - @question.attachments.each_with_index do |a, index|
-        = link_to "File #{index+1}", a.file.url
+        = link_to(a.file.url) do
+          span class= "#{add_icon_to_attachment(a.file.to_s)}"
+
   .edit_question_form id="edit-question-#{@question.id}"
     = render 'form', question: @question

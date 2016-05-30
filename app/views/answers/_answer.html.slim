@@ -20,7 +20,8 @@
               = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true if show_link?(answer)
         div class='#{answer.attachments.exists? ? "thumbnails" : "" }'
           - answer.attachments.each_with_index do |a, index|
-            = link_to "File #{index+1}", a.file.url
+            = link_to(a.file.url) do
+              span class= "#{add_icon_to_attachment(a.file.to_s)}"
 
 
       = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|

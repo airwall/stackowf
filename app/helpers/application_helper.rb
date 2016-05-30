@@ -12,4 +12,8 @@ module ApplicationHelper
       render "layouts/views_action", object: object
     end
   end
+
+  def add_icon_to_attachment(f)
+    %w(jpg jpeg png gif).any? { |str| f.downcase.include? str } ? "glyphicon glyphicon-picture" : "glyphicon glyphicon-file"
+  end
 end

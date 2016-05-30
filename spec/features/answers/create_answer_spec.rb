@@ -52,7 +52,8 @@ feature "Create answer", '
 
     click_on "Submit"
 
-    expect(page).to have_link "File 1"
-    expect(page).to have_link "File 2"
+    expect(page).to have_css ".glyphicon.glyphicon-file"
+    expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
+    expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/2/features_helper.rb"]')
   end
 end

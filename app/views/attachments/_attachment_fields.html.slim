@@ -3,8 +3,8 @@
     - if f.object.new_record?
       .input-group
         = f.label :file, class: 'hidden'
-        = f.file_field :file, class: 'form-control'
-          .input-group-btn
+        = f.file_field :file, class: 'btn btn-default'
     - else
-            = f.object.file.to_s.split('/').last(1).join.split(//).last(10).join
-            = link_to_remove_association ' Remove File', f
+        .icon
+          span class= "#{add_icon_to_attachment(f.object.file.to_s)}"
+          = link_to_remove_association ' Remove File', f

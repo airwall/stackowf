@@ -136,6 +136,30 @@
     font-size: 1.5em;
   }
 
+  .icon span {
+    color: #858C93;
+    margin-right: 10px;
+    font-size: 1.5em;
+  }
+
+  .icon a {
+    color: #858C93;
+  }
+
+  .icon a:hover {
+    color: #3A3B3F;
+	  text-decoration: inherit;
+   }
+
+   .add_fields {
+     color: #858C93;
+   }
+
+   .add_fields:hover {
+     color: #3A3B3F;
+    text-decoration: inherit;
+    }
+
   .yellow{
     color: #F4F4F2;
     margin-left: 15px;
@@ -152,16 +176,22 @@
 
   #content .thumbnails {
     background-color: #E0EAF1;
-    padding: 5px;
+    padding: 2px;
     width: 200px;
-    position: relative;
     float: right;
+    padding-right: 5px;
   }
 
-  #content .thumbnails a {
-    color:#535A60;
-  	font-size:12px;
-  	font-weight:200;
+  #content .thumbnails span {
+    color: #858C93;
+    padding-left: 3px;
+    font-size: 1.2em;
+    float: right;
+    padding-bottom: 4px;
+  }
+
+  #content .thumbnails a:hover {
+    text-decoration: inherit;
   }
 
   #content .fa-calendar {
