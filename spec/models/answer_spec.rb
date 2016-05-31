@@ -7,6 +7,7 @@ RSpec.describe Answer do
   it { should belong_to :user }
   it { should have_many(:attachments).dependent(:destroy) }
   it { should accept_nested_attributes_for :attachments }
+  it { should have_many(:votes).dependent(:destroy) }
 
   describe "#best method" do
     it "method change answer.best from false to true" do

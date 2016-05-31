@@ -44,12 +44,14 @@ gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms
 gem "cocoon"
 
+
 group :test do
   gem 'capybara-screenshot'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'poltergeist'
+  gem 'with_model'
 end
 
 group :development, :test do
