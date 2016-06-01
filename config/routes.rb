@@ -4,8 +4,16 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   # mount ActionCable.server => '/cable'
-  resources :questions do
-    resources :answers, shallow: true, except: [:index, :show, :new] do
+
+  concern :votable do
+    member do
+      post :vote_up
+      post :vote_down
+    end
+  end
+
+  resources :questions, concerns: :votable do
+    resources :answers, shallow: true, except: [:index, :show, :new], concerns: :votable do
       member do
         patch :best
       end
