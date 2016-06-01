@@ -13,11 +13,15 @@ Rails.application.routes.draw do
   end
 
   resources :questions, concerns: :votable do
-    resources :answers, shallow: true, except: [:index, :show, :new], concerns: :votable do
+    resources :answers, only: [:create, :update, :destroy], shallow: true, concerns: :votable do
       member do
         patch :best
       end
     end
   end
   root to: "questions#index"
+
+  # Tets routes for concerns votable
+  post "vote_up" => 'fakes#vote_up'
+  post "vote_down" => 'fakes#vote_down'
 end

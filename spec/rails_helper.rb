@@ -4,7 +4,7 @@ require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
 require "database_cleaner"
 require "rspec/rails"
-require 'with_model'
+require "with_model"
 require "capybara/rspec"
 require "capybara-screenshot/rspec"
 require "capybara/poltergeist"

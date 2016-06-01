@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 class FakesController < ApplicationController
   include Voted
@@ -16,20 +16,13 @@ describe FakesController do
     end
   end
 
-  before { routes.draw {
-    post 'vote_up' => 'fakes#vote_up'
-    post 'vote_down' => 'fakes#vote_down'
-  } }
-
-
-  let(:user) {create(:user) }
+  let(:user) { create(:user) }
   let(:votable) { Fake.create!(user: user) }
   let(:vote_up) { post :vote_up, params: { id: votable }, format: :js }
   let(:vote_down) { post :vote_down, params: { id: votable }, format: :js }
   sign_in_user
 
-  context 'Vote up/down if user is not author of votable' do
-
+  context "Vote up/down if user is not author of votable" do
     it "create vote with score is 1" do
       vote_up
       expect(votable.votes.first.score).to eq 1
@@ -37,7 +30,6 @@ describe FakesController do
 
     it "create vote with score is -1" do
       vote_down
-      binding.pry
       expect(votable.votes.first.score).to eq -1
     end
 
@@ -49,7 +41,7 @@ describe FakesController do
     end
   end
 
-  context 'Cancel vote up/down if user is not author of votable' do
+  context "Cancel vote up/down if user is not author of votable" do
     let(:voteup) { create(:vote, score: 1, votable: votable, user: @user) }
     let(:votedown) { create(:vote, score: -1, votable: votable, user: @user) }
 
@@ -64,10 +56,9 @@ describe FakesController do
       vote_down
       expect(votable.votes.count).to eq 0
     end
-
   end
 
-  context 'if user is author of votable' do
+  context "if user is author of votable" do
     before { sign_in user }
     it "doesn't create vote up" do
       vote_up
@@ -79,13 +70,12 @@ describe FakesController do
       expect(votable.votes.count).to eq 0
     end
 
-
     it "render nothing with status 403" do
       vote_up
-      expect(response.body).to eq ''
+      expect(response.body).to eq ""
       expect(response.status).to eq 403
       vote_down
-      expect(response.body).to eq ''
+      expect(response.body).to eq ""
       expect(response.status).to eq 403
     end
   end

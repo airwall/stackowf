@@ -6,7 +6,6 @@ module Voted
     before_action :can_vote?, only: [:vote_up, :vote_down]
   end
 
-
   def vote_up
     @votable.vote_up(current_user)
     render_voting
@@ -24,7 +23,7 @@ module Voted
   end
 
   def render_voting
-    render json: { id: @votable.id, score: @votable.vote_score, voted: @votable.status  }
+    render json: { id: @votable.id, score: @votable.vote_score, voted: @votable.status }
   end
 
   def set_votable
@@ -34,5 +33,4 @@ module Voted
   def can_vote?
     render nothing: true, status: 403 if @votable.user_id == current_user.id
   end
-
 end

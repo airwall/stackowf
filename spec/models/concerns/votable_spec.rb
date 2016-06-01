@@ -15,36 +15,36 @@ describe Votable do
   let(:user) { create(:user) }
   let(:votable) { WithVotable.create!(user: user) }
 
-  describe 'votes up' do
-    it 'votes up' do
-      expect {
+  describe "votes up" do
+    it "votes up" do
+      expect do
         votable.vote_up(user)
-      }.to change(votable.votes, :count).by(1)
+      end.to change(votable.votes, :count).by(1)
       expect(votable.vote_score).to eq 1
     end
 
-    it 'cancels vote' do
+    it "cancels vote" do
       votable.vote_up(user)
-      expect {
+      expect do
         votable.vote_up(user)
-      }.to change(votable.votes, :count).by(-1)
+      end.to change(votable.votes, :count).by(-1)
       expect(votable.vote_score).to eq 0
     end
   end
 
-  describe 'votes down' do
-    it 'votes up' do
-      expect {
+  describe "votes down" do
+    it "votes up" do
+      expect do
         votable.vote_down(user)
-      }.to change(votable.votes, :count).by(1)
+      end.to change(votable.votes, :count).by(1)
       expect(votable.vote_score).to eq -1
     end
 
-    it 'cancels vote' do
+    it "cancels vote" do
       votable.vote_down(user)
-      expect {
+      expect do
         votable.vote_down(user)
-      }.to change(votable.votes, :count).by(-1)
+      end.to change(votable.votes, :count).by(-1)
       expect(votable.vote_score).to eq 0
     end
   end
