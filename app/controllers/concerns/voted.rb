@@ -23,7 +23,7 @@ module Voted
   end
 
   def render_voting
-    render json: { id: @votable.id, score: @votable.vote_score, voted: @votable.status }
+    render json: { id: @votable.id, score: @votable.vote_score, voted: @votable.status, resource: @votable.resource  }
   end
 
   def set_votable

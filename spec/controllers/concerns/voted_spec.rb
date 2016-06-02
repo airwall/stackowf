@@ -22,7 +22,7 @@ describe FakesController do
   let(:vote_down) { post :vote_down, params: { id: votable }, format: :js }
   sign_in_user
 
-  context "Vote up/down if user is not author of votable" do
+  context "Vote up/down/cancel if user is not author of votable" do
     it "create vote with score is 1" do
       vote_up
       expect(votable.votes.first.score).to eq 1
@@ -35,9 +35,9 @@ describe FakesController do
 
     it "render json with votable id and rating" do
       vote_up
-      expect(response.body).to eq ({ id: votable.id, score: votable.vote_score, voted: true }).to_json
+      expect(response.body).to eq ({ id: votable.id, score: votable.vote_score, voted: "up", resource: votable.resource }).to_json
       vote_down
-      expect(response.body).to eq ({ id: votable.id, score: votable.vote_score, voted: true }).to_json
+      expect(response.body).to eq ({ id: votable.id, score: votable.vote_score, voted: "down", resource: votable.resource }).to_json
     end
   end
 
@@ -51,11 +51,24 @@ describe FakesController do
       expect(votable.votes.count).to eq 0
     end
 
+    it "render json with votable id and rating" do
+      voteup.reload
+      vote_up
+      expect(response.body).to eq ({ id: votable.id, score: votable.vote_score, voted: "none", resource: votable.resource }).to_json
+    end
+
     it "Cancel vote if vote is down" do
       votedown.reload
       vote_down
       expect(votable.votes.count).to eq 0
     end
+
+    it "render json with votable id and rating" do
+      votedown.reload
+      vote_down
+      expect(response.body).to eq ({ id: votable.id, score: votable.vote_score, voted: "none", resource: votable.resource }).to_json
+    end
+
   end
 
   context "if user is author of votable" do
