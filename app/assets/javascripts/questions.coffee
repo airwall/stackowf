@@ -5,5 +5,4 @@ $(document).ready ->
   $(document).on 'click', '.edit-question-link', (e) ->
     e.preventDefault();
     question_id = $(this).data('questionId');
-    $(this).hide();
-    $('#edit-question-' + question_id).fadeIn(1000);
+    $('#edit-question-' + question_id).fadeIn('slow');

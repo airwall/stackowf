@@ -1,8 +1,7 @@
 - if @question.errors.any?
     - @question.errors.full_messages.each do |error|
-      .col-centered.col-xs-12.col-sm-10.col-lg-11
-        div class=("alert alert-alert")
-          a.close data-dismiss="alert" href="#"  ×
-          ul
-            li
-              = error
+      div class=("alert alert-alert")
+        a.close data-dismiss="alert" href="#"  ×
+        ul
+          li
+            = error

@@ -65,7 +65,7 @@ feature "User can edit his answer", '
       visit question_path(question)
 
       within "#answer_#{answer.id}" do
-        expect(page).to_not have_content "File 1"
+        expect(page).to_not have_css ".glyphicon.glyphicon-file"
 
         click_on "Edit Answer"
         click_on "Add File"

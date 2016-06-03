@@ -1,7 +1,10 @@
-= div_for(@question, class: "col-centered col-xs-12 col-sm-10 col-lg-11") do
+= div_for(@question) do
   .media
+    .pull-left
+      = render 'votes/vote', votable: @question
     .media-body
       h4.media-heading = @question.title
+      br
       p = @question.body
       ul.list-unstyled.list-inline.media-detail.pull-left
         li

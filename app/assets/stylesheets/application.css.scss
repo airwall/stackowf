@@ -20,7 +20,7 @@
  body {
  	padding-top:50px;
   margin-top:30px;
-  background-color: #F4F4F2;
+  background-color: #FFFFFF;
 
  }
 
@@ -77,22 +77,14 @@
       FORM ==========================
 */
  #content {
-	  background-color:#FFFFFF;
-  }
-
-  #content .line-break{
- 	  border-left: solid #F4F4F2;
-    border-width: 1px;
-    padding-left: 8px;
-   }
-
-  #content .hr-line {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px outset #DDDDDD;
-    margin: 1em 0;
-    padding: 0;
+   background-color:#FFFFFF;
+   padding-right: 15px;
+   padding-left: 15px;
+   margin-right: auto;
+   margin-left: auto;
+   max-width: 900px;
+   overflow:hidden;
+   min-height:0px !important;
   }
 
   #content form {
@@ -215,7 +207,6 @@
   #content .score  {
     color: #888;
     font-size: 1.1em;
-    font-family: sans-serif;
     margin-top: 3px;
   }
 
@@ -244,14 +235,25 @@
   #content .fa-calendar {
     margin-right: 2px;
   }
+
   #content .best-answer-link {
     text-decoration: none;
   }
-  
+
   #content .media p {
 	margin-bottom:15px;
 	text-align:justify;
   }
+
+  #content .media-body p {
+	min-height: 75px;
+	text-align: left;
+  }
+
+  #content .fa-thumbs-up {
+  margin-right: 3px;
+  }
+
 
   #content .media-detail li {
   	color:#535A60;
@@ -278,4 +280,8 @@
   }
   #content .line-answer {
     border-top: 1px outset #DDDDDD;
+  }
+
+  #content .cancel {
+    margin-left: 10px;
   }
