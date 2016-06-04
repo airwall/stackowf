@@ -14,7 +14,6 @@ feature "Edit question", '
 
     within "#question_#{question.id}" do
       click_on "Edit Question"
-      sleep 10
       fill_in "Title", with: "NewTitle"
       fill_in "Body", with: "NewBody"
       click_on "Submit"
