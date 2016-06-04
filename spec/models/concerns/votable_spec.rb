@@ -40,7 +40,7 @@ describe Votable do
       expect(votable.vote_score).to eq -1
     end
 
-    it "cancels vote" do
+    it "cancels vote down" do
       votable.vote_down(user)
       expect do
         votable.vote_down(user)

@@ -19,10 +19,6 @@ module Votable
     votes.sum(:score)
   end
 
-  def voted_type(user)
-    voted_by?(user) ? votes.where(user: user).last.score : 0
-  end
-
   def status
     @status
   end

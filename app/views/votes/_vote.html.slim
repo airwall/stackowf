@@ -1,5 +1,5 @@
 div.vote id="votable_#{dom_id(votable)}"
-  - voted = votable.voted_type(current_user)
-  = link_to '', polymorphic_path(votable, action: :vote_up), method: :post, remote: true, class: "#{(voted == 1 || voted == 0) ? 'voting-active glyphicon glyphicon-plus' : 'voting-idle glyphicon glyphicon-plus'}", id: "up" if signed_in? && current_user != votable.user
+  - voted = votable.votes.where(user: current_user).last&.score
+  = link_to '', polymorphic_path(votable, action: :vote_up), method: :post, remote: true, class: "#{(voted == 1 || voted == nil) ? 'voting-active glyphicon glyphicon-plus' : 'voting-idle glyphicon glyphicon-plus'}", id: "up" if signed_in? && current_user != votable.user
   .score #{votable.vote_score}
-  = link_to '', polymorphic_path(votable, action: :vote_down), method: :post, remote: true, class: "#{(voted == -1 || voted == 0) ? 'voting-active glyphicon glyphicon-minus' : 'voting-idle glyphicon glyphicon-minus'}", id: "down" if signed_in? && current_user != votable.user
+  = link_to '', polymorphic_path(votable, action: :vote_down), method: :post, remote: true, class: "#{(voted == -1 || voted == nil) ? 'voting-active glyphicon glyphicon-minus' : 'voting-idle glyphicon glyphicon-minus'}", id: "down" if signed_in? && current_user != votable.user
