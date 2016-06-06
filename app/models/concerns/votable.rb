@@ -7,12 +7,12 @@ module Votable
 
   def vote_up(user)
     vote = votes.find_or_initialize_by(user: user)
-    vote.score != 1 ? vote.update!(score: 1) && @status = "up" : (votes.where(user: user).destroy_all && @status = "none" if voted_by?(user))
+    vote.score != 1 ? vote.update!(score: 1) && @status = "up" : (vote.destroy! && @status = "none" if voted_by?(user))
   end
 
   def vote_down(user)
     vote = votes.find_or_initialize_by(user: user)
-    vote.score != -1 ? vote.update!(score: -1) && @status = "down" : (votes.where(user: user).destroy_all && @status = "none" if voted_by?(user))
+    vote.score != -1 ? vote.update!(score: -1) && @status = "down" : (vote.destroy! && @status = "none" if voted_by?(user))
   end
 
   def vote_score
