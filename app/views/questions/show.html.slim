@@ -4,7 +4,7 @@ section#content.content-item.line
       .top-alert
 section#content.content-item
   #answers.row
-      = render @question.answers.includes(:user).order("best DESC, created_at ASC")
+    = render @question.answers.includes(:user).order("best DESC, created_at ASC")
   .answers-errors
   - if user_signed_in?
     = form_for [@question, @answer], remote: true do |f|

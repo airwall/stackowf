@@ -15,4 +15,6 @@ class Answer < ApplicationRecord
       update!(best: true)
     end
   end
+
+  after_commit { AnswerJob.perform_later(self) }
 end
