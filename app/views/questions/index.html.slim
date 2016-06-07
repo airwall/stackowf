@@ -1,16 +1,5 @@
 section#content.content-item.line
   .row
-  - @questions.each do |question|
-    .media-body.line-break
-      h4.media-heading = link_to question.title, question
-      ul.list-unstyled.list-inline.media-detail.pull-left
-        li
-          i.fa
-          = show_username(question)
-        li
-          i.fa.fa-calendar
-          =  question.created_at.strftime("%d/%m/%Y")
-        li
-          i.fa.fa-thumbs-up
-          = question.votes.sum(:score)
-    hr.hr-line
+    .questions
+    - @questions.each do |question|
+      = render 'questions/question_index', question: question

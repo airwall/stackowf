@@ -8,4 +8,6 @@ class Question < ApplicationRecord
   validates :title, :body, :user_id, presence: true
 
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
+
+  after_commit { QuestionJob.perform_later(self) }
 end
