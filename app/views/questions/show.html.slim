@@ -3,7 +3,7 @@ section#content.content-item.line
     = render 'question'
       .top-alert
 section#content.content-item
-  #answers.row
+  #answers.row data-channel="answers" data-question-id="#{@question.id}"
     = render @question.answers.includes(:user).order("best DESC, created_at ASC")
   .answers-errors
   - if user_signed_in?

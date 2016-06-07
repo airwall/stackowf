@@ -8,7 +8,6 @@ App.questions = App.cable.subscriptions.create "QuestionsChannel",
 
   disconnected: ->
     # Called when the subscription has been terminated by the server
-
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
     $('.questions').before().append(data.question).hide().fadeIn('slow')

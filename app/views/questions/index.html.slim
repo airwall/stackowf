@@ -1,5 +1,5 @@
 section#content.content-item.line
   .row
-    .questions
+    .questions data-questions-channel='true'
     - @questions.each do |question|
       = render 'questions/question_index', question: question
