@@ -1,0 +1,22 @@
+.media.line-answer
+  .pull-left
+    span class="#{answer.best? ? 'glyphicon glyphicon-ok green' : ''  }"
+    br
+    = link_to 'Best', best_answer_path(answer), method: :patch, remote: true, class: 'best-answer-link btn btn-success btn-xs'
+  .media-body
+    p = answer.body
+    ul.list-unstyled.list-inline.media-detail.pull-left
+      li
+        i.fa
+        = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
+    ul.list-unstyled.list-inline.media-detail.pull-right
+      li
+        a href=""  Reply
+      li
+        = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+      li
+        = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true
+  div class="#{answer.attachments.exists? ? 'thumbnails' : '' }"
+    - answer.attachments.each_with_index do |a, index|
+      = link_to(a.file.url) do
+        span class= "#{add_icon_to_attachment(a.file.to_s)}"

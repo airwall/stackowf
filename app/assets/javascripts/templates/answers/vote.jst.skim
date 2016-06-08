@@ -1,0 +1,6 @@
+div.vote id="votable_answer_#{@votable.id}"
+  - if gon.user_id != @votable.user_id
+    a.voting-active.glyphicon.glyphicon-plus#up href="#{@path}/vote_up" data-remote="true" data-method="post"
+  .score 0
+  - if gon.user_id != @votable.user_id
+    a.voting-active.glyphicon.glyphicon-minus#down href="#{@path}/vote_down" data-remote="true" data-method="post"

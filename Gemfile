@@ -44,6 +44,9 @@ gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms
 gem "cocoon"
 
+#JS templates
+gem 'skim'
+gem 'gon'
 
 group :test do
   gem 'capybara-screenshot'
