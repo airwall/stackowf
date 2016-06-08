@@ -16,4 +16,5 @@
 //= require bootstrap-sprockets
 //= require cocoon
 //= require turbolinks
+//= require polifyl
 //= require_tree .
