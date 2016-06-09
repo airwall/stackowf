@@ -11,9 +11,10 @@ App.answers = App.cable.subscriptions.create "AnswersChannel",
   disconnected: ->
     # Called when the subscription has been terminated by the server
   received: (data) ->
+
     console.log(JST['templates/answers/answer'](data.answer))
     # Called when there's incoming data on the websocket for this channel
-    $('#answers').append(JST['templates/answers/answer'](data.answer, data.username))
+    $('#answers').append(JST['templates/answers/answer'](data.answer)).hide().fadeIn('slow')
 
   followCurrentAnswer: ->
     if questionId = @collection().data('question-id')

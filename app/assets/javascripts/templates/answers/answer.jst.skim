@@ -1,32 +1,33 @@
-.answer id="answer_#{@id}"
-  .media.line-answer
-    .pull-left
-      == JST["templates/answers/vote"]({votable: @, path: "/answers/#{@id}"})
-      span class=''
-      br
-      - if gon.user_id != @user_id
-        a.best-answer-link.btn.btn-success.btn-xs href="/answers/#{@id}/best" data-method="patch" data-remote="true" Best
-    .media-body
-      p = @body
-      ul.list-unstyled.list-inline.media-detail.pull-left
-        li
-          | %username% wrote: less than a minute ago
-      ul.list-unstyled.list-inline.media-detail.pull-right
-        li
-          a href=""  Reply
-        - if gon.user_id == @user_id
+- if gon.user_id != @user_id
+  .answer id="answer_#{@id}"
+    .media.line-answer
+      .pull-left
+        == JST["templates/answers/vote"]({votable: @, path: "/answers/#{@id}"})
+        span class=''
+        br
+        - if gon.user_id != @user_id
+          a.best-answer-link.btn.btn-success.btn-xs href="/answers/#{@id}/best" data-method="patch" data-remote="true" Best
+      .media-body
+        p = @body
+        ul.list-unstyled.list-inline.media-detail.pull-left
           li
-            a.edit-answer-link href="#" data-answer-id="#{@id}" Edit Answer
+            = @username
+        ul.list-unstyled.list-inline.media-detail.pull-right
           li
-            a href="/answers/#{@id}" data-method="delete" data-remote="true" Delete Answer
-  form.edit_answer id="edit-answer-#{@id}" action="/answers/#{@id}" data-remote="true" method="post" accepts-charset="UTF-8"
-    h4.pull-left.media-heading
-      | Edit Answer
-    fieldset
-      .row
-        .form-group.col-xs-12.col-sm-12.col-lg-12
-          input name="utf8" type="hidden" value="✓"
-          input type="hidden" name="_method" value="patch"
-          label for="answer_body" class="hidden"
-          textarea class="form-control" placeholder="#{@body}" rows="5" name="answer[body]" id="answer_body"
-          input type="submit" name="commit" value="Submit"
+            a href=""  Reply
+          - if gon.user_id == @user_id
+            li
+              a.edit-answer-link href="#" data-answer-id="#{@id}" Edit Answer
+            li
+              a href="/answers/#{@id}" data-method="delete" data-remote="true" Delete Answer
+    form.edit_answer id="edit-answer-#{@id}" action="/answers/#{@id}" data-remote="true" method="post" accepts-charset="UTF-8"
+      h4.pull-left.media-heading
+        | Edit Answer
+      fieldset
+        .row
+          .form-group.col-xs-12.col-sm-12.col-lg-12
+            input name="utf8" type="hidden" value="✓"
+            input type="hidden" name="_method" value="patch"
+            label for="answer_body" class="hidden"
+            textarea class="form-control" placeholder="#{@body}" rows="5" name="answer[body]" id="answer_body"
+            input type="submit" name="commit" value="Submit"
