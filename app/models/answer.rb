@@ -16,5 +16,10 @@ class Answer < ApplicationRecord
     end
   end
 
-  after_commit { AnswerJob.perform_later(self) }
+  def set_attr_for_template
+    attr = self.serializable_hash.merge('username' => user.username, 'author_question' => question.user_id).except('created_at', 'updated_at')
+    return attr
+  end
+
+  after_commit { AnswerJob.perform_later(self, set_attr_for_template) }
 end

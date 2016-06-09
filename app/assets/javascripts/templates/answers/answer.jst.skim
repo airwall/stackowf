@@ -1,11 +1,11 @@
 - if gon.user_id != @user_id
   .answer id="answer_#{@id}"
-    .media.line-answer
+    .media.line
       .pull-left
         == JST["templates/answers/vote"]({votable: @, path: "/answers/#{@id}"})
         span class=''
         br
-        - if gon.user_id != @user_id
+        - if gon.user_id == @author_question
           a.best-answer-link.btn.btn-success.btn-xs href="/answers/#{@id}/best" data-method="patch" data-remote="true" Best
       .media-body
         p = @body
