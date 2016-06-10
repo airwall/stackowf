@@ -10,7 +10,9 @@ Rails.application.routes.draw do
   end
 
   resources :questions, concerns: :votable do
+    resources :comments, only: :create
     resources :answers, only: [:index, :create, :update, :destroy], shallow: true, concerns: :votable do
+      resources :comments, only: :create
       member do
         patch :best
       end
@@ -23,5 +25,5 @@ Rails.application.routes.draw do
   post "vote_down" => 'fakes#vote_down'
 
   # Serve websocket cable requests in-process
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => "/cable"
 end

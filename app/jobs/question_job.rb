@@ -3,6 +3,6 @@ class QuestionJob < ApplicationJob
 
   def perform(question)
     ActionCable.server.broadcast "questions",
-      question: QuestionsController.render(partial: 'questions/question_index', locals: { question: question })
+                                 question: QuestionsController.render(partial: "questions/question_index", locals: { question: question })
   end
 end

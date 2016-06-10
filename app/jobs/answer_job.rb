@@ -3,6 +3,6 @@ class AnswerJob < ApplicationJob
 
   def perform(answer, attrs)
     ActionCable.server.broadcast "questions:#{answer.question_id}:answers",
-    answer: attrs
+                                 answer: attrs
   end
 end

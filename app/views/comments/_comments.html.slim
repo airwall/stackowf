@@ -1,0 +1,8 @@
+.comment
+  = render commentable.comments
+
+.comment-form
+  = form_for [commentable, commentable.comments.build], remote: true do |f|
+   = f.label :body, 'Comment'
+   = f.text_area :body
+   = f.submit 'Submit'
