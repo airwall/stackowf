@@ -1,8 +1,13 @@
-.comment
-  = render commentable.comments
+.pull-right.col-sm-6.col-md-10 id="#{dom_id(commentable)}_comments"
+  - if signed_in?
+    = link_to 'Add Comment', '', class: 'add-comment-link', data: {commentable_id: commentable.id}
 
-.comment-form
-  = form_for [commentable, commentable.comments.build], remote: true do |f|
-   = f.label :body, 'Comment'
-   = f.text_area :body
-   = f.submit 'Submit'
+  .comments
+    = render commentable.comments
+  .comment-errors
+
+  .comment-form
+    = form_for [commentable, commentable.comments.build], remote: true, html: { id: "form-comment-#{ commentable.id }" } do |f|
+     = f.label :body, class: 'hidden'
+     = f.text_area :body, class: "form-control", placeholder: "Your Comment", rows: 2
+     = f.submit 'Submit', class: 'button btn btn-normal pull-right'

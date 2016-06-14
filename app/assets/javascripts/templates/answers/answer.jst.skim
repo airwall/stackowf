@@ -13,8 +13,6 @@
           li
             = @username
         ul.list-unstyled.list-inline.media-detail.pull-right
-          li
-            a href=""  Reply
           - if gon.user_id == @user_id
             li
               a.edit-answer-link href="#" data-answer-id="#{@id}" Edit Answer

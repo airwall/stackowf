@@ -105,6 +105,10 @@
   display: none;
   }
 
+  #content .new_comment{
+    display: none;
+  }
+
   #content .edit_answer{
   display: none;
   }
@@ -285,4 +289,9 @@
 
   #content .cancel {
     margin-left: 10px;
+  }
+
+  #content .smalltime {
+    font-size: 0.7em;
+    color: #cecece;
   }

@@ -1,5 +1,5 @@
 = div_for(answer) do
-  .media.line-answer
+  .media
     .pull-left
       = render 'votes/vote', votable: answer
       span class='#{answer.best? ? "glyphicon glyphicon-ok green" : ""  }'
@@ -12,9 +12,6 @@
         li
           = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
       ul.list-unstyled.list-inline.media-detail.pull-right
-        - if signed_in?
-          li
-            = link_to 'Add Comment', '#', class: 'add-comment-form'
         - if show_link?(answer)
           li
             = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
@@ -24,6 +21,9 @@
       - answer.attachments.each_with_index do |a, index|
         = link_to(a.file.url) do
           span class= "#{add_icon_to_attachment(a.file.to_s)}"
+    .media
+      = render 'comments/comments', commentable: answer
+
   = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
     h4.pull-left.media-heading
       | Edit Answer
@@ -40,5 +40,4 @@
               = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
     button.btn.btn-normal.pull-left[type="submit"]
       | Submit
-
-= render 'comments/comments', commentable: answer
+  .line-answer

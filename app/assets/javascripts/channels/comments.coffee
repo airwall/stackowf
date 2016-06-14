@@ -1,4 +1,4 @@
-App.answers = App.cable.subscriptions.create "AnswersChannel",
+App.comments = App.cable.subscriptions.create "CommentsChannel",
   collection: -> $("[data-question-id]")
 
   connected: ->
@@ -12,11 +12,12 @@ App.answers = App.cable.subscriptions.create "AnswersChannel",
     # Called when the subscription has been terminated by the server
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    $('#answers').append(JST['templates/answers/answer'](data.answer)).hide().fadeIn('slow')
+    comments = $('#' + data.commentable + '_' + data.commentable_id + '_comments')
+    comments.append(data.comment).hide().fadeIn('slow')
 
   followCurrentAnswer: ->
     if questionId = @collection().data('question-id')
-      @perform 'follow', question_id: questionId
+      @perform 'follow', commentable_id: questionId
     else
       @perform 'unfollow'
 

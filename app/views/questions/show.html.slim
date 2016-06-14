@@ -1,22 +1,23 @@
-section#content.content-item.line
+section#content.content-item.line data-question-id="#{@question.id}"
   .row
-    = render 'question'
+    = render 'question', question: @question
       .top-alert
 section#content.content-item
-  #answers.row data-channel="answers" data-question-id="#{@question.id}"
+  #answers.row
     = render @question.answers.includes(:user).order("best DESC, created_at ASC")
   .answers-errors
   - if user_signed_in?
-    = form_for [@question, @answer], remote: true do |f|
-      h4.pull-left.media-heading
-        | Write your answer
-      fieldset
-        = f.label :body, class: 'hidden'
-        = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 5
-        p
-        .attachments
-          = f.fields_for :attachments do |a|
-            .add-file
-              = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
-      button.btn.btn-normal.pull-left[type="submit"]
-        | Submit
+    .row.col-sm-10
+      = form_for [@question, @answer], remote: true do |f|
+        h4.pull-left.media-heading
+          | Write your answer
+        fieldset
+          = f.label :body, class: 'hidden'
+          = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 3
+          p
+          .attachments
+            = f.fields_for :attachments do |a|
+              .add-file
+                = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
+        button.btn.btn-normal.pull-left[type="submit"]
+          | Submit

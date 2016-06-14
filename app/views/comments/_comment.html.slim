@@ -1,1 +1,4 @@
-= comment.body
+.smalltime #{time_ago_in_words(comment.created_at)} ago
+= "#{comment.body} | "
+a  #{comment.user.username}
+.line-answer
