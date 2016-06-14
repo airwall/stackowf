@@ -28,8 +28,8 @@ feature "User can make best answer", '
     answer.reload
     visit question_path(question)
     within "#answer_#{answer.id}" do
-      expect(page).to_not have_link "Best"
-      expect(page).to_not have_css ".glyphicon.glyphicon-ok.green"
+      find(".glyphicon glyphicon-ok-circle").click
+      expect(page).to_not have_css ".glyphicon.glyphicon-ok-circle.red"
     end
   end
 

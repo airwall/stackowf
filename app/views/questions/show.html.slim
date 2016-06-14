@@ -2,7 +2,6 @@ section#content.content-item.line data-question-id="#{@question.id}"
   .row
     = render 'question', question: @question
       .top-alert
-section#content.content-item
   #answers.row
     = render @question.answers.includes(:user).order("best DESC, created_at ASC")
   .answers-errors

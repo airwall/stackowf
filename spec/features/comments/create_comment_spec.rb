@@ -15,10 +15,11 @@ feature "Create comment", '
     visit question_path(question)
     within "#question_#{question.id}" do
       expect(page).to have_content question.body
-      expect(page).to have_link "Add Comment"
-      click_on "Add Comment"
+      expect(page).to have_link "add comment"
+      click_on "add comment"
       within ".comment-form" do
         fill_in "Body", with: "CommentTest"
+        screenshot_and_save_page
         click_on "Submit"
       end
       expect(page).to have_content "CommentTest"

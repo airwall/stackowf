@@ -105,9 +105,6 @@
   display: none;
   }
 
-  #content .new_comment{
-    display: none;
-  }
 
   #content .edit_answer{
   display: none;
@@ -133,13 +130,15 @@
   .green{
     color: #5EBA7D;
     margin-top: 15px;
-    margin-left: 10px;
-    font-size: 1.5em;
+    font-size: 1.2em;
   }
 
-  .best-answer-link{
-    margin-left: 3px;
+  .red{
+    color: #dd6e6e;
+    margin-top: 15px;
+    font-size: 1.2em;
   }
+
 
   .icon span {
     color: #858C93;
@@ -177,7 +176,6 @@
 
 /* Votable CSS */
   #content .vote  {
-    margin-left: 7px;
     text-align: center;
   }
 
@@ -235,6 +233,40 @@
   #content .thumbnails a:hover {
     text-decoration: inherit;
   }
+
+  /* Comments CSS */
+  #content .comments-block  {
+    margin-left: 60px;
+    border-top: 1px solid #e2e2e2;
+    font-size: 0.9em;
+  }
+
+  #content .comment  {
+    border-bottom: 1px solid #e2e2e2;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  #content .smalltime {
+    font-size: 0.8em;
+    color: #cecece;
+  }
+
+  #content .link a {
+    color: #9e9e9e;
+    font-size: 0.9em;
+  }
+
+  #content .link a:hover {
+    color: #c9e2ef;
+    text-decoration: inherit;
+  }
+
+  #content .new_comment{
+    display: none;
+  }
+
+
   /* ============= */
 
   #content .fa-calendar {
@@ -281,17 +313,8 @@
   }
 
   #content .media > .pull-left {
-    margin-right:20px;
+    margin-right: 40px;
   }
   #content .line-answer {
     border-top: 1px outset #DDDDDD;
-  }
-
-  #content .cancel {
-    margin-left: 10px;
-  }
-
-  #content .smalltime {
-    font-size: 0.7em;
-    color: #cecece;
   }

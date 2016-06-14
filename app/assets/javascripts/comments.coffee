@@ -3,12 +3,12 @@ $(document).ready ->
     e.preventDefault();
 
     commentable_id = $(this).data('commentableId')
-    $("#form-comment-" + commentable_id).fadeIn(1000)
     $('.add-comment-link').hide()
+    $("#form-comment-" + commentable_id).fadeIn(400)
 
-  $(document).on 'ajax:success', '.comment-form', (e, data, status, xhr) ->
+  $(document).on 'ajax:success', '.new_comment', (e, data, status, xhr) ->
     response = $.parseJSON(xhr.responseText)
     $(".comment-errors").text('')
     $("#form-comment-#{response.commentable_id} textarea" ).val('')
     $("#form-comment-" + response.commentable_id).fadeOut(400)
-    $('.add-comment-link').show()
+    $('.add-comment-link').after().show()
