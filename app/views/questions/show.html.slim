@@ -1,22 +1,24 @@
-section#content.content-item.line data-question-id="#{@question.id}"
+section#content.content-item data-question-id="#{@question.id}"
   .row
-    = render 'question', question: @question
-      .top-alert
-  #answers.row
+    .col-lg-offset-1.col-lg-10.line
+      = render 'question', question: @question
+        .top-alert
+  #answers
     = render @question.answers.includes(:user).order("best DESC, created_at ASC")
-  .answers-errors
-  - if user_signed_in?
-    .row.col-sm-10
-      = form_for [@question, @answer], remote: true do |f|
-        h4.pull-left.media-heading
-          | Write your answer
-        fieldset
-          = f.label :body, class: 'hidden'
-          = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 3
-          p
-          .attachments
-            = f.fields_for :attachments do |a|
-              .add-file
-                = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
-        button.btn.btn-normal.pull-left[type="submit"]
-          | Submit
+    .answers-errors
+    .row
+      .col-lg-offset-1.col-lg-10
+        - if user_signed_in?
+          = form_for [@question, @answer], remote: true do |f|
+            h4.pull-left.media-heading
+              | Write your answer
+            fieldset
+              = f.label :body, class: 'hidden'
+              = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 3
+              p
+              .attachments
+                = f.fields_for :attachments do |a|
+                  .add-file
+                    = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
+            button.btn.btn-normal.pull-left[type="submit"]
+              | Submit

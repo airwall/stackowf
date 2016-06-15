@@ -5,6 +5,7 @@ class QuestionsController < ApplicationController
   include Voted
 
   def index
+    @redirect_path = false  
     @questions = Question.includes(:user).all
   end
 

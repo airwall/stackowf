@@ -21,7 +21,7 @@
  	padding-top:50px;
   margin-top:30px;
   background-color: #FFFFFF;
-
+  font-family: Tahoma, Geneva, sans-serif;
  }
 
  a, a:hover, a:active, a:visited {
@@ -82,7 +82,7 @@
    padding-left: 15px;
    margin-right: auto;
    margin-left: auto;
-   max-width: 900px;
+   max-width: 1000px;
    overflow:hidden;
    min-height:0px !important;
   }
@@ -165,7 +165,7 @@
   }
 
   .line {
-    border-top: 1px outset #556E8C;
+    border-top: 1px solid #cecece;
   }
 
   #content .media {
@@ -316,5 +316,5 @@
     margin-right: 40px;
   }
   #content .line-answer {
-    border-top: 1px outset #DDDDDD;
+    border-top: 1px solid #DDDDDD;
   }

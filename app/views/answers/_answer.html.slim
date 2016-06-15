@@ -1,41 +1,43 @@
 = div_for(answer) do
-  .media.line
-    .pull-left
-      = render 'votes/vote', votable: answer
-      span class='#{answer.best? ? "glyphicon glyphicon-ok green" : ""  }'
-      br
-      - if show_link?(answer.question) && answer.best != true #исправить отображение кнопки если ответ от автора вопроса
-        = link_to '', best_answer_path(answer), method: :patch, remote: true, class: "glyphicon glyphicon-ok-circle red"
-    .media-body
-      p = answer.body
-      ul.list-unstyled.list-inline.media-detail.pull-left
-        li
-          = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
-      ul.list-unstyled.list-inline.media-detail.pull-right
-        - if show_link?(answer)
-          li
-            = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
-          li
-            = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true
-        div class="#{answer.attachments.exists? ? 'thumbnails' : '' }"
-          - answer.attachments.each_with_index do |a, index|
-            = link_to(a.file.url) do
-              span class= "#{add_icon_to_attachment(a.file.to_s)}"
+  .row
+    .col-lg-offset-1.col-lg-10
+      .media.line
+        .pull-left
+          = render 'votes/vote', votable: answer
+          span class='#{answer.best? ? "glyphicon glyphicon-ok green" : ""  }'
+          br
+          - if show_link?(answer.question) && answer.best != true #исправить отображение кнопки если ответ от автора вопроса
+            = link_to '', best_answer_path(answer), method: :patch, remote: true, class: "glyphicon glyphicon-ok-circle red"
+        .media-body
+          p = answer.body
+          ul.list-unstyled.list-inline.media-detail.pull-left
+            li
+              = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
+          ul.list-unstyled.list-inline.media-detail.pull-right
+            - if show_link?(answer)
+              li
+                = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
+              li
+                = link_to 'Delete Answer', answer_path(answer), method: :delete, remote: true
+            div class="#{answer.attachments.exists? ? 'thumbnails' : '' }"
+              - answer.attachments.each_with_index do |a, index|
+                = link_to(a.file.url) do
+                  span class= "#{add_icon_to_attachment(a.file.to_s)}"
 
-    = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
-      h4.pull-left.media-heading
-        | Edit Answer
-      fieldset
-        .row
-          .form-group.col-xs-12.col-sm-12.col-lg-12
-            = f.label :body, class: 'hidden'
-            = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
-            p
-            .attachments
-              = f.fields_for :attachments do |a|
-                = render 'attachments/attachment_fields', f: a
-              .add-file
-                = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
-      button.btn.btn-normal.pull-left[type="submit"]
-        | Submit
-    = render 'comments/comments', commentable: answer
+        = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
+          h4.pull-left.media-heading
+            | Edit Answer
+          fieldset
+            .row
+              .form-group.col-xs-12.col-sm-12.col-lg-12
+                = f.label :body, class: 'hidden'
+                = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
+                p
+                .attachments
+                  = f.fields_for :attachments do |a|
+                    = render 'attachments/attachment_fields', f: a
+                  .add-file
+                    = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
+          button.btn.btn-normal.pull-left[type="submit"]
+            | Submit
+        = render 'comments/comments', commentable: answer

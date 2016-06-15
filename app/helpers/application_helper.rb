@@ -16,4 +16,9 @@ module ApplicationHelper
   def add_icon_to_attachment(f)
     %w(jpg jpeg png gif).any? { |str| f.downcase.include? str } ? "glyphicon glyphicon-picture" : "glyphicon glyphicon-file"
   end
+
+  def login_options
+    @redirect_path ? {redirect_to: request.path} : {}
+  end
+  
 end

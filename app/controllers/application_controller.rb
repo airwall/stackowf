@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :set_gon_user
+  before_action :set_redirect_path, unless: :user_signed_in?
+
 
   protected
 
@@ -16,5 +18,19 @@ class ApplicationController < ActionController::Base
 
   def set_gon_user
     gon.user_id = current_user.try(:id)
+  end
+
+  def set_redirect_path
+    @redirect_path = request.path
+  end
+
+  def after_sign_in_path_for(resource)
+    if params[:redirect_to].present?
+      store_location_for(resource, params[:redirect_to])
+    elsif request.referer == new_session_url
+      super
+    else
+      stored_location_for(resource) || request.referer || root_path
+    end
   end
 end
