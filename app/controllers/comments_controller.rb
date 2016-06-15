@@ -4,13 +4,14 @@ class CommentsController < ApplicationController
   def create
     @commentable = find_commentable
     @comment = @commentable.comments.build(comment_params.merge(user: current_user))
-    if @comment.save
-      render json: {
-        commentable: @commentable.class.name.underscore,
-        commentable_id: @commentable.id
-      }
-    else
-      render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity
+    respond_to do |format|
+      if @comment.save
+        format.json { render json: { commentable: @commentable.class.name.underscore, commentable_id: @commentable.id } }
+        format.js
+      else
+        format.json { render json: { errors: @comment.errors.full_messages }, status: :unprocessable_entity }
+        format.js
+      end
     end
   end
 

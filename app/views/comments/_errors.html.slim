@@ -1,0 +1,8 @@
+- if @comment.errors.any?
+  - @comment.errors.full_messages.each do |error|
+    br
+    div class=("alert alert-alert")
+      a.close data-dismiss="alert" href="#"  ×
+      ul
+        li
+          = error

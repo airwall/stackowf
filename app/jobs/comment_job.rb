@@ -2,15 +2,17 @@ class CommentJob < ApplicationJob
   queue_as :default
 
   def perform(comment)
+    # binding.pry
     ActionCable.server.broadcast "questions:#{channel_id(comment)}:comments",
-                                 comment: CommentsController.render(partial: 'comments/comment', locals: { comment: comment }),
+                                 comment: CommentsController.render(partial: "comments/comment", locals: { comment: comment }),
                                  commentable: comment.commentable_type.underscore,
-                                 commentable_id: comment.commentable_id
+                                 commentable_id: comment.commentable_id,
+                                 user_id: comment.user.id
   end
 
   private
 
   def channel_id(comment)
-    comment.commentable_type == 'Answer' ? comment.commentable.question_id : comment.commentable_id
+    comment.commentable_type == "Answer" ? comment.commentable.question_id : comment.commentable_id
   end
 end

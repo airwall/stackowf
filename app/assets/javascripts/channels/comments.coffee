@@ -12,8 +12,9 @@ App.comments = App.cable.subscriptions.create "CommentsChannel",
     # Called when the subscription has been terminated by the server
   received: (data) ->
     # Called when there's incoming data on the websocket for this channel
-    comments = $('#' + data.commentable + '_' + data.commentable_id + '_comments')
-    comments.append(data.comment).hide().fadeIn('slow')
+    if gon.user_id != data.user_id
+      comments = $('#' + data.commentable + '_' + data.commentable_id + '_comments')
+      comments.append(data.comment).hide().fadeIn('slow')
 
   followCurrentAnswer: ->
     if questionId = @collection().data('question-id')

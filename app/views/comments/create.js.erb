@@ -1,0 +1,8 @@
+<% if @comment.errors.present? %>
+  $('#<%= @commentable.class.name.downcase %>_<%= @commentable.id %> .comment-errors').html("")
+  $('#<%= @commentable.class.name.downcase %>_<%= @commentable.id %> .comment-errors').append("<%= j render 'errors' %>").hide().fadeIn('slow')
+<% else %>
+  $("#<%= @commentable.class.name.downcase %>_<%= @commentable.id %>_comments").append("<%= j render partial: 'comments/comment', locals: { comment: @comment }  %>");
+  $("#form-comment-<%= @commentable.class.name.downcase %>-<%= @commentable.id%> textarea").val('')
+  $("#form-comment-<%= @commentable.class.name.downcase %>-<%= @commentable.id%>").hide()
+<% end %>
