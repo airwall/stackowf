@@ -14,12 +14,13 @@ feature "Edit question", '
 
     within "#question_#{question.id}" do
       click_on "Edit Question"
-      fill_in "Title", with: "NewTitle"
-      fill_in "Body", with: "NewBody"
+      fill_in "Title", with: question.title
+      fill_in "Body", with: question.body
       click_on "Submit"
     end
 
-    expect(page).to have_content "NewTitle"
+    expect(page).to have_content question.title
+    expect(page).to have_content question.body
   end
 
   scenario "Non-authenticated user ties edit question" do
@@ -41,7 +42,7 @@ feature "Edit question", '
         click_on "Remove File"
         click_on "Submit"
       end
-      expect(page).to_not have_css ".glyphicon.glyphicon-file"
+      expect(page).to_not  have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
     end
 
     scenario "Add file to question when edit it", js: true do
