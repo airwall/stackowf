@@ -41,7 +41,6 @@ feature "Edit question", '
       within (".edit_question_form") do
         click_on "Remove File"
         click_on "Submit"
-        sleep 5
       end
       expect(page).to_not  have_selector(:css, "a[href='/uploads/attachment/file/1/spec_helper.rb']")
     end

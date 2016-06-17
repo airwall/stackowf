@@ -55,7 +55,6 @@ feature "User can edit his answer", '
       within "#answer_#{answer.id}" do
         click_on "Remove File"
         click_on "Submit"
-        sleep 5
       end
       expect(page).to_not have_css ".glyphicon.glyphicon-file"
     end
