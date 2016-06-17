@@ -1,13 +1,15 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= "test"
-require "spec_helper"
 require File.expand_path("../../config/environment", __FILE__)
-require "database_cleaner"
+abort("The Rails environment is running in production mode!") if Rails.env.production?
+
+require "spec_helper"
 require "rspec/rails"
+require 'shoulda/matchers'
 require "with_model"
 require "capybara/rspec"
-require "capybara-screenshot/rspec"
 require "capybara/poltergeist"
+
 Capybara.configure do |c|
   c.javascript_driver = :poltergeist
 end

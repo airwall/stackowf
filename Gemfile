@@ -49,7 +49,6 @@ gem 'skim'
 gem 'gon'
 
 group :test do
-  gem 'capybara-screenshot'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
