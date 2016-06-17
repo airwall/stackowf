@@ -55,7 +55,6 @@ feature "Create comment", '
       within "#answer_#{answer.id}" do
         expect(page).to have_link "add comment"
         click_on "add comment"
-        screenshot_and_save_page
         fill_in "Body", with: "CommentTestAnswer"
         click_on "Submit"
         expect(page).to have_content "CommentTestAnswer"
