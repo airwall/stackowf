@@ -57,30 +57,32 @@ RSpec.configure do |config|
 
   #======================
   config.before(:suite) do
-    # Truncate database to clean up garbage from
-    # interrupted or badly written examples
     DatabaseCleaner.clean_with(:truncation)
-
-    # Seed dataase. Use it only for essential
-    # to run application data.
-    load "#{Rails.root}/db/seeds.rb"
   end
 
-  config.around(:each) do |example|
-    # Use really fast transaction strategy for all
-    # examples except `js: true` capybara specs
-    DatabaseCleaner.strategy = example.metadata[:js] ? :truncation : :transaction
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
 
-    # Start transaction
-    DatabaseCleaner.cleaning do
-      # Run example
-      example.run
+  config.before(:each, type: :feature) do
+    # :rack_test driver's Rack app under test shares database connection
+    # with the specs, so continue to use transaction strategy for speed.
+    driver_shares_db_connection_with_specs = Capybara.current_driver == :rack_test
+
+    unless driver_shares_db_connection_with_specs
+      # Driver is probably for an external browser with an app
+      # under test that does *not* share a database connection with the
+      # specs, so use truncation strategy.
+      DatabaseCleaner.strategy = :truncation
     end
+  end
 
-    load "#{Rails.root}/db/seeds.rb" if example.metadata[:js]
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
 
-    # Clear session data
-    Capybara.reset_sessions!
+  config.append_after(:each) do
+    DatabaseCleaner.clean
   end
   #=======================
 
