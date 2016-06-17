@@ -4,7 +4,7 @@ ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.0.0.beta3', '< 5.1'
 # Use sqlite3 as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma'
 # Use SCSS for stylesheets
@@ -24,7 +24,7 @@ gem 'turbolinks', '~> 5.x'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 3.0'
+# gem 'redis', '~> 3.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -55,24 +55,28 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'poltergeist'
   gem 'with_model'
+  gem 'rails-controller-testing'
+  gem 'rubocop', require: false
+  gem 'rubocop-rspec'
 end
 
 group :development, :test do
-  gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails'
+  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
-  gem 'rails-controller-testing'
+  gem 'rspec', '~> 3.5.0.beta3'
+  gem 'rspec-rails', '~> 3.5.0beta3'
+  gem 'factory_girl_rails'
+  gem 'spring-commands-rspec'
+  gem 'parallel_tests'
 end
 
 group :development do
-  gem "better_errors"
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 3.0'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'rubocop', require: false
 end
 
 group :production do
