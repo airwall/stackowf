@@ -18,13 +18,8 @@ class AnswersController < ApplicationController
 
   def best
     question = @answer.question
-    if current_user.author_of?(@answer.question)
-      @answer.best!
-      @answers = question.answers.includes(:user).order("best DESC, created_at ASC")
-      render :best
-    else
-      render :best
-    end
+    @answer.best! if current_user.author_of?(@answer.question)
+    respond_with @answers = question.answers.includes(:user).order("best DESC, created_at ASC")
   end
 
   def destroy
