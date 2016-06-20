@@ -4,5 +4,5 @@ class Comment < ApplicationRecord
 
   validates :user_id, :commentable_id, :commentable_type, :body, presence: true
 
-  # after_commit { CommentJob.perform_later(self) }
+  after_commit { CommentJob.perform_later(self) }
 end

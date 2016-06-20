@@ -22,5 +22,5 @@ class Answer < ApplicationRecord
     attr
   end
 
-  # after_create_commit { AnswerJob.perform_later(self, set_attr_for_template) }
+  after_create_commit { AnswerJob.perform_later(self, set_attr_for_template) }
 end

@@ -10,5 +10,5 @@ class Question < ApplicationRecord
 
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
-  # after_commit { QuestionJob.perform_later(self) }
+  after_commit { QuestionJob.perform_later(self) }
 end

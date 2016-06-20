@@ -1,5 +1,5 @@
 class CommentJob < ApplicationJob
-  queue_as :default
+  queue_as :low_priority
 
   def perform(comment)
     ActionCable.server.broadcast "questions:#{channel_id(comment)}:comments",
