@@ -7,7 +7,6 @@ class ApplicationController < ActionController::Base
   before_action :set_gon_user
   before_action :set_redirect_path, unless: :user_signed_in?
 
-
   protected
 
   def configure_permitted_parameters

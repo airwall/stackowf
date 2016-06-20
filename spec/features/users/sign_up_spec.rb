@@ -8,7 +8,7 @@ feature "User sign up", '
   given(:user) { create(:user) }
 
   scenario "Non-registered user can sign up" do
-    visit new_user_registration_path( redirect_to: root_path )
+    visit new_user_registration_path(redirect_to: root_path)
     fill_in "Username", with: "NewUsernameTest"
     fill_in "Email", with: "new@test.com"
     fill_in "Password", with: "12345678"
@@ -19,7 +19,7 @@ feature "User sign up", '
   end
 
   scenario "New user can't sign up with wrong parrameters" do
-    visit new_user_registration_path( redirect_to: root_path )
+    visit new_user_registration_path(redirect_to: root_path)
     fill_in "Password", with: "12345678"
     fill_in "Password confirmation", with: "12345678"
     click_on "Sign up"
@@ -30,7 +30,7 @@ feature "User sign up", '
   scenario "Registered user try to sign up" do
     sign_in(user)
 
-    visit new_user_registration_path( redirect_to: root_path )
+    visit new_user_registration_path(redirect_to: root_path)
     expect(page).to have_content "You are already signed in."
   end
 end

@@ -15,7 +15,7 @@ feature "User sign in", '
   end
 
   scenario "Non-registered user try to sign in" do
-    visit new_user_session_path( redirect_to: root_path )
+    visit new_user_session_path(redirect_to: root_path)
     fill_in "Login", with: "wrong@test.com"
     fill_in "Password", with: "12345678"
     click_on "Sign in"

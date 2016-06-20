@@ -11,7 +11,7 @@ class AnswersController < ApplicationController
       if @answer.save
         format.html { redirect_to @question }
       else
-        format.html { render 'questions/show' }
+        format.html { render "questions/show" }
       end
       format.js
     end

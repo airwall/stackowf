@@ -18,7 +18,6 @@ module ApplicationHelper
   end
 
   def login_options
-    @redirect_path ? {redirect_to: request.path} : {}
+    @redirect_path ? { redirect_to: request.path } : {}
   end
-  
 end

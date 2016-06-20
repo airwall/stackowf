@@ -5,7 +5,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require "spec_helper"
 require "rspec/rails"
-require 'shoulda/matchers'
+require "shoulda/matchers"
 require "with_model"
 require "capybara/rspec"
 require "capybara/poltergeist"
