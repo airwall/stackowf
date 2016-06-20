@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0.beta3', '< 5.1'
+gem 'rails', '~> 5.0.0.rc1'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
-gem 'puma'
+gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.6'
@@ -62,8 +62,7 @@ end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
-  gem 'rspec', '~> 3.5.0.beta3'
-  gem 'rspec-rails', '~> 3.5.0beta3'
+  gem 'rspec-rails', github: 'rspec/rspec-rails', tag: 'v3.5.0.beta3'
   gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
   gem 'parallel_tests'
