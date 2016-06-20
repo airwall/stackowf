@@ -1,5 +1,5 @@
 class QuestionJob < ApplicationJob
-  queue_as :low_priority
+  queue_as :default
 
   def perform(question)
     ActionCable.server.broadcast "questions",
