@@ -3,22 +3,17 @@ class AnswersController < ApplicationController
   before_action :get_question, only: [:create]
   before_action :get_answer, only: [:edit, :destroy, :update, :best]
 
+  respond_to :html, :js
+
   include Voted
 
   def create
-    @answer = @question.answers.new(answer_params.merge(user: current_user))
-    respond_to do |format|
-      if @answer.save
-        format.html { redirect_to @question }
-      else
-        format.html { render "questions/show" }
-      end
-      format.js
-    end
+    respond_with  @answer = @question.answers.create(answer_params.merge(user: current_user))
   end
 
   def update
     @answer.update(answer_params) if current_user.author_of?(@answer)
+    respond_with @answer
   end
 
   def best

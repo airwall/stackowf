@@ -17,7 +17,7 @@ section#content.content-item data-question-id="#{@question.id}"
             = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 3
             p
             .attachments
-              = f.fields_for :attachments do |a|
+              = f.fields_for :attachments, @answer.attachments.build do |a|
                 .add-file
                   = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
           button.btn.btn-normal.pull-left[type="submit"]

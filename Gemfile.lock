@@ -324,6 +324,7 @@ DEPENDENCIES
   rails_12factor
   record_tag_helper
   remotipart!
+  responders
   rspec-rails!
   rubocop
   rubocop-rspec

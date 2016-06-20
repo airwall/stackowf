@@ -44,6 +44,7 @@ gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms
 gem "cocoon"
 
+gem "responders"
 #JS templates
 gem 'skim'
 gem 'gon'
