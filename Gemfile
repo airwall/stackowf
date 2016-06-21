@@ -32,6 +32,8 @@ gem 'jbuilder', '~> 2.0'
 # gem 'capistrano-rails', group: :development
 gem 'slim-rails'
 gem 'devise'
+gem 'omniauth', '~> 1.3', '>= 1.3.1'
+gem 'omniauth-facebook', '~> 3.0'
 gem 'devise-bootstrap-views'
 
 #Add unique ID's to div tag
@@ -48,6 +50,8 @@ gem "responders"
 #JS templates
 gem 'skim'
 gem 'gon'
+
+
 
 group :test do
   gem 'capybara'
