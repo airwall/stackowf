@@ -5,18 +5,19 @@ RSpec.describe User do
   it { should validate_presence_of :username }
   it { should validate_uniqueness_of :username }
   it { should validate_presence_of :password }
-  it { should have_many(:questions) }
-  it { should have_many(:answers) }
-  it { should have_many(:authorizations) }
+  it { should have_many(:questions).dependent(:destroy) }
+  it { should have_many(:answers).dependent(:destroy) }
+  it { should have_many(:comments).dependent(:destroy) }
+  it { should have_many(:authorizations).dependent(:destroy)  }
 
   describe ".find_for_oauth" do
     let!(:user) { create(:user) }
     let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456') }
 
     context "User already has authorization" do
-      it "returns the user" do
+      it "returns the authorization" do
         user.authorizations.create( provider: 'facebook', uid: '123456')
-        expect(User.find_for_oauth(auth)).to eq user
+        expect(User.find_for_oauth(auth)).to be_a(Authorization)
       end
     end
 
@@ -32,42 +33,38 @@ RSpec.describe User do
         end
 
         it "create authorization with provider and uid" do
-          authorization = User.find_for_oauth(auth).authorizations.first
-          expect(authorization.provider).to eq auth.provider
-          expect(authorization.uid).to eq auth.uid
+          User.find_for_oauth(auth)
+          expect(user.authorizations.first.provider).to eq auth.provider
+          expect(user.authorizations.first.uid).to eq auth.uid
         end
 
-        it "return user" do
-          expect(User.find_for_oauth(auth)).to eq user
+        it "return authorization" do
+          expect(User.find_for_oauth(auth)).to be_a(Authorization)
         end
       end
 
       context "User does not exist" do
         let(:auth) { OmniAuth::AuthHash.new(provider: 'facebook', uid: '123456', info: { email: 'new@user.com' }) }
 
-        it "create new user" do
-          expect{ User.find_for_oauth(auth) }.to change(User, :count).by(1)
+        it "create new user with email" do
+          user = User.find_for_oauth(auth).user
+          expect(user.email).to eq 'new@user.com'
         end
 
-        it "return user" do
-          expect(User.find_for_oauth(auth)).to be_a(User)
-        end
-
-        it "fills user email" do
-          user = User.find_for_oauth(auth)
-          expect(user.email).to eq auth.info.email
-        end
-
-        it "create authorization for user" do
-          user = User.find_for_oauth(auth)
+        it 'creates new Authorization for new user' do
+          user = User.find_for_oauth(auth).user
           expect(user.authorizations).to_not be_empty
         end
 
-        it "create authorization with provider and uid" do
-          authorization = User.find_for_oauth(auth).authorizations.first
-          expect(authorization.provider).to eq auth.provider
-          expect(authorization.uid).to eq auth.uid
-        end
+        it 'create new Authorization with provider and uid' do
+         user = User.find_for_oauth(auth).user
+         expect(user.authorizations.first.provider).to eq auth.provider
+         expect(user.authorizations.first.uid).to eq auth.uid
+       end
+
+       it 'returns new authorization' do
+         expect(User.find_for_oauth(auth)).to be_a(Authorization)
+       end
       end
     end
   end

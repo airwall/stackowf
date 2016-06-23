@@ -2,13 +2,14 @@ class User < ApplicationRecord
   attr_accessor :login
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
-  has_many :authorizations
+  has_many :comments, dependent: :destroy
+  has_many :authorizations, dependent: :destroy
   validates_presence_of :username
   validates_uniqueness_of :username
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
+         :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook, :twitter]
 
   def self.find_for_database_authentication(warden_conditions)
     conditions = warden_conditions.dup
@@ -24,20 +25,19 @@ class User < ApplicationRecord
   end
 
   def self.find_for_oauth(auth)
-    authorization = Authorization.where(provider: auth.provider, uid: auth.uid.to_s).first
-    return authorization.user if authorization
+    provider = auth[:provider]
+    uid = auth[:uid].to_s
+    authorization = Authorization.find_by(provider: provider, uid: uid)
+    return authorization if authorization
 
-    user = User.where(email: auth.info.email).first
-    if user
-      user.authorizations.create(provider: auth.provider, uid: auth.uid)
-    else
-      username = auth.info.email.split('@')[0]
+    email = auth[:info][:email]
+    return nil if email.nil?
+    user = User.find_by(email: email)
+    if !user
+      username = auth[:info][:email].split('@')[0]
       password = Devise.friendly_token[0, 20]
-      user = User.create!(email: auth.info.email, username: username, password: password, password_confirmation: password )
-      user.authorizations.create!(provider: auth.provider, uid: auth.uid)
+      user = User.create!(email: email, username: username, password: password, password_confirmation: password )
     end
-
-    user
+      user.authorizations.create!(provider: provider, uid: uid, confirmation_hash: Devise.friendly_token[0, 20])
   end
-
 end

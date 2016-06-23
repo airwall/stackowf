@@ -26,4 +26,12 @@ Rails.application.routes.draw do
 
   # Serve websocket cable requests in-process
   mount ActionCable.server => "/cable"
+
+  get "/oauth_services/new_email_oauth", as: 'new_email_oauth'
+  post "/oauth_services/save_email_oauth", as: 'save_email_oauth'
+  get "/oauth_services/confirm_email", as: 'confirm_email'
+
+  if Rails.env.development?
+    mount LetterOpenerWeb::Engine, at: "/letter_opener"
+  end
 end

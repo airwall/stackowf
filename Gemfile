@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0.rc1'
+gem 'rails', '5.0.0.rc1'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -34,6 +34,7 @@ gem 'slim-rails'
 gem 'devise'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
+gem 'omniauth-twitter'
 gem 'devise-bootstrap-views'
 
 #Add unique ID's to div tag
@@ -54,6 +55,7 @@ gem 'gon'
 
 
 group :test do
+  gem 'capybara-screenshot'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
@@ -71,6 +73,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
   gem 'parallel_tests'
+  gem 'capybara-email'
 end
 
 group :development do
@@ -80,6 +83,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'letter_opener_web', '~> 1.2.0'
 end
 
 group :production do
