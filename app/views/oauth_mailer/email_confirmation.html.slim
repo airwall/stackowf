@@ -12,4 +12,7 @@ html
     p
       | If it was you, just follow this link:
       = link_to 'Confirm my email', @url
+    p Or paste this code on confirm request form:
+    #token
+      = @code
     p Thanks for joining and have a great day!

@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { omniauth_callbacks: 'omniauth_callbacks' }
+  devise_for :users, controllers: { omniauth_callbacks: "omniauth_callbacks" }
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   concern :votable do
@@ -27,11 +27,11 @@ Rails.application.routes.draw do
   # Serve websocket cable requests in-process
   mount ActionCable.server => "/cable"
 
-  get "/oauth_services/new_email_oauth", as: 'new_email_oauth'
-  post "/oauth_services/save_email_oauth", as: 'save_email_oauth'
-  get "/oauth_services/confirm_email", as: 'confirm_email'
+  get "/oauth_services/new_email_oauth", as: "new_email_oauth"
+  post "/oauth_services/save_email_oauth", as: "save_email_oauth"
+  get "/oauth_services/confirm_email", as: "confirm_email"
+  get "/oauth_services/confirm_web", as: "confirm_web"
+  post "/oauth_services/post_confirm_web", as: "post_confirm_web"
 
-  if Rails.env.development?
-    mount LetterOpenerWeb::Engine, at: "/letter_opener"
-  end
+  mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 end

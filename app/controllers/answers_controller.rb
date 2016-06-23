@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
   include Voted
 
   def create
-    respond_with  @answer = @question.answers.create(answer_params.merge(user: current_user))
+    respond_with @answer = @question.answers.create(answer_params.merge(user: current_user))
   end
 
   def update

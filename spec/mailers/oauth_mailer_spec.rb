@@ -5,12 +5,12 @@ RSpec.describe OauthMailer, type: :mailer do
     let(:authorization) { create(:authorization) }
     let!(:email) { OauthMailer.email_confirmation(authorization) }
 
-    it 'delivered to the user of authorization' do
+    it "delivered to the user of authorization" do
       expect(email.to[0]).to eq authorization.user.email
     end
 
-    it 'send mail with confirmation link' do
-      expect(email.body).to have_link('Confirm my email', href: "#{confirm_email_url}?token=#{authorization.confirmation_hash}")
+    it "send mail with confirmation link" do
+      expect(email.body).to have_link("Confirm my email", href: "#{confirm_email_url}?token=#{authorization.confirmation_hash}")
     end
   end
 end

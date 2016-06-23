@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Authorization, type: :model do
   it { should belong_to(:user) }
@@ -6,18 +6,18 @@ RSpec.describe Authorization, type: :model do
   it { should validate_presence_of :uid }
   it { should validate_presence_of :user_id }
 
-  describe '.need_confirm?' do
-    it 'return true if authorization provider is in list and unconfirmed' do
+  describe ".need_confirm?" do
+    it "return true if authorization provider is in list and unconfirmed" do
       authorization = create(:authorization)
       expect(authorization.need_confirm?).to eq true
     end
 
-    it 'return false if authorization provider is not in the list' do
-      authorization = create(:authorization, provider: 'facebook')
+    it "return false if authorization provider is not in the list" do
+      authorization = create(:authorization, provider: "facebook")
       expect(authorization.need_confirm?).to eq false
     end
 
-    it 'return false if authorization provider is in list and confirmed' do
+    it "return false if authorization provider is in list and confirmed" do
       authorization = create(:authorization, confirmed: true)
       expect(authorization.need_confirm?).to eq false
     end

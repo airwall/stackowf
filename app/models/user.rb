@@ -33,11 +33,11 @@ class User < ApplicationRecord
     email = auth[:info][:email]
     return nil if email.nil?
     user = User.find_by(email: email)
-    if !user
-      username = auth[:info][:email].split('@')[0]
+    unless user
+      username = auth[:info][:email].split("@")[0]
       password = Devise.friendly_token[0, 20]
-      user = User.create!(email: email, username: username, password: password, password_confirmation: password )
+      user = User.create!(email: email, username: username, password: password, password_confirmation: password)
     end
-      user.authorizations.create!(provider: provider, uid: uid, confirmation_hash: Devise.friendly_token[0, 20])
+    user.authorizations.create!(provider: provider, uid: uid, confirmation_hash: Devise.friendly_token[0, 20])
   end
 end

@@ -1,5 +1,4 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
-
   def facebook
     authorize
   end
@@ -11,14 +10,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   private
 
   def authorize
-    authorization = User.find_for_oauth(request.env['omniauth.auth'])
-    if authorization.nil? || (authorization.provider == 'twitter' && authorization.confirmed == false)
-      session[:provider] = request.env['omniauth.auth'].provider
-      session[:uid] = request.env['omniauth.auth'].uid
+    authorization = User.find_for_oauth(request.env["omniauth.auth"])
+    if authorization.nil? || (authorization.provider == "twitter" && authorization.confirmed == false)
+      session[:provider] = request.env["omniauth.auth"].provider
+      session[:uid] = request.env["omniauth.auth"].uid
       redirect_to new_email_oauth_path
     elsif authorization.need_confirm?
-      flash[:alert] = 'You need to confirm your email. Check your mailbox'
-      redirect_to new_user_session_path(redirect_to: root_path)
+      flash[:alert] = "You need to confirm your email. Check your mailbox"
+      redirect_to confirm_web_path
     elsif authorization.user.persisted?
       sign_in_and_redirect authorization.user, event: :authentication
       set_flash_message(:notice, :success, kind: authorization.provider) if is_navigational_format?

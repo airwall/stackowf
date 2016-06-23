@@ -1,0 +1,16 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-login
+      .panel-heading
+        hr/
+        h4.text-center Enter request code here!
+      .panel-body
+        .row
+          .col-lg-12
+            = form_for @authorization, url: post_confirm_web_path  do |f|
+              .form-group
+                = f.text_field :confirmation_hash, type: 'text', placeholder: 'request code', class: 'form-control', id: 'token-confirm'
+              .form-group
+                .row
+                  .col-sm-6.col-sm-offset-3
+                    = submit_tag "Confirm", class: 'form-control btn btn-login'

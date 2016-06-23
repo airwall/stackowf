@@ -1,5 +1,5 @@
 require "rails_helper"
-require 'capybara-screenshot/rspec'
+require "capybara-screenshot/rspec"
 
 RSpec.configure do |config|
   Capybara.save_and_open_page_path = "%screenshots%/"
