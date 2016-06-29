@@ -11,14 +11,14 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def authorize
     authorization = User.find_for_oauth(request.env["omniauth.auth"])
-    if authorization.nil? || (authorization.provider == "twitter" && authorization.confirmed == false)
+    if authorization.nil?
       session[:provider] = request.env["omniauth.auth"].provider
       session[:uid] = request.env["omniauth.auth"].uid
       redirect_to new_email_oauth_path
-    elsif authorization.need_confirm?
+    elsif !authorization.confirmed?
       flash[:alert] = "You need to confirm your email. Check your mailbox"
       redirect_to confirm_web_path
-    elsif authorization.user.persisted?
+    else
       sign_in_and_redirect authorization.user, event: :authentication
       set_flash_message(:notice, :success, kind: authorization.provider) if is_navigational_format?
     end

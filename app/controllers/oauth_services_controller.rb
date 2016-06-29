@@ -33,7 +33,7 @@ class OauthServicesController < ApplicationController
 
   def confirm(authorization)
     if authorization
-      authorization.update(confirmed: true, confirmation_hash: Devise.friendly_token[0, 20])
+      authorization.update(confirmed: true, confirmation_hash: nil)
       redirect_to "/users/auth/#{authorization.provider}"
     else
       flash[:alert] = "Something went wrong"
