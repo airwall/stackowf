@@ -52,7 +52,8 @@ gem "responders"
 gem 'skim'
 gem 'gon'
 
-
+#authorization
+gem "pundit"
 
 group :test do
   gem 'capybara-screenshot'

@@ -8,6 +8,7 @@ class AnswersController < ApplicationController
   include Voted
 
   def create
+    authorize Answer
     respond_with @answer = @question.answers.create(answer_params.merge(user: current_user))
   end
 
@@ -34,6 +35,7 @@ class AnswersController < ApplicationController
 
   def get_answer
     @answer = Answer.find(params[:id])
+    authorize @answer
   end
 
   def answer_params

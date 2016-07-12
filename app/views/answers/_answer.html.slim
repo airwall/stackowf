@@ -6,7 +6,7 @@
           = render 'votes/vote', votable: answer
           span class='#{answer.best? ? "glyphicon glyphicon-ok green" : ""  }'
           br
-          - if show_link?(answer.question) && answer.best != true #исправить отображение кнопки если ответ от автора вопроса
+          - if policy(answer).best? && answer.best != true #исправить отображение кнопки если ответ от автора вопроса
             = link_to '', best_answer_path(answer), method: :patch, remote: true, class: "glyphicon glyphicon-ok-circle red"
         .media-body
           p = answer.body
@@ -14,7 +14,7 @@
             li
               = "#{show_username(answer)} wrote: #{time_ago_in_words(answer.created_at)} ago"
           ul.list-unstyled.list-inline.media-detail.pull-right
-            - if show_link?(answer)
+            - if policy(answer).destroy?
               li
                 = link_to 'Edit Answer', '', class: 'edit-answer-link', data: { answer_id: answer.id }
               li

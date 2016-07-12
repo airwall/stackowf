@@ -209,6 +209,8 @@ GEM
       byebug (~> 9.0)
       pry (~> 0.10)
     puma (3.4.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.0.rc1)
       json
     rack-test (0.6.3)
@@ -365,6 +367,7 @@ DEPENDENCIES
   poltergeist
   pry-byebug
   puma (~> 3.0)
+  pundit
   rails (= 5.0.0.rc1)
   rails-controller-testing
   rails_12factor
