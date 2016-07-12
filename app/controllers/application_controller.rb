@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   before_action :set_gon_user
   before_action :set_redirect_path, unless: :user_signed_in?
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   protected
 
   def configure_permitted_parameters
@@ -37,6 +39,16 @@ class ApplicationController < ActionController::Base
       super
     else
       stored_location_for(resource) || request.referer || root_path
+    end
+  end
+
+  def user_not_authorized
+    respond_to do |format|
+      format.html do
+        flash[:alert] = "You are not authorized to perform this action."
+        redirect_to root_path
+      end
+      format.any(:js, :json) { head :forbidden }
     end
   end
 end

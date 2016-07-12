@@ -59,13 +59,7 @@ RSpec.describe AnswersController do
       it "non-author deletes answer" do
         new_answer = create(:answer, question: question, user: create(:user))
         expect { delete :destroy, params: { id: new_answer, question_id: question }, format: :js }.to_not change(Answer, :count)
-        expect(response).to render_template :destroy
-      end
-
-      it "redirect to question view" do
-        new_answer = create(:answer, question: question, user: create(:user))
-        delete :destroy, params: { id: new_answer, question_id: question }, format: :js
-        expect(response).to render_template :destroy
+        expect(response.status).to eq 403
       end
     end
   end
@@ -153,7 +147,7 @@ RSpec.describe AnswersController do
       end
 
       it "redirect to question view" do
-        expect(response).to render_template :best
+        expect(response.status).to eq 403
       end
     end
   end

@@ -13,18 +13,18 @@ class AnswersController < ApplicationController
   end
 
   def update
-    @answer.update(answer_params) if current_user.author_of?(@answer)
+    @answer.update(answer_params)
     respond_with @answer
   end
 
   def best
     question = @answer.question
-    @answer.best! if current_user.author_of?(@answer.question)
+    @answer.best!
     respond_with @answers = question.answers.includes(:user).order("best DESC, created_at ASC")
   end
 
   def destroy
-    @answer.destroy! if current_user.author_of?(@answer)
+    respond_with @answer.destroy
   end
 
   private
