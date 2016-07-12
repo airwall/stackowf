@@ -2,12 +2,12 @@
   .comments id="#{dom_id(commentable)}_comments"
     = render commentable.comments
 
-  .comment-form
-    .comment-errors
-    = form_for [commentable, commentable.comments.build], remote: true, html: { id: "form-comment-#{commentable.class.name.downcase}-#{ commentable.id }" } do |f|
-      = f.label :body, class: 'hidden'
-      = f.text_area :body, class: "form-control", placeholder: "Your Comment", rows: 2
-      = f.submit 'Submit', class: 'button btn btn-normal pull-right'
-  - if signed_in?
+  - if policy(commentable).create?
+    .comment-form
+      .comment-errors
+      = form_for [commentable, commentable.comments.build], remote: true, html: { id: "form-comment-#{commentable.class.name.downcase}-#{ commentable.id }" } do |f|
+        = f.label :body, class: 'hidden'
+        = f.text_area :body, class: "form-control", placeholder: "Your Comment", rows: 2
+        = f.submit 'Submit', class: 'button btn btn-normal pull-right'
     .link
       = link_to 'add comment', '', class: 'add-comment-link', data: {commentable_id: commentable.id, commentable_type: commentable.class.name.downcase}
