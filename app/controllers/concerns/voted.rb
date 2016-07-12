@@ -3,7 +3,6 @@ module Voted
 
   included do
     before_action :set_votable, only: [:vote_up, :vote_down]
-    before_action :can_vote?, only: [:vote_up, :vote_down]
   end
 
   def vote_up
@@ -28,9 +27,6 @@ module Voted
 
   def set_votable
     @votable = model_klass.find(params[:id])
-  end
-
-  def can_vote?
-    render nothing: true, status: 403 if @votable.user_id == current_user.id
+    authorize @votable, :vote?
   end
 end

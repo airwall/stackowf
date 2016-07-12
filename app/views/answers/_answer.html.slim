@@ -24,21 +24,20 @@
                 = link_to(a.file.url) do
                   span class= "#{add_icon_to_attachment(a.file.to_s)}"
 
-        - if policy(answer).update?          
-          = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
-            h4.pull-left.media-heading
-              | Edit Answer
-            fieldset
-              .row
-                .form-group.col-xs-12.col-sm-12.col-lg-12
-                  = f.label :body, class: 'hidden'
-                  = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
-                  p
-                  .attachments
-                    = f.fields_for :attachments do |a|
-                      = render 'attachments/attachment_fields', f: a
-                    .add-file
-                      = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
-            button.btn.btn-normal.pull-left[type="submit"]
-              | Submit
-          = render 'comments/comments', commentable: answer
+        = form_for answer, remote: true, html: { id: "edit-answer-#{ answer.id }" } do |f|
+          h4.pull-left.media-heading
+            | Edit Answer
+          fieldset
+            .row
+              .form-group.col-xs-12.col-sm-12.col-lg-12
+                = f.label :body, class: 'hidden'
+                = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
+                p
+                .attachments
+                  = f.fields_for :attachments do |a|
+                    = render 'attachments/attachment_fields', f: a
+                  .add-file
+                    = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
+          button.btn.btn-normal.pull-left[type="submit"]
+            | Submit
+        = render 'comments/comments', commentable: answer

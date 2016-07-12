@@ -2,6 +2,14 @@ require "rails_helper"
 
 class FakesController < ApplicationController
   include Voted
+
+end
+
+class FakePolicy < ApplicationPolicy
+
+  def vote?
+    user.present? && user.id != record.user_id
+  end
 end
 
 describe FakesController do
