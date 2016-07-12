@@ -14,7 +14,7 @@
           i.fa.fa-calendar
           =  question.created_at.strftime("%d/%m/%Y")
       ul.list-unstyled.list-inline.media-detail.pull-right
-        - if user_signed_in? && current_user.author_of?(question)
+        - if policy(@question).destroy?
           li
             = link_to 'Edit Question', '', class: 'edit-question-link', data: { question_id: question.id }
           li

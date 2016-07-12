@@ -28,7 +28,7 @@ RSpec.describe AnswerPolicy do
     it { should permit(user, answer) }
   end
 
-  permissions :accept? do
+  permissions :best? do
     it { should_not permit(guest, answer) }
     it { should_not permit(user, answer) }
     it { should_not permit(user, user_answer) }

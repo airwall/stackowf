@@ -16,10 +16,12 @@ class QuestionsController < ApplicationController
   end
 
   def new
+    authorize Question
     respond_with(@question = current_user.questions.new)
   end
 
   def create
+    authorize Question
     respond_with @question = current_user.questions.create(question_params)
   end
 
@@ -37,6 +39,7 @@ class QuestionsController < ApplicationController
 
   def load_question
     @question = Question.find(params[:id])
+    authorize @question
   end
 
   def build_answer
