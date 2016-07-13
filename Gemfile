@@ -55,6 +55,9 @@ gem 'gon'
 #authorization
 gem "pundit"
 
+#REST API
+gem 'doorkeeper'
+
 group :test do
   gem 'capybara-screenshot'
   gem 'capybara'
@@ -65,12 +68,14 @@ group :test do
   gem 'rails-controller-testing'
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
+  gem 'json_spec', '~> 1.1', '>= 1.1.4'
 end
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
-  gem 'rspec-rails', github: 'rspec/rspec-rails', tag: 'v3.5.0.beta3'
+  gem 'rspec', '~> 3.5.0.beta3'
+  gem 'rspec-rails', '~> 3.5.0beta3'
   gem 'factory_girl_rails'
   gem 'spring-commands-rspec'
   gem 'parallel_tests'
