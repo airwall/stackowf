@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Action Cable endpoint configuration
   config.web_socket_server_url = "wss://obscure-temple-15421.herokuapp.com/"
-  config.action_cable.allowed_request_origins = ['https://obscure-temple-15421.herokuapp.com', 'http://obscure-temple-15421.herokuapp.com']
+  config.action_cable.allowed_request_origins = ["https://obscure-temple-15421.herokuapp.com", "http://obscure-temple-15421.herokuapp.com"]
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 

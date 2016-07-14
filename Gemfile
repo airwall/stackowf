@@ -58,6 +58,11 @@ gem "pundit"
 #REST API
 gem 'doorkeeper'
 
+#Serializer
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'oj'
+gem 'oj_mimic_json'
+
 group :test do
   gem 'capybara-screenshot'
   gem 'capybara'
