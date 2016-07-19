@@ -5,6 +5,11 @@ RSpec.describe AnswersController do
   let(:question) { create(:question) }
   let(:answer) { question.answers.first }
 
+
+  it_behaves_like 'votable' do
+    let(:votable) { create(:answer, question: question, user: user) }
+  end
+
   describe 'POST #create' do
     let(:answer_attr) { attributes_for(:answer) }
     before { post :create, params: { answer: answer_attr, question_id: question.id } }
