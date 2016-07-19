@@ -74,6 +74,12 @@ RSpec.describe AnswersController do
     let!(:answer) { create(:answer, question: question, user: @user) }
     let(:valid_update) { patch :update, params: { id: answer, answer: { body: "12345678910" } }, format: :js }
 
+    it_behaves_like 'delete attachment' do
+      let(:attachable) { create(:answer, question: question) }
+      let(:owned_attachable) { create(:answer, question: question, user: @user) }
+      let(:object_params) { {question_id: answer.question} }
+    end
+
     context "by not the author of answer" do
       before { valid_update }
 
