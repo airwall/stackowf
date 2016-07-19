@@ -1,92 +1,56 @@
 require "rails_helper"
-
-RSpec.describe CommentsController, type: :controller do
-  let(:user) { create(:user) }
-  let(:question) { create(:question, user: user) }
-  let(:answer) { create(:answer, question: question, user: user) }
-  let(:valid_question_comment) do
-    post :create, xhr: true, params: { comment: attributes_for(:comment),
-                                       question_id: question,
-                                       commentable: question }
-  end
-  let(:invalid_question_comment) do
-    post :create, xhr: true, params: { comment: attributes_for(:invalid_comment),
-                                       question_id: question,
-                                       commentable: question }
-  end
-
-  let(:valid_answer_comment) do
-    post :create, xhr: true, params: { comment: attributes_for(:comment),
-                                       answer_id: answer,
-                                       commentable: answer }
-  end
-  let(:invalid_answer_comment) do
-    post :create, xhr: true, params: { comment: attributes_for(:invalid_comment),
-                                       answer_id: answer,
-                                       commentable: answer }
-  end
-
+shared_examples 'comments' do
   describe 'POST #create' do
-    # ==== for Question ====================================== //
-    context "Authenticated user can comment Question" do
+    let(:user) { create(:user) }
+    let(:post_comment) { post :create, xhr: true, params: { comment: attributes_for(:comment) }.merge(shared_object) }
+    let(:post_invalid_comment) { post :create, xhr: true, params: { comment: attributes_for(:invalid_comment) }.merge(shared_object) }
+
+    context "Authenticated user can add comment" do
       before { sign_in user }
       it "Save comment in the database and asign to question" do
-        expect { valid_question_comment }.to change(question.comments, :count).by(1)
+        expect { post_comment }.to change(commentable.comments, :count).by(1)
       end
 
       it "Save comment in the database and asign to user" do
-        valid_question_comment
-        expect(question.comments.first.user_id).to eq user.id
+        post_comment
+        expect(commentable.comments.first.user_id).to eq user.id
       end
     end
 
-    context "Authenticated user comment Question with invalid attributes" do
+    context "Authenticated user can't comment with invalid attributes" do
       before { sign_in user }
       it "Don't save comment in the database" do
-        expect { invalid_question_comment }.to_not change(question.comments, :count)
+        expect { post_invalid_comment }.to_not change(commentable.comments, :count)
       end
     end
 
-    context "Guest can't create comment to question" do
+    context "Guest can't create comment" do
       it "return unauthorized" do
-        valid_question_comment
+        post_comment
         expect(response).to have_http_status :unauthorized
       end
 
       it "don't save comment in database " do
-        expect { invalid_question_comment }.to_not change(question.comments, :count)
+        expect { post_invalid_comment }.to_not change(commentable.comments, :count)
       end
     end
+  end
+end
 
-    #======== for Answer ====================================== //
-    context "Authenticated user can comment Answer" do
-      before { sign_in user }
-      it "Save comment in the database and asign to answer" do
-        expect { valid_answer_comment }.to change(answer.comments, :count).by(1)
-      end
+RSpec.describe CommentsController, type: :controller do
+  let!(:question) { create(:question) }
 
-      it "Save comment in the database and asign to user" do
-        valid_answer_comment
-        expect(answer.comments.first.user_id).to eq user.id
-      end
+  context 'question' do
+    it_behaves_like 'comments' do
+      let(:commentable) { question }
+      let(:shared_object) { {question_id: question, commentable: 'questions'} }
     end
+  end
 
-    context "Authenticated user comment Answer with invalid attributes" do
-      before { sign_in user }
-      it "Don't save comment in the database" do
-        expect { invalid_answer_comment }.to_not change(answer.comments, :count)
-      end
-    end
-
-    context "Guest can't create comment to answer" do
-      it "return unauthorized" do
-        valid_answer_comment
-        expect(response).to have_http_status :unauthorized
-      end
-
-      it "don't save comment in database " do
-        expect { invalid_answer_comment }.to_not change(answer.comments, :count)
-      end
+  context 'answer' do
+    it_behaves_like 'comments' do
+      let(:commentable) { create(:answer, question: question) }
+      let(:shared_object) { {question_id: question, answer_id: commentable, commentable: 'answers'} }
     end
   end
 end
