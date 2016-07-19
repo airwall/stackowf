@@ -5,17 +5,7 @@ describe "Profile API" do
   let(:access_token) { create(:access_token, resource_owner_id: me.id) }
 
   describe "GET /me" do
-    context "unauthorized" do
-      it "return 401 if there not have access_token" do
-        get "/api/v1/profiles/me", params: { format: :json }
-        expect(response.status).to eq 401
-      end
-
-      it "return 401 if access_token invalid" do
-        get "/api/v1/profiles/me", params: { access_token: "1234", format: :json }
-        expect(response.status).to eq 401
-      end
-    end
+    it_behaves_like "API Authenticable"
 
     context "Authorized" do
       before { get "/api/v1/profiles/me", params: { access_token: access_token.token, format: :json } }
@@ -84,4 +74,9 @@ describe "Profile API" do
       end
     end
   end
+
+  def do_request(options = {})
+    get "/api/v1/profiles/me", params: { format: :json }.merge(options)
+  end
+
 end

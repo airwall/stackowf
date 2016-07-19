@@ -6,17 +6,7 @@ describe "Answers API" do
   let(:question) { create(:question) }
 
   describe "GET /index" do
-    context "unauthorized" do
-      it "return 401 if there not have access_token" do
-        get "/api/v1/questions/#{question.id}/answers", params: { format: :json }
-        expect(response.status).to eq 401
-      end
-
-      it "return 401 if access_token invalid" do
-        get "/api/v1/questions/#{question.id}/answers", params: { access_token: "1234", format: :json }
-        expect(response.status).to eq 401
-      end
-    end
+    it_behaves_like "API Authenticable"
 
     context "authorized" do
       let!(:answers) { create_pair(:answer, question: question) }
@@ -132,4 +122,9 @@ describe "Answers API" do
       end
     end
   end
+
+  def do_request(options = {})
+    get "/api/v1/questions/#{question.id}/answers", params: { format: :json }.merge(options)
+  end
+
 end

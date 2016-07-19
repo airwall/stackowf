@@ -5,17 +5,7 @@ describe "Questions API" do
   let(:access_token) { create(:access_token, resource_owner_id: me.id) }
 
   describe "GET /index" do
-    context "unauthorized" do
-      it "return 401 if there not have access_token" do
-        get "/api/v1/questions", params: { format: :json }
-        expect(response.status).to eq 401
-      end
-
-      it "return 401 if access_token invalid" do
-        get "/api/v1/questions", params: { access_token: "1234", format: :json }
-        expect(response.status).to eq 401
-      end
-    end
+    it_behaves_like "API Authenticable"
 
     context "authorized" do
       let!(:questions) { create_list(:question, 2) }
@@ -140,5 +130,9 @@ describe "Questions API" do
         expect { post_invalid_question }.not_to change(Question, :count)
       end
     end
+  end
+
+  def do_request(options = {})
+    get "/api/v1/questions", params: { format: :json }.merge(options)
   end
 end
