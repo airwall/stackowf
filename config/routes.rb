@@ -32,10 +32,6 @@ Rails.application.routes.draw do
   end
   root to: "questions#index"
 
-  # Tets routes for concerns votable
-  post "vote_up" => 'fakes#vote_up'
-  post "vote_down" => 'fakes#vote_down'
-
   # Serve websocket cable requests in-process
   mount ActionCable.server => "/cable"
 
