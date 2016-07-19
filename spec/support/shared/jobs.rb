@@ -11,12 +11,12 @@ end
 
 shared_examples "enqueue job" do
   it "matches params with enqueued job" do
-    expect {
+    expect do
       described_class.perform_later(record)
-    }.to have_enqueued_job.with(record)
+    end.to have_enqueued_job.with(record)
   end
 
-  it 'broadcasts to ActionCable' do
+  it "broadcasts to ActionCable" do
     expect(ActionCable.server).to receive(:broadcast).with(channel, hash_including(hash))
     described_class.perform_now(record)
   end

@@ -5,7 +5,7 @@ RSpec.describe QuestionsController do
   sign_in_user
   let(:question) { create(:question, user: @user) }
 
-  it_behaves_like 'votable' do
+  it_behaves_like "votable" do
     let(:votable) { create(:question, user: user) }
   end
 
@@ -74,10 +74,9 @@ RSpec.describe QuestionsController do
     let!(:question) { create(:question, user: @user) }
     let(:valid_update) { patch :update, params: { id: question, question: { body: "12345678910" } }, format: :js }
 
-
-    it_behaves_like 'delete attachment' do
+    it_behaves_like "delete attachment" do
       let(:attachable) { create(:question) }
-      let(:owned_attachable) { create(:question,  user: @user) }
+      let(:owned_attachable) { create(:question, user: @user) }
       let(:object_params) { {} }
     end
 

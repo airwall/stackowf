@@ -12,7 +12,7 @@ AllCops:
     - Gemfile
     - Guardfile
     - Rakefile
-    - spec/controllers/concerns/voted_spec.rb
+    - spec/support/shared/votable.rb
 
 Rails:
   Enabled: true
@@ -20,7 +20,7 @@ Rails:
 Metrics/LineLength:
   Exclude:
     - "config/**/*"
-    - "spec/controllers/concerns/voted_spec.rb"
+    - "spec/support/shared/votable.rb"
 
 Style/ClassAndModuleChildren:
   Enabled: false

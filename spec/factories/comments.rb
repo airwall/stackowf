@@ -9,7 +9,8 @@ FactoryGirl.define do
       association :commentable, factory: :answer
     end
 
-    trait :invalid_comment do
+    factory :invalid_comment, class: "Comment" do
+      user
       body nil
     end
   end

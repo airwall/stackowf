@@ -1,5 +1,5 @@
 require "rails_helper"
-shared_examples 'comments' do
+shared_examples "comments" do
   describe 'POST #create' do
     let(:user) { create(:user) }
     let(:post_comment) { post :create, xhr: true, params: { comment: attributes_for(:comment) }.merge(shared_object) }
@@ -40,17 +40,17 @@ end
 RSpec.describe CommentsController, type: :controller do
   let!(:question) { create(:question) }
 
-  context 'question' do
-    it_behaves_like 'comments' do
+  context "question" do
+    it_behaves_like "comments" do
       let(:commentable) { question }
-      let(:shared_object) { {question_id: question, commentable: 'questions'} }
+      let(:shared_object) { { question_id: question, commentable: "questions" } }
     end
   end
 
-  context 'answer' do
-    it_behaves_like 'comments' do
+  context "answer" do
+    it_behaves_like "comments" do
       let(:commentable) { create(:answer, question: question) }
-      let(:shared_object) { {question_id: question, answer_id: commentable, commentable: 'answers'} }
+      let(:shared_object) { { question_id: question, answer_id: commentable, commentable: "answers" } }
     end
   end
 end

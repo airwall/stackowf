@@ -132,7 +132,7 @@ describe "Questions API" do
     end
   end
 
-  def do_request(options = {})
+  def do_request(options={})
     get "/api/v1/questions", params: { format: :json }.merge(options)
   end
 end
