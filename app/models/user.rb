@@ -4,6 +4,7 @@ class User < ApplicationRecord
   has_many :answers, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :authorizations, dependent: :destroy
+  has_many :subscriptions, dependent: :destroy
   validates_presence_of :username
   validates_uniqueness_of :username
   # Include default devise modules. Others available are:
