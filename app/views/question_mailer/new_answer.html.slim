@@ -1,0 +1,9 @@
+h4
+  | New answer for question "#{@question.title}":
+br
+  = @answer.body
+br
+p
+  | Click on the following link to view question online:
+br
+  = url_for @question
