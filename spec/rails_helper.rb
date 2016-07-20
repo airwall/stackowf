@@ -10,6 +10,7 @@ require "with_model"
 require "capybara/rspec"
 require "capybara/poltergeist"
 require "pundit/rspec"
+require 'sidekiq/testing'
 
 Capybara.configure do |c|
   c.javascript_driver = :poltergeist
