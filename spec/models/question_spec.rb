@@ -9,4 +9,10 @@ RSpec.describe Question do
   it { should accept_nested_attributes_for :attachments }
   it { should have_many(:votes).dependent(:destroy) }
   it { should have_many(:comments).dependent(:destroy) }
+  it { should have_many(:subscriptions).dependent(:destroy) }
+
+  it_behaves_like 'perform job after commit' do
+    let(:job) { QuestionJob }
+    let(:subject) { build(:question) }
+  end
 end

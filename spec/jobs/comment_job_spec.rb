@@ -7,13 +7,13 @@ RSpec.describe CommentJob, type: :job do
   context "question" do
     let(:record) { create(:question_comment) }
 
-    it_behaves_like "enqueue job"
+    it_behaves_like "broadcast to ActionCable"
   end
 
   context "answer" do
     let(:channel) { "questions:#{record.commentable.question_id}:comments" }
     let(:record) { create(:answer_comment) }
 
-    it_behaves_like "enqueue job"
+    it_behaves_like "broadcast to ActionCable"
   end
 end
