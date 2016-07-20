@@ -1,3 +1,10 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+$(document).ready ->
+  $(document).on 'ajax:success', '.subscription', (e, data, status, xhr) ->
+    e.preventDefault();
+    console.log (status)
+    if status == 'nocontent'
+      $('#subscribed').addClass('hide')
+      $('#unsubscribed').removeClass('hide')
+    else
+      $('#unsubscribed').addClass('hide')
+      $('#subscribed').removeClass('hide')

@@ -12,6 +12,7 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    set_subscription
     respond_with @question
   end
 
