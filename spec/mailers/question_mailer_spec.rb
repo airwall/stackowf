@@ -16,7 +16,7 @@ RSpec.describe QuestionMailer, type: :mailer do
   describe "digest", :users do
     let(:mail) { described_class.digest(user, questions) }
 
-    it_behaves_like "renders the headers", "Digest"
+    it_behaves_like "renders the headers", "Daily Questions Digest"
 
     it "renders the body" do
       expect(mail.body.encoded).to match("Hello! Here is the digest of new questions for last 24 hours!")
@@ -24,6 +24,24 @@ RSpec.describe QuestionMailer, type: :mailer do
       expect(mail.body.encoded).to match(questions.second.title)
       expect(mail.body.encoded).to match(url_for(questions.first))
       expect(mail.body.encoded).to match(url_for(questions.second))
+    end
+  end
+
+  describe "update" do
+    let(:user) { create(:user) }
+    let(:mail) { described_class.update(question.user, question) }
+
+    it "renders the headers" do
+      expect(mail.subject).to eq("Question updated: #{question.title}")
+      expect(mail.to).to eq([question.user.email])
+      expect(mail.from).to eq(["test@test.com"])
+    end
+
+    it "renders the body" do
+      expect(mail.body.encoded).to match("Following Question has been updated:")
+      expect(mail.body.encoded).to match(question.title)
+      expect(mail.body.encoded).to match("Click on the following link to view question online:")
+      expect(mail.body.encoded).to match(url_for(question))
     end
   end
 end

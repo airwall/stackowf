@@ -12,4 +12,16 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
 
   after_commit { QuestionJob.perform_later(self) }
+  after_create_commit :subscribe_user
+  after_update :notify_users, if: 'body_changed?'
+
+  private
+
+  def subscribe_user
+    subscriptions.create(user_id: user_id)
+  end
+
+  def notify_users
+    QuestionUpdateNotifyJob.perform_later(self)
+  end
 end

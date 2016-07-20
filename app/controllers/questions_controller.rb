@@ -46,6 +46,10 @@ class QuestionsController < ApplicationController
     @answer = @question.answers.build
   end
 
+  def set_subscription
+    @subscription = Subscription.find_by(question: @question, user: current_user)
+  end
+
   def question_params
     params.require(:question).permit(:title, :body, attachments_attributes: [:id, :file, :_destroy])
   end
