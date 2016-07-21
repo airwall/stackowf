@@ -23,21 +23,21 @@ html
           li= link_to "New Question", new_question_path
         - if user_signed_in?
           .navbar-header.pull-right
-            p.navbar-text
+            p.navbar-text.nav-link
               = link_to(edit_user_registration_path) do
                 span.glyphicon.glyphicon-user
                 = " #{current_user.username.capitalize}"
-            p.navbar-text
+            p.navbar-text.nav-link
               = link_to destroy_user_session_path, data: { confirm: 'Are you certain you want sign out?' }, :method => :delete, class: "signout" do
                 span.glyphicon.glyphicon-log-out
                 |  Sign Out
         - else
           .navbar-header.pull-right
-            p.navbar-text
+            p.navbar-text.nav-link
               = link_to(new_user_session_path(login_options)) do
                 span.glyphicon.glyphicon-log-in
                 |  Sign In
-            p.navbar-text
+            p.navbar-text.nav-link
               = link_to(new_user_registration_path) do
                 span.glyphicon.glyphicon-ok-sign
                 |  Sign Up
