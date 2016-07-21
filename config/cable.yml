@@ -3,7 +3,8 @@ production:
   url: redis://redistogo:a138807df880e1a6123922b48893cf20@sculpin.redistogo.com:9048/
 
 development:
-  adapter: async
+  adapter: redis
+  url: redis://localhost:6379/1
 
 test:
   adapter: async
