@@ -9,7 +9,7 @@ RSpec.describe Comment, type: :model do
   it { should validate_presence_of :body }
   it { should validate_presence_of :user_id }
 
-  it_behaves_like 'perform job after commit' do
+  it_behaves_like "perform job after commit" do
     let(:job) { CommentJob }
     let(:subject) { build(:answer_comment) }
   end

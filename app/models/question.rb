@@ -13,7 +13,7 @@ class Question < ApplicationRecord
 
   after_commit { QuestionJob.perform_later(self) }
   after_create_commit :subscribe_user
-  after_update :notify_users
+  after_update :notify_users, if: 'body_changed?'
 
   private
 
@@ -22,6 +22,6 @@ class Question < ApplicationRecord
   end
 
   def notify_users
-    QuestionUpdateNotifyJob.perform_now(self)
+    QuestionUpdateNotifyJob.perform_later(self)
   end
 end
