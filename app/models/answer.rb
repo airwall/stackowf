@@ -9,6 +9,7 @@ class Answer < ApplicationRecord
   validates :question_id, :body, :user_id, presence: true
 
   accepts_nested_attributes_for :attachments, reject_if: :all_blank, allow_destroy: true
+  after_commit :question_answer_notification, on: :create
 
   def best!
     transaction do
@@ -23,4 +24,10 @@ class Answer < ApplicationRecord
   end
 
   after_create_commit { AnswerJob.perform_later(self, set_attr_for_template) }
+
+  private
+
+  def question_answer_notification
+    QuestionAnswerNotificationJob.perform_later(self)
+  end
 end

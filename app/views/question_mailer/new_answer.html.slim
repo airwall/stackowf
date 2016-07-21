@@ -6,4 +6,5 @@ br
 p
   | Click on the following link to view question online:
 br
-  = url_for @question
+  - name = url_for @question
+  a href="#{name}#answer_#{@answer.id}" target="_blank" #{name}#answer_#{@answer.id}

@@ -1,5 +1,5 @@
 class QuestionUpdateNotifyJob < ApplicationJob
-  queue_as :default
+  queue_as :mailers
 
   def perform(question)
     Subscription.includes(:user).where(question_id: question.id).where.not(user_id: question.user_id).find_each do |subscription|
