@@ -1,0 +1,6 @@
+section#content.content-item.line
+  .row
+    .col-xs-12
+      .results
+      - @results.each do |result|
+        = render "search/snippet", resource: result, type: result.class.name.pluralize.underscore

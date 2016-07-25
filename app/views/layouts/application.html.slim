@@ -21,6 +21,8 @@ html
         ul.nav.navbar-nav
           li= link_to "Questions", questions_path
           li= link_to "New Question", new_question_path
+          .navbar-header.search 
+            = render 'search/form'
         - if user_signed_in?
           .navbar-header.pull-right
             p.navbar-text.nav-link

@@ -1,0 +1,16 @@
+- if type == 'questions'
+  .row
+    h3 #{resource.title}
+    p #{resource.body}
+    hr/
+- elsif type == 'users'
+  .row
+    h3 #{type.upcase}
+    p #{resource.username}
+    p #{resource.email}
+    hr/
+- else
+  .row
+    h3 #{type.upcase}
+    p #{resource.body}
+    hr/
