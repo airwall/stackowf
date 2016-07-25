@@ -36,7 +36,7 @@ RSpec.describe Search, type: :sphinx do
         search_type == 'all' ? ThinkingSphinx : search_type.underscore.classify.constantize
       end
 
-      it 'receives perform_search for Search' do
+      it "receives perform_search #{search_type} for Search" do
         expect(Search).to receive(:perform_search).with('query', search_type)
         Search.query('query', search_type)
       end

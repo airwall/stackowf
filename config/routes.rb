@@ -46,4 +46,6 @@ Rails.application.routes.draw do
   post "/oauth_services/post_confirm_web", as: "post_confirm_web"
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
+
+  get 'search', to: 'search#search'
 end
