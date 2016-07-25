@@ -1,5 +1,10 @@
 dependencies:
   override:
     - bundle install --without development production
-  pre:
-    -  sudo service sphinxsearch start
+machine:
+  services:
+    - sphinxsearch
+database:
+  override:
+    - mv config/database.ci.yml config/database.yml
+    - bundle exec rake db:create db:schema:load --trace
