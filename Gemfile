@@ -67,6 +67,10 @@ gem 'oj_mimic_json'
 gem 'sidekiq'
 gem 'whenever'
 
+#sphinx search
+gem 'mysql2'
+gem 'thinking-sphinx'
+
 group :test do
   gem 'capybara-screenshot'
   gem 'capybara'

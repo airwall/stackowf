@@ -3,8 +3,8 @@ development:
   encoding: utf8
   database: stackowf_development
   pool: 5
-  username:
-  password:
+  username: vagrant
+  password: 
 
 test: &TEST
   adapter: postgresql
