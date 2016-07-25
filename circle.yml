@@ -1,3 +1,9 @@
 dependencies:
   override:
     - bundle install --without development production
+
+database:
+  post:
+    - sudo cp /config/thinking_sphinx.conf /etc/sphinxsearch/sphinx.conf
+    - sudo sed -i -e 's,START=no,START=yes,' /etc/default/sphinxsearch
+    - service sphinxsearch start
