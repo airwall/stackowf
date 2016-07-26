@@ -1,11 +1,12 @@
 dependencies:
   override:
     - bundle install --without development production
+machine:
+  services:
+    - sphinxsearch
 database:
   override:
     - mv config/database.ci.yml config/database.yml
     - bundle exec rake db:create db:migrate db:schema:load RAILS_ENV=test --trace
   post:
     - sudo cp config/sphinx.conf /etc/sphinxsearch/sphinx.conf
-    - sudo sed -i -e 's,START=no,START=yes,' /etc/default/sphinxsearch
-    - service sphinxsearch start
