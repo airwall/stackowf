@@ -47,5 +47,5 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  get 'search', to: 'search#search'
+  get "search", to: 'search#search'
 end

@@ -1,6 +1,6 @@
 require "features_helper"
 
-feature 'search and view results', :js do
+feature "search and view results", :js do
   given!(:question) { create(:question) }
   given!(:answer) { create(:answer) }
   given!(:comment) { create(:answer_comment) }
@@ -14,7 +14,7 @@ feature 'search and view results', :js do
     visit root_path
   end
 
-  scenario 'all' do
+  scenario "all" do
     find(".navbar-toggle").click
     find(".glyphicon.glyphicon-search").click
     expect(page).to have_content question.title
@@ -23,8 +23,8 @@ feature 'search and view results', :js do
     expect(page).to have_content user.email
 
     find(".navbar-toggle").click
-    fill_in 'search_query', with: question.title
-    select 'question', from: 'search_type'
+    fill_in "search_query", with: question.title
+    select "question", from: "search_type"
     find(".glyphicon.glyphicon-search").click
     expect(page).to have_content question.title
     expect(page).not_to have_content answer.body
@@ -32,8 +32,8 @@ feature 'search and view results', :js do
     expect(page).not_to have_content user.email
 
     find(".navbar-toggle").click
-    fill_in 'search_query', with: answer.body
-    select 'answer', from: 'search_type'
+    fill_in "search_query", with: answer.body
+    select "answer", from: "search_type"
     find(".glyphicon.glyphicon-search").click
     expect(page).not_to have_content question.title
     expect(page).to have_content answer.body
@@ -41,8 +41,8 @@ feature 'search and view results', :js do
     expect(page).not_to have_content user.email
 
     find(".navbar-toggle").click
-    fill_in 'search_query', with: comment.body
-    select 'comment', from: 'search_type'
+    fill_in "search_query", with: comment.body
+    select "comment", from: "search_type"
     find(".glyphicon.glyphicon-search").click
     expect(page).not_to have_content question.title
     expect(page).not_to have_content answer.body
@@ -50,8 +50,8 @@ feature 'search and view results', :js do
     expect(page).not_to have_content user.email
 
     find(".navbar-toggle").click
-    fill_in 'search_query', with: user.email
-    select 'user', from: 'search_type'
+    fill_in "search_query", with: user.email
+    select "user", from: "search_type"
     find(".glyphicon.glyphicon-search").click
     expect(page).not_to have_content question.title
     expect(page).not_to have_content answer.body
