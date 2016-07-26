@@ -1,9 +1,6 @@
 dependencies:
   override:
     - bundle install --without development production
-machine:
-  services:
-    - sphinxsearch
 database:
   override:
     - mv config/database.ci.yml config/database.yml
