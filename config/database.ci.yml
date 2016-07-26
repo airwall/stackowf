@@ -3,5 +3,5 @@ test: &TEST
   encoding: utf8
   database: stackowf_test
   pool: 5
-  username:
+  username: ubuntu
   password:

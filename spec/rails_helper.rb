@@ -26,27 +26,13 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
   config.include Devise::TestHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
-
   config.extend WithModel
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = false
 
-
-  config.include SphinxHelpers, type: :feature
-  config.include SphinxHelpers, type: :sphinx
-
-  config.before(:suite) do
-    # Ensure sphinx directories exist for the test environment
-    ThinkingSphinx::Test.init
-    # Configure and start Sphinx, and automatically
-    # stop Sphinx at the end of the test suite.
-    ThinkingSphinx::Test.start_with_autostop
-  end
 
   #======================
   config.before(:suite) do

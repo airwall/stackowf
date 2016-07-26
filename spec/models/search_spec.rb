@@ -23,7 +23,7 @@ RSpec.describe Search, type: :sphinx do
       question = create(:question, user: user)
       answer = create(:answer, question: question, user: user)
       comment = create(:comment, commentable: answer, user: user)
-      ThinkingSphinx::Test.index
+      index
       expect(described_class.query('', 'all')).to match_array [user, question, answer, comment]
       expect(described_class.query(question.title, 'question')).to match_array [question]
       expect(described_class.query(answer.body, 'answer')).to match_array [answer]
