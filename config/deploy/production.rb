@@ -22,6 +22,7 @@ role :web, %w{airwall@46.101.194.216}, other_property: :other_value
 role :db,  %w{airwall@46.101.194.216}
 
 set :rails_env, :production
+set :stage, :production
 
 
 
