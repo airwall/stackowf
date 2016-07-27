@@ -3,11 +3,9 @@
 # Defines a single server with a list of roles and multiple properties.
 # You can define all roles on a single server, or split them:
 
-server '46.101.194.216', user: 'airwall', roles: %w{app db web}, primary: true
+server "46.101.194.216", user: "airwall", roles: %w(app db web), primary: true
 # server 'example.com', user: 'deploy', roles: %w{app web}, other_property: :other_value
 # server 'db.example.com', user: 'deploy', roles: %w{db}
-
-
 
 # role-based syntax
 # ==================
@@ -17,14 +15,12 @@ server '46.101.194.216', user: 'airwall', roles: %w{app db web}, primary: true
 # property set. Specify the username and a domain or IP for the server.
 # Don't use `:all`, it's a meta role.
 
-role :app, %w{airwall@46.101.194.216}, my_property: :my_value
-role :web, %w{airwall@46.101.194.216}, other_property: :other_value
-role :db,  %w{airwall@46.101.194.216}
+role :app, %w(airwall@46.101.194.216), my_property: :my_value
+role :web, %w(airwall@46.101.194.216), other_property: :other_value
+role :db,  %w(airwall@46.101.194.216)
 
 set :rails_env, :production
 set :stage, :production
-
-
 
 # Configuration
 # =============
@@ -34,8 +30,6 @@ set :stage, :production
 # http://capistranorb.com/documentation/getting-started/configuration/
 # Feel free to add new variables to customise your setup.
 
-
-
 # Custom SSH Options
 # ==================
 # You may pass any option but keep in mind that net/ssh understands a
@@ -44,12 +38,10 @@ set :stage, :production
 #
 # Global options
 # --------------
- set :ssh_options, {
-   keys: %w(/home/vagrant/.ssh/id_rsa),
-   forward_agent: true,
-   auth_methods: %w(publickey password),
-   port: 4321
- }
+set :ssh_options, keys: %w(/home/vagrant/.ssh/id_rsa),
+                  forward_agent: true,
+                  auth_methods: %w(publickey password),
+                  port: 4321
 #
 # The server-based syntax can be used to override options:
 # ------------------------------------
