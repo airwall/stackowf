@@ -15,7 +15,7 @@ set :rvm_ruby_version, "ruby-2.3.1"
 set :linked_files, fetch(:linked_files, []).push("config/database.yml", ".env")
 
 # Default value for linked_dirs is []
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
 
 # namespace :deploy do
 #   desc "Restart Application"

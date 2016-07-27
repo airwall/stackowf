@@ -103,6 +103,7 @@ group :development do
   gem 'capistrano-bundler', require: false
   gem 'capistrano-rails', require: false
   gem 'capistrano-rvm', require: false
+  gem 'capistrano-sidekiq', require: false
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
