@@ -71,8 +71,7 @@ gem 'whenever'
 gem 'mysql2'
 gem 'thinking-sphinx'
 
-gem 'dotenv'
-gem 'dotenv-deployment', require: 'dotenv/deployment'
+gem 'dotenv-rails'
 gem 'therubyracer'
 
 group :test do
