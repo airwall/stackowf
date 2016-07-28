@@ -27,3 +27,5 @@ db/sphinx/*
 
 config/secrets.yml.save
 yamlfix.rb
+
+config/thinking_sphinx.yml

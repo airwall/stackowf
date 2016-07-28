@@ -12,7 +12,8 @@ set :tmp_dir, "/home/airwall/tmp"
 set :rvm_ruby_version, "ruby-2.3.1"
 
 # Default value for :linked_files is []
-set :linked_files, fetch(:linked_files, []).push("config/database.yml", ".env")
+set :linked_files, fetch(:linked_files, []).push("config/database.yml", ".env", "config/thinking_sphinx.yml")
+set :rbenv_map_bins, %w(rake gem bundle ruby rails sidekiq sidekiqctl)
 
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
