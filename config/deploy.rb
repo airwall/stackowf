@@ -22,7 +22,7 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/syst
 #   desc "Restart Application"
 #   task :restart do
 #     on roles(:app), in: :sequence, wait: 5 do
-#       execute :touch, release_path.join('tmp/restart.txt')
+#       invoke 'unicorn:restart'
 #     end
 #   end
 #   after :publishing, :restart
