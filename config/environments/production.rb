@@ -40,7 +40,7 @@ Rails.application.configure do
 
   # Action Cable endpoint configuration
   config.web_socket_server_url = "wss://46.101.194.216/"
-  config.action_cable.allowed_request_origins = ["https://46.101.194.216", "http://46.101.194.216"]
+  config.action_cable.allowed_request_origins = ["http://46.101.194.216"]
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
