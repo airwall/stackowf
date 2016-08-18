@@ -1,9 +1,7 @@
 production:
-  adapter: redis
-  url: redis://46.101.194.216:6379/1
+  url: redis://46.101.194.216:6379
 
 local: &local
-  adapter: redis
   url: redis://localhost:6379
 
 development: *local
