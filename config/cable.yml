@@ -1,6 +1,6 @@
 production:
   adapter: redis
-  url: redis://redistogo:a138807df880e1a6123922b48893cf20@sculpin.redistogo.com:9048/
+  url: redis://46.101.194.216:6379
 
 development:
   adapter: redis
