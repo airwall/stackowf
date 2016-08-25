@@ -35,7 +35,7 @@
             .row
               .form-group.col-xs-12.col-sm-12.col-lg-12
                 = f.label :body, class: 'hidden'
-                = f.text_area :body, class: "form-control", placeholder: "Your Answer", rows: 5
+                = f.text_area :body, :data => {:provide => "markdown"}, class: "form-control", placeholder: "Your Answer", rows: 5
                 p
                 .attachments
                   = f.fields_for :attachments do |a|

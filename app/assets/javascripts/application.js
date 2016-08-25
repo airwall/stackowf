@@ -17,4 +17,5 @@
 //= require cocoon
 //= require turbolinks
 //= require polifyl
+//= require bootstrap-markdown-bundle
 //= require_tree .
