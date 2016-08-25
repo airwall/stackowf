@@ -4,8 +4,7 @@
       = render 'votes/vote', votable: question
     .media-body
       h4.media-heading = simple_format question.title
-      br
-      p = simple_format question.body
+      p = markdown question.body
       ul.list-unstyled.list-inline.media-detail.pull-left
         li
           i.fa

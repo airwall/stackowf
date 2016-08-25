@@ -76,6 +76,10 @@ gem 'therubyracer'
 
 gem "unicorn-rails"
 
+#markdown
+gem 'redcarpet'
+gem 'pygments.rb'
+
 
 
 group :test do
