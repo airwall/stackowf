@@ -74,6 +74,8 @@ gem 'thinking-sphinx'
 gem 'dotenv-rails'
 gem 'therubyracer'
 
+gem "unicorn-rails"
+
 
 
 group :test do
