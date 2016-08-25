@@ -18,12 +18,12 @@ set :rbenv_map_bins, %w(rake gem bundle ruby rails sidekiq sidekiqctl)
 # Default value for linked_dirs is []
 append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system", "public/uploads"
 
-# namespace :deploy do
-#   desc "Restart Application"
-#   task :restart do
-#     on roles(:app), in: :sequence, wait: 5 do
-#       invoke 'unicorn:restart'
-#     end
-#   end
-#   after :publishing, :restart
-# end
+namespace :deploy do
+  desc "Restart Application"
+  task :restart do
+    on roles(:app), in: :sequence, wait: 5 do
+      invoke 'unicorn:restart'
+    end
+  end
+  after :publishing, :restart
+end
