@@ -3,16 +3,16 @@
     .pull-left
       = render 'votes/vote', votable: question
     .media-body
-      h4.media-heading = question.title
+      h4.media-heading = simple_format question.title
       br
-      p = question.body
+      p = simple_format question.body
       ul.list-unstyled.list-inline.media-detail.pull-left
         li
           i.fa
           = show_username(question)
         li
           i.fa.fa-calendar
-          =  question.created_at.strftime("%d/%m/%Y")
+          =  question.created_at.strftime("%a, %b, %d")
       ul.list-unstyled.list-inline.media-detail.pull-right
         - if policy(@question).destroy?
           li
