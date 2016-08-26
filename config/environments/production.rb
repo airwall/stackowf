@@ -87,4 +87,4 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 end
 
-# Rails.logger.debug "Year: #{Time.now.year}"
+Rails.logger.debug "Year: #{Time.now.year}"
