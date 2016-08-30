@@ -41,9 +41,8 @@ Rails.application.configure do
   # Action Cable endpoint configuration
   # config.web_socket_server_url = "ws://46.101.194.216/cable/"
   # config.action_cable.url = 'ws://46.101.194.216/cable'
-  config.disable_request_forgery_protection = true
-  config.action_cable.allowed_request_origins = ["http://46.101.194.216"]
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
+  config.web_socket_server_url = "wss://obscure-temple-15421.herokuapp.com/"
+  config.action_cable.allowed_request_origins = ['https://obscure-temple-15421.herokuapp.com', 'http://obscure-temple-15421.herokuapp.com']  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
 
   # Use the lowest log level to ensure availability of diagnostic information
