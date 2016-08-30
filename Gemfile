@@ -78,6 +78,7 @@ gem "unicorn-rails"
 
 #markdown
 gem 'redcarpet'
+gem 'pygments.rb'
 gem 'rails-bootstrap-markdown'
 
 
