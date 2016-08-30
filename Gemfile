@@ -81,6 +81,9 @@ gem 'redcarpet'
 gem 'pygments.rb'
 gem 'rails-bootstrap-markdown'
 
+#caching
+gem 'redis-rails'
+
 
 
 group :test do
