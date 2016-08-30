@@ -74,8 +74,6 @@ gem 'thinking-sphinx'
 gem 'dotenv-rails'
 gem 'therubyracer'
 
-gem "unicorn-rails"
-
 #markdown
 gem 'redcarpet'
 gem 'pygments.rb'
