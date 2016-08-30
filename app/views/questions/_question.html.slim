@@ -1,9 +1,9 @@
-- cache question do
-  = div_for(question) do
-    .media
-      .pull-left
-        = render 'votes/vote', votable: question
-      .media-body
+= div_for(question) do
+  .media
+    .pull-left
+      = render 'votes/vote', votable: question
+    .media-body
+      - cache question do
         h4.media-heading = simple_format question.title
         p = markdown question.body
         ul.list-unstyled.list-inline.media-detail.pull-left
@@ -13,18 +13,18 @@
           li
             i.fa.fa-calendar
             =  question.created_at.strftime("%a, %b, %d")
-        ul.list-unstyled.list-inline.media-detail.pull-right
-          - if policy(@question).destroy?
-            li
-              = link_to 'Edit Question', '', class: 'edit-question-link', data: { question_id: question.id }
-            li
-              = link_to "Delete Question", question, method: :delete
-        div class="#{question.attachments.exists? ? "thumbnails" : "" }"
-          - question.attachments.each_with_index do |a, index|
-            = link_to(a.file.url) do
-              span class= "#{add_icon_to_attachment(a.file.to_s)}"
+      ul.list-unstyled.list-inline.media-detail.pull-right
+        - if policy(@question).destroy?
+          li
+            = link_to 'Edit Question', '', class: 'edit-question-link', data: { question_id: question.id }
+          li
+            = link_to "Delete Question", question, method: :delete
+      div class="#{question.attachments.exists? ? "thumbnails" : "" }"
+        - question.attachments.each_with_index do |a, index|
+          = link_to(a.file.url) do
+            span class= "#{add_icon_to_attachment(a.file.to_s)}"
 
-    .edit_question_form id="edit-question-#{question.id}"
-      = render 'form', question: question
-    = render 'comments/comments', commentable: question
-    br
+  .edit_question_form id="edit-question-#{question.id}"
+    = render 'form', question: question
+  = render 'comments/comments', commentable: question
+  br
