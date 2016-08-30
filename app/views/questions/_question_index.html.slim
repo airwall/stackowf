@@ -1,13 +1,14 @@
-.media-body.line-break
-  h4.media-heading = link_to simple_format(question.title), question
-  ul.list-unstyled.list-inline.media-detail.pull-left
-    li
-      i.fa
-      = show_username(question)
-    li
-      i.fa.fa-calendar
-      =  question.created_at.strftime("%a, %b, %d")
-    li
-      i.fa.fa-thumbs-up
-      = question.votes.sum(:score)
-hr.hr-line
+- cache question do
+  .media-body.line-break
+    h4.media-heading = link_to simple_format(question.title), question
+    ul.list-unstyled.list-inline.media-detail.pull-left
+      li
+        i.fa
+        = show_username(question)
+      li
+        i.fa.fa-calendar
+        =  question.created_at.strftime("%a, %b, %d")
+      li
+        i.fa.fa-thumbs-up
+        = question.votes.sum(:score)
+  hr.hr-line

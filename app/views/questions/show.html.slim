@@ -22,7 +22,7 @@ section#content.content-item data-question-id="#{@question.id}"
             | Write your answer
           fieldset
             = f.label :body, class: 'hidden'
-            = f.text_area :body, class: "form-control answer-form", placeholder: "Your Answer", rows: 3
+            = f.text_area :body, :data => {:provide => "markdown"}, class: "form-control answer-form", placeholder: "Your Answer", rows: 10
             p
             .attachments
               = f.fields_for :attachments, @answer.attachments.build do |a|

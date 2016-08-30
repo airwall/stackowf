@@ -23,7 +23,7 @@ Rails.application.configure do
       "Cache-Control" => "public, max-age=172800"
     }
   else
-    config.action_controller.perform_caching = false
+    config.action_controller.perform_caching = true
 
     config.action_mailer.perform_caching = false
 

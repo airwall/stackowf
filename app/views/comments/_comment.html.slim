@@ -1,6 +1,7 @@
-.comment
-  span #{markdown(comment.body)}
-  |  -
-  a  #{comment.user.username}
-  span.smalltime  #{time_ago_in_words(comment.created_at)} ago
-  br
+- cache comment do
+  .comment
+    span #{markdown(comment.body)}
+    |  -
+    a  #{comment.user.username}
+    span.smalltime  #{time_ago_in_words(comment.created_at)} ago
+    br
