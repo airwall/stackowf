@@ -2,9 +2,9 @@ production:
  adapter: redis
  url: redis://redistogo:a138807df880e1a6123922b48893cf20@sculpin.redistogo.com:9048/
 
-# local: &local
-#   adapter: redis
-#   url: redis://localhost:6379
-#
-# development: *local
-# test: *local
+local: &local
+  adapter: redis
+  url: redis://localhost:6379
+
+development: *local
+test: *local

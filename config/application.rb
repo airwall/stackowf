@@ -15,7 +15,6 @@ module Stackowf
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.active_job.queue_adapter = :sidekiq
-    config.cache_store = :redis_store, 'redis://redistogo:a138807df880e1a6123922b48893cf20@sculpin.redistogo.com:9048/0/cache', { expires_in: 90.minutes  }
 
     config.generators do |g|
       g.test_framework  :rspec,
