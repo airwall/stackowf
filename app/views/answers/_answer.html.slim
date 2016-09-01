@@ -9,15 +9,14 @@
           - if policy(answer).best? && answer.best != true #исправить отображение кнопки если ответ от автора вопроса
             = link_to '', best_answer_path(answer), method: :patch, remote: true, class: "glyphicon glyphicon-ok-circle red"
         .media-body
-          - cache answer do
-            p = markdown answer.body
-            ul.list-unstyled.list-inline.media-detail.pull-left
-              li
-                i.fa
-                = show_username(answer)
-              li
-                i.fa.fa-calendar
-                = answer.created_at.strftime("%a, %b, %d")
+          p = markdown answer.body
+          ul.list-unstyled.list-inline.media-detail.pull-left
+            li
+              i.fa
+              = show_username(answer)
+            li
+              i.fa.fa-calendar
+              = answer.created_at.strftime("%a, %b, %d")
           ul.list-unstyled.list-inline.media-detail.pull-right
             - if policy(answer).destroy?
               li
