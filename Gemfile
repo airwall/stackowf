@@ -82,6 +82,9 @@ gem 'rails-bootstrap-markdown'
 #caching
 gem 'redis-rails'
 
+#heroku sphinx
+gem 'flying-sphinx'
+
 
 
 group :test do
