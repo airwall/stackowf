@@ -79,8 +79,8 @@ gem 'redcarpet'
 gem 'pygments.rb'
 gem 'rails-bootstrap-markdown'
 
-# #caching
-# gem 'redis-rails'
+#caching
+gem 'redis-rails'
 
 
 
