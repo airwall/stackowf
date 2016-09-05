@@ -1,24 +1,8 @@
-## README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+В проекте доступна регистрация пользователей, реализована возможность войти через facebook/twitter.
+Любой пользователь может просматривать вопросы и ответы и выполнять полнотекстовый поиск по приложенияю.
+Предусмотрены права администратора.
+Зарегистрированные пользователи могут создавать вопросы и ответы, голосовать за вопрос и ответ(кроме своего собственного).
+Автор вопроса имеет возможность выбрать лучший ответ на свой вопрос, который после выбора переместится в начало списка ответов.
+Так же реализовано кэширование.
+Добавлена возможность выполнения задач по расписанию(отправка почтовой рассылки).
+Пользователь сайта может подписаться на вопрос и получать письма об обновлениях.
