@@ -5,6 +5,4 @@
         = f.label :file, class: 'hidden'
         = f.file_field :file, class: 'btn btn-default'
     - else
-        .icon
-          span class= "#{add_icon_to_attachment(f.object.file.to_s)}"
-          = link_to_remove_association ' Remove File', f
+      = link_to_remove_association ' Remove File', f

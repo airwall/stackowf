@@ -13,8 +13,7 @@ html
     .container
       = render 'layouts/header'
       .row
-        .col-lg-offset-1.col-lg-10
-          = render 'layouts/messages'
-          = yield
+        = render 'layouts/messages'
+        = yield
       .row
         = render 'layouts/footer'

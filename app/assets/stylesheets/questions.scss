@@ -30,7 +30,7 @@
   }
 }
 
-.question-path-link:hover {
+.question-path-link:link {
   text-decoration: none;
 }
 
@@ -38,5 +38,6 @@
   clear: both;
   color: #5FCF80;
   font-weight: bold;
+	font-size: 14px;
   letter-spacing: 0.7px;
 }

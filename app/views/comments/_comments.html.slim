@@ -9,5 +9,3 @@
         = f.label :body, class: 'hidden'
         = f.text_area :body, :data => {:provide => "markdown"}, class: "form-control", placeholder: "Your Comment", rows: 5
         = f.submit 'Submit', class: 'button btn btn-normal pull-right'
-    .link
-      = link_to 'add comment', '', class: 'add-comment-link', data: {commentable_id: commentable.id, commentable_type: commentable.class.name.downcase}

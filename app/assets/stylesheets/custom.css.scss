@@ -26,3 +26,58 @@
     color: #468847;
     text-align: left;
  }
+
+ .padding-test {
+   padding-bottom: 200px;
+ }
+
+.body-content {
+  border-radius: 4px;
+  padding-top: 15px;
+  padding-left: 25px;
+  padding-right: 20px;
+  padding-bottom: 15px;
+  margin-bottom: 5px;
+  background-color: #F6F6EE;
+}
+
+.left-block {
+  padding-top: 50px;
+}
+
+.right-block {
+  padding-bottom: 20px;
+}
+
+.action-link {
+  color: #ec2728;
+}
+
+.action-link:hover {
+  color: #2B2B2B;
+}
+.action-link:link {
+  color: #2B2B2B;
+  text-decoration: none;
+}
+
+.attachments {
+  line-height: 0.5;
+  text-align: right;
+  padding-top: 3px;
+  background-image: url("https://cdn4.iconfinder.com/data/icons/outline-2/64/documents-512.png");
+  background-size: 50px 50px;
+  background-position: left;
+  background-repeat: no-repeat;
+  max-width: 190px;
+}
+
+.attachments a {
+  color: #333333;
+  font-size: 12px;
+}
+
+.attachments a:hover {
+  color: #ec2728;
+  text-decoration: none;
+}

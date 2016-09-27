@@ -1,30 +1,43 @@
 = div_for(question) do
-  .media
-    .pull-left
-      = render 'votes/vote', votable: question
-    .media-body
-      - cache question do
-        h4.media-heading = simple_format question.title
-        p = markdown question.body
-        ul.list-unstyled.list-inline.media-detail.pull-left
-          li
-            i.fa
-            = show_username(question)
-          li
-            i.fa.fa-calendar
-            =  question.created_at.strftime("%a, %b, %d")
-      ul.list-unstyled.list-inline.media-detail.pull-right
+  - cache question do
+    .col-xs-12
+      h1 = simple_format question.title
+      hr
+      .row.body-content
+        .col-xs-1.left-block
+          = render 'votes/vote', votable: question
+        .col-xs-11.right-block
+          p
+            strong  @#{show_username(question)}&nbsp;
+            btn.btn-danger  #{show_user_status(question.user)}&nbsp;
+            small  commented on #{question.created_at.strftime("%B %d, %Y:")}
+          = markdown question.body
+          - if question.attachments.exists?
+            .row
+              hr
+              .col-md-offset-9.col-md-3.attachments
+                - question.attachments.each_with_index do |a, index|
+                  p = link_to "#{a.file.to_s.split('/').last}", a.file.url
+      .row
         - if policy(@question).destroy?
-          li
-            = link_to 'Edit Question', '', class: 'edit-question-link', data: { question_id: question.id }
-          li
-            = link_to "Delete Question", question, method: :delete
-      div class="#{question.attachments.exists? ? "thumbnails" : "" }"
-        - question.attachments.each_with_index do |a, index|
-          = link_to(a.file.url) do
-            span class= "#{add_icon_to_attachment(a.file.to_s)}"
+          .col-xs-1
+            = link_to 'Comment', '', class: 'add-comment-link action-link', data: {commentable_id: question.id, commentable_type: question.class.name.downcase}
+          .col-xs-1
+            - if policy(Subscription).create?
+              .vtop.subscription
+                - if @subscription.present?
+                  = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
+                  = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs hide', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
+                - else
+                  = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs hide', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
+                  = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
+          .col-xs-1.pull-right
+            = link_to 'Edit', '', class: 'edit-question-link action-link', data: { question_id: question.id }
+          .col-xs-1.pull-right
+            = link_to "Delete", question, class: "action-link", method: :delete
+
 
   .edit_question_form id="edit-question-#{question.id}"
     = render 'form', question: question
-  = render 'comments/comments', commentable: question
-  br
+  .row
+    = render 'comments/comments', commentable: question

@@ -50,4 +50,9 @@ module ApplicationHelper
   def question_solved?(question)
     question.answers.where(best: true).exists?
   end
+
+  def show_user_status(user)
+    user.admin? ? "admin" : "member"
+  end
+
 end

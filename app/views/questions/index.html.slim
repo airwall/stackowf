@@ -1,6 +1,7 @@
-.questions data-questions-channel='true'
-  h1
-    | Questions
-  hr
-  - @questions.each do |question|
-    = render 'questions/question_index', question: question
+.col-lg-offset-1.col-lg-10
+  .questions data-questions-channel='true'
+    h1
+      | Questions
+    hr
+    - @questions.each do |question|
+      = render 'questions/question_index', question: question

@@ -18,7 +18,7 @@
         = f.label :body, class: 'hidden'
         = f.text_area :body, :data => {:provide => "markdown"}, class: "form-control", placeholder: "Your Question", rows: 10
         p
-        .attachments
+        .attachments-fields
           = f.fields_for :attachments do |a|
             = render 'attachments/attachment_fields', f: a
           .add-file
