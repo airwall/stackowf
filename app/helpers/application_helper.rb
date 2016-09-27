@@ -41,4 +41,13 @@ module ApplicationHelper
   def login_options
     @redirect_path ? { redirect_to: request.path } : {}
   end
+
+  def count_posts(question)
+    count = question.answers.count
+    return count < 10 ? "#{count.to_s} Post" : "#{count.to_s} Posts"
+  end
+
+  def question_solved?(question)
+    question.answers.where(best: true).exists?
+  end
 end

@@ -1,4 +1,6 @@
-section#content.content-item
-  .questions data-questions-channel='true'
-    - @questions.each do |question|
-      = render 'questions/question_index', question: question
+.questions data-questions-channel='true'
+  h1
+    | Questions
+  hr
+  - @questions.each do |question|
+    = render 'questions/question_index', question: question

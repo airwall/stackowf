@@ -1,3 +1,42 @@
 // Place all the styles related to the Questions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#bottom-line{
+	font-size: 12px;
+  color: #666;
+  font-weight: lighter;
+}
+
+.question-body h4 {
+  font-size: 22px;
+}
+
+.question-body {
+  color: #3A3B3F;
+  border-radius: 4px;
+  padding-top: 5px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+}
+
+.question-body:hover {
+  color: #3A3B3F;
+  background-color: #F7F7FA;
+  .posts-count {
+    color: #ec2728;
+  }
+}
+
+.question-path-link:hover {
+  text-decoration: none;
+}
+
+.solved {
+  clear: both;
+  color: #5FCF80;
+  font-weight: bold;
+  letter-spacing: 0.7px;
+}
