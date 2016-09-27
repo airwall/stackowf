@@ -1,6 +1,4 @@
-section#content.content-item.line
-  .row
-    .col-xs-12
-      .questions data-questions-channel='true'
-      - @questions.each do |question|
-        = render 'questions/question_index', question: question
+section#content.content-item
+  .questions data-questions-channel='true'
+    - @questions.each do |question|
+      = render 'questions/question_index', question: question

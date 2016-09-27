@@ -1,16 +1,14 @@
 section#content.content-item data-question-id="#{@question.id}"
-  .row
-    .col-lg-offset-1.col-lg-10.line
-      = render 'question', question: @question
-      .top-alert
-      - if policy(Subscription).create?
-        .vtop.subscription
-          - if @subscription.present?
-            = link_to 'Unsubscribe', unsubscribe_question_path(@question), class: 'button btn btn-danger btn-xs', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
-            = link_to 'Subscribe', subscribe_question_path(@question), class: 'button btn btn-success btn-xs hide', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
-          - else
-            = link_to 'Unsubscribe', unsubscribe_question_path(@question), class: 'button btn btn-danger btn-xs hide', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
-            = link_to 'Subscribe', subscribe_question_path(@question), class: 'button btn btn-success btn-xs', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
+  = render 'question', question: @question
+  .top-alert
+  - if policy(Subscription).create?
+    .vtop.subscription
+      - if @subscription.present?
+        = link_to 'Unsubscribe', unsubscribe_question_path(@question), class: 'button btn btn-danger btn-xs', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
+        = link_to 'Subscribe', subscribe_question_path(@question), class: 'button btn btn-success btn-xs hide', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
+      - else
+        = link_to 'Unsubscribe', unsubscribe_question_path(@question), class: 'button btn btn-danger btn-xs hide', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
+        = link_to 'Subscribe', subscribe_question_path(@question), class: 'button btn btn-success btn-xs', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
   #answers
     = render @question.answers.includes(:user).order("best DESC, created_at ASC")
   .answers-errors

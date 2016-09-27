@@ -10,39 +10,10 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" /
   body
-    nav.navbar.navbar-inverse.navbar-fixed-top
-      .navbar-header
-        .navbar-brand  Stackowerflow
-        button.navbar-toggle data-target=".navbar-collapse" data-toggle="collapse" type="button"
-          span.icon-bar
-          span.icon-bar
-          span.icon-bar
-      .navbar-collapse.collapse
-        ul.nav.navbar-nav
-          li= link_to "Questions", questions_path
-          li= link_to "New Question", new_question_path
-          .navbar-header.search 
-            = render 'search/form'
-        - if user_signed_in?
-          .navbar-header.pull-right
-            p.navbar-text.nav-link
-              = link_to(edit_user_registration_path) do
-                span.glyphicon.glyphicon-user
-                = " #{current_user.username.capitalize}"
-            p.navbar-text.nav-link
-              = link_to destroy_user_session_path, data: { confirm: 'Are you certain you want sign out?' }, :method => :delete, class: "signout" do
-                span.glyphicon.glyphicon-log-out
-                |  Sign Out
-        - else
-          .navbar-header.pull-right
-            p.navbar-text.nav-link
-              = link_to(new_user_session_path(login_options)) do
-                span.glyphicon.glyphicon-log-in
-                |  Sign In
-            p.navbar-text.nav-link
-              = link_to(new_user_registration_path) do
-                span.glyphicon.glyphicon-ok-sign
-                |  Sign Up
     .container
-      = render 'layouts/messages'
-      = yield
+      = render 'layouts/header'
+      .row
+        .col-lg-offset-2.col-lg-8
+          = render 'layouts/messages'
+          = yield
+      = render 'layouts/footer'
