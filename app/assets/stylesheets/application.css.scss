@@ -19,10 +19,16 @@
  @import "bootstrap";
  @import "pygments";
 
+ @font-face {
+  font-family: "Proxima Nova";
+  src: font-url('ProximaNova-Reg.otf') format("truetype");
+  font-style: normal;
+  }
+
  body {
  	padding-top: 50px;
   background-color: #FFFFFF;
-  font-family: helvetica, arial, freesans, clean, sans-serif;
+  font-family: "Proxima Nova";
 	color: #333;
   line-height: 1.5;
   margin-top: 30px;
