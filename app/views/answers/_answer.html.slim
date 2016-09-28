@@ -1,11 +1,11 @@
-.col-lg-offset-1.col-lg-10.block
-  = div_for(answer) do
+= div_for(answer) do
+  .col-lg-offset-1.col-lg-10.block
     hr
     .row.answer-body-content.div class="#{set_body_content_block(answer, @question)}"
       .col-xs-1.left-block
         = render 'votes/vote', votable: answer
         = render 'shared/best', answer: answer
-      .col-xs-9.right-block
+      .col-xs-11.right-block
         p
           strong  @#{show_username(answer)}&nbsp;
           btn.btn-danger  #{show_user_status(answer.user)}&nbsp;
@@ -14,7 +14,7 @@
         - if answer.attachments.exists?
           .row
             hr
-            .col-md-offset-9.col-md-3.attachments
+            .col-md-offset-10.col-md-3.attachments
               - answer.attachments.each_with_index do |a, index|
                 p = link_to "#{a.file.to_s.split('/').last}", a.file.url
     .row
@@ -36,12 +36,14 @@
             = f.label :body, class: 'hidden'
             = f.text_area :body, :data => {:provide => "markdown"}, class: "form-control", placeholder: "Your Answer", rows: 5
             p
-            .attachments
+            .attachments-fields
               = f.fields_for :attachments do |a|
                 = render 'attachments/attachment_fields', f: a
               .add-file
                 = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
       button.btn.btn-normal.pull-left[type="submit"]
         | Submit
+      | &nbsp;&nbsp;
+      = link_to "Cancel", '', class: "cancel-answer-form btn btn-danger", data: { answer_id: answer.id}
     .row
       = render 'comments/comments', commentable: answer

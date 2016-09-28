@@ -1,11 +1,13 @@
 .col-xs-9.pull-right.comments-block
   div id="#{dom_id(commentable)}_comments"
     = render commentable.comments
-
   - if policy(commentable).create?
     .comment-form
       .comment-errors
       = form_for [commentable, commentable.comments.build], remote: true, html: { id: "form-comment-#{commentable.class.name.downcase}-#{ commentable.id }" } do |f|
         = f.label :body, class: 'hidden'
         = f.text_area :body, :data => {:provide => "markdown"}, class: "form-control", placeholder: "Your Comment", rows: 5
-        = f.submit 'Submit', class: 'button btn btn-normal pull-right'
+        p
+        = f.submit 'Submit', class: 'button btn btn-normal'
+        | &nbsp;&nbsp;
+        = link_to 'Cancel', '', class: 'cancel-comment-form btn btn-danger', data: {commentable_id: commentable.id, commentable_type: commentable.class.name.downcase }

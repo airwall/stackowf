@@ -1,12 +1,12 @@
-.col-lg-offset-1.col-lg-10.block data-question-id="#{@question.id}"
-  = div_for(question) do
+= div_for(question) do
+  .block.col-lg-offset-1.col-lg-10 data-question-id="#{@question.id}"
     - cache question do
       h1 = simple_format question.title
       hr
       .row.question-body-content
         .col-xs-1.left-block
           = render 'votes/vote', votable: question
-        .col-xs-9.right-block
+        .col-xs-11.right-block
           p
             strong  @#{show_username(question)}&nbsp;
             btn.btn-danger  #{show_user_status(question.user)}&nbsp;
@@ -15,7 +15,7 @@
           - if question.attachments.exists?
             .row
               hr
-              .col-md-offset-9.col-md-3.attachments
+              .col-md-offset-10.col-md-3.attachments
                 - question.attachments.each_with_index do |a, index|
                   p = link_to "#{a.file.to_s.split('/').last}", a.file.url
       .row
@@ -24,15 +24,15 @@
             = link_to 'Edit', '', class: 'edit-question-link action-link', data: { question_id: question.id }
           .col-xs-2.col-sm-2.col-md-1
             = link_to "Delete", question, class: "action-link", method: :delete
-          .col-xs-2.col-sm-2.col-md-1
-            - if policy(Subscription).create?
-              .vtop.subscription
-                - if @subscription.present?
-                  = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
-                  = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs hide', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
-                - else
-                  = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs hide', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
-                  = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
+        .col-xs-2.col-sm-2.col-md-1
+          - if policy(Subscription).create?
+            .subscription
+              - if @subscription.present?
+                = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
+                = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs hide', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
+              - else
+                = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs hide', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
+                = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
         - if user_signed_in?
           .col-xs-2.col-md-1.pull-right
             = link_to 'Comment', '', class: 'add-comment-link action-link', data: {commentable_id: question.id, commentable_type: question.class.name.downcase}

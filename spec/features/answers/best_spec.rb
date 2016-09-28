@@ -16,9 +16,9 @@ feature "User can make best answer", '
     answer.reload
     visit question_path(question)
     within "#answer_#{answer.id}" do
-      expect(page).to_not have_css ".glyphicon.glyphicon-ok.green"
-      find(".glyphicon.glyphicon-ok-circle").click
-      expect(page).to have_css ".glyphicon.glyphicon-ok.green"
+      expect(page).to_not have_content 'Solved'
+      click_on 'Best!'
+      expect(page).to have_content 'Solved'
     end
   end
 
@@ -47,12 +47,15 @@ feature "User can make best answer", '
     visit question_path(question)
 
     within "#answer_#{answer2.id}" do
-      find(".glyphicon.glyphicon-ok-circle").click
-      expect(page).to have_css ".glyphicon.glyphicon-ok.green"
+      click_on 'Best!'
+      expect(page).to have_content 'Solved'
     end
 
-    within "#answers" do
-      expect(page.first("div")[:id]).to eq "answer_#{answer2.id}"
+    within first(".answer") do
+      expect(page).to have_content 'Solved'
     end
+    # within "#answers" do
+    #   expect(first("div")[:id]).to eq "answer_#{answer2.id}"
+    # end
   end
 end

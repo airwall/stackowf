@@ -1,3 +1,7 @@
 $('#answers').fadeOut( 100, function(){
   $(this).html("<%= j render @answers %>").fadeIn('slow');
   });
+
+$('html, body').animate({
+          scrollTop: $("#answers").offset().top - 100
+      }, 1500);

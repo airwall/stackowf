@@ -85,8 +85,6 @@ gem 'redis-rails'
 #heroku sphinx
 gem 'flying-sphinx'
 
-
-
 group :test do
   gem 'capybara-screenshot'
   gem 'capybara'

@@ -9,10 +9,10 @@ nav.navbar.navbar-findcond.navbar-fixed-top
       = link_to 'Questions', questions_path, class: 'navbar-brand'
     #navbar.collapse.navbar-collapse
       ul.nav.navbar-nav.navbar-right
+        li
+          .navbar-header.search
+            = render 'search/form'
         - if user_signed_in?
-          li
-            .navbar-header.search
-              = render 'search/form'
           li.active
             = link_to 'Home', questions_path
           li.active

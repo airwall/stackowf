@@ -2,6 +2,7 @@ class AnswersController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :get_question, only: [:create]
   before_action :get_answer, only: [:edit, :destroy, :update, :best]
+  before_action :get_answer_question, only: [:best, :update]
 
   respond_to :html, :js
 
@@ -18,7 +19,6 @@ class AnswersController < ApplicationController
   end
 
   def best
-    @question = @answer.question
     @answer.best!
     respond_with @answers = @question.answers.includes(:user).order("best DESC, created_at ASC")
   end
@@ -36,6 +36,10 @@ class AnswersController < ApplicationController
   def get_answer
     @answer = Answer.find(params[:id])
     authorize @answer
+  end
+
+  def get_answer_question
+    @question = @answer.question
   end
 
   def answer_params

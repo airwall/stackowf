@@ -5,5 +5,8 @@ $(document).ready ->
   $(document).on 'click', '.edit-answer-link', (e) ->
     e.preventDefault();
     answer_id = $(this).data('answerId');
-    $(this).hide();
     $('#edit-answer-' + answer_id).fadeIn(1000);
+  $(document).on 'click', '.cancel-answer-form', (e) ->
+    e.preventDefault();
+    answer_id = $(this).data('answerId')
+    $("#edit-answer-" + answer_id ).fadeOut(400)

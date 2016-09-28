@@ -9,8 +9,7 @@ feature "Create question", '
 
   scenario "Authenticated user can create question" do
     sign_in(user)
-    visit questions_path
-    click_on "New Question"
+    visit new_question_path
     fill_in "Title", with: "Title"
     fill_in "Body", with: "NewQuestion123"
     click_on "Submit"
@@ -38,14 +37,13 @@ feature "Create question", '
 
     click_on "Submit"
 
-    expect(page).to have_css ".glyphicon.glyphicon-file"
+    expect(page).to have_content "features_helper.rb"
     expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/2/features_helper.rb"]')
     expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
   end
 
   scenario "Non-authenticated user ties to create question" do
-    visit questions_path
-    click_on "New Question"
+    visit new_question_path
     expect(page).to have_content "You need to sign in or sign up before continuing."
   end
 end

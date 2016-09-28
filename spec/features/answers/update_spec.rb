@@ -15,10 +15,10 @@ feature "User can edit his answer", '
     answer.reload
     visit question_path(question)
     within "#answer_#{answer.id}" do
-      click_on "Edit Answer"
+      click_on "Edit"
       fill_in "Body", with: "Edited answer"
       click_on "Submit"
-      expect(page).to have_content "Edit Answer"
+      expect(page).to have_content "Edit"
     end
   end
 
@@ -28,7 +28,7 @@ feature "User can edit his answer", '
     visit question_path(question)
 
     within "#answer_#{answer.id}" do
-      expect(page).to_not have_link "Edit Answer"
+      expect(page).to_not have_link "Edit"
     end
   end
 
@@ -38,7 +38,7 @@ feature "User can edit his answer", '
 
     within "#answer_#{answer.id}" do
       expect(page).to have_content answer.body
-      expect(page).to_not have_link "Edit Answer"
+      expect(page).to_not have_link "Edit"
     end
   end
 
@@ -48,15 +48,15 @@ feature "User can edit his answer", '
       sign_in(user)
       visit question_path(question)
 
-      expect(page).to have_css ".glyphicon.glyphicon-file"
+      expect(page).to have_content "spec_helper.rb"
       expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
 
-      click_on "Edit Answer"
+      click_on "Edit"
       within "#answer_#{answer.id}" do
         click_on "Remove File"
         click_on "Submit"
       end
-      expect(page).to_not have_css ".glyphicon.glyphicon-file"
+      expect(page).to_not have_content "spec_helper.rb"
     end
 
     scenario "Add file to answer when edit it", js: true do
@@ -65,15 +65,15 @@ feature "User can edit his answer", '
       visit question_path(question)
 
       within "#answer_#{answer.id}" do
-        expect(page).to_not have_css ".glyphicon.glyphicon-file"
+        expect(page).to_not have_content "spec_helper.rb"
 
-        click_on "Edit Answer"
+        click_on "Edit"
         click_on "Add File"
         within all(".nested-fields").last do
           attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
         end
         click_on "Submit"
-        expect(page).to have_css ".glyphicon.glyphicon-file"
+        expect(page).to have_content "spec_helper.rb"
         expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
       end
     end

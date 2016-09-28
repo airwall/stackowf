@@ -16,7 +16,7 @@ feature "Destroy Answer", '
     visit question_path(question)
 
     within "#answer_#{answer.id}" do
-      click_on "Delete Answer"
+      click_on "Delete"
       expect(page).to_not have_content "Answer was successfully destroyed."
     end
   end
@@ -26,13 +26,13 @@ feature "Destroy Answer", '
     answer.reload
     visit question_path(answer.question_id)
 
-    expect(page).to_not have_link "Delete Answer"
+    expect(page).to_not have_link "Delete"
   end
 
   scenario "Non-authenticated user ties deletes answer", js: true do
     answer.reload
     visit question_path(answer.question_id)
 
-    expect(page).to_not have_link "Delete Answer"
+    expect(page).to_not have_link "Delete"
   end
 end

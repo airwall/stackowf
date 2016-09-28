@@ -12,20 +12,20 @@ feature "Destroy Question", '
   scenario "Authenticated user/author try destroy question" do
     sign_in(user)
     visit question_path(question)
-    click_on "Delete Question"
+    click_on "Delete"
 
     expect(page).to have_content "Question was successfully destroyed."
   end
 
   scenario "Non-authenticated user ties to destroy question" do
     visit question_path(question)
-    expect(page).to_not have_content "Delete Question"
+    expect(page).to_not have_content "Delete"
   end
 
   scenario "Non-author ties destroy question" do
     sign_in(non_author)
     visit question_path(question)
 
-    expect(page).to_not have_content "Delete Question"
+    expect(page).to_not have_content "Delete"
   end
 end
