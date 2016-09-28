@@ -13,7 +13,7 @@ feature "Create answer", '
     visit question_path(question)
     fill_in "Body", with: "NewAnswer123"
     click_on "Submit"
-    within '#answers' do
+    within "#answers" do
       expect(page).to have_content "NewAnswer123"
     end
   end

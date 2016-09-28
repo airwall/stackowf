@@ -40,7 +40,7 @@ feature "User can login with twitter", '
     click_on "Send"
     expect(page).to have_content "Now you need to confirm your email"
     open_email("test@test.com")
-    token = current_email.find('#token').text
+    token = current_email.find("#token").text
 
     fill_in "token-confirm", with: token
     click_on "Confirm"

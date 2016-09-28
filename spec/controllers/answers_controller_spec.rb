@@ -9,7 +9,7 @@ RSpec.describe AnswersController do
     let(:votable) { create(:answer, question: question, user: user) }
   end
 
-  describe 'POST #create' do
+  describe "POST #create" do
     let(:answer_attr) { attributes_for(:answer) }
     before { post :create, params: { answer: answer_attr, question_id: question.id } }
 
@@ -44,7 +44,7 @@ RSpec.describe AnswersController do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe "DELETE #destroy" do
     context "Author" do
       let!(:question) { create(:question) }
       let!(:answer) { create(:answer, question: question, user: @user) }
@@ -68,7 +68,7 @@ RSpec.describe AnswersController do
     end
   end
 
-  describe 'PATCH #update' do
+  describe "PATCH #update" do
     let!(:question) { create(:question) }
     let!(:answer) { create(:answer, question: question, user: @user) }
     let(:valid_update) { patch :update, params: { id: answer, answer: { body: "12345678910" } }, format: :js }
@@ -124,7 +124,7 @@ RSpec.describe AnswersController do
     end
   end
 
-  describe 'PATCH #BEST set best answer' do
+  describe "PATCH #BEST set best answer" do
     let(:answer) { create(:answer, question: question) }
     let(:valid_update) { patch :best, params: { id: answer }, format: :js }
 

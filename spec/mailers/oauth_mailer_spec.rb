@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe OauthMailer, type: :mailer do
-  describe '#email_confirmation' do
+  describe "#email_confirmation" do
     let(:authorization) { create(:authorization) }
     let!(:email) { OauthMailer.email_confirmation(authorization) }
 

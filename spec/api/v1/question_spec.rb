@@ -96,7 +96,7 @@ describe "Questions API" do
     end
   end
 
-  describe 'POST #create' do
+  describe "POST #create" do
     context "with valid params" do
       let(:post_question) do
         post "/api/v1/questions", params: {

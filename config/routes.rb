@@ -24,8 +24,8 @@ Rails.application.routes.draw do
   resources :questions, concerns: :votable do
     resources :comments, only: :create
     member do
-      post :subscribe, to: 'subscriptions#create'
-      delete :unsubscribe, to: 'subscriptions#destroy'
+      post :subscribe, to: "subscriptions#create"
+      delete :unsubscribe, to: "subscriptions#destroy"
     end
     resources :answers, only: [:index, :create, :update, :destroy], shallow: true, concerns: :votable do
       resources :comments, only: :create
@@ -47,5 +47,5 @@ Rails.application.routes.draw do
 
   mount LetterOpenerWeb::Engine, at: "/letter_opener" if Rails.env.development?
 
-  get "search", to: 'search#search'
+  get "search", to: "search#search"
 end

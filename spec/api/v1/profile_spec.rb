@@ -28,7 +28,7 @@ describe "Profile API" do
     end
   end
 
-  describe 'GET #all' do
+  describe "GET #all" do
     context "unauthorized" do
       it "return 401 if there not have access_token" do
         get "/api/v1/profiles/all", params: { format: :json }

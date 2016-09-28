@@ -2,14 +2,14 @@ require "rails_helper"
 require "capybara/email/rspec"
 
 RSpec.describe OauthServicesController, type: :controller do
-  describe 'get #new_email_oauth' do
+  describe "get #new_email_oauth" do
     it "render new_email_oauth view" do
       get :new_email_oauth
       expect(response).to render_template :new_email_oauth
     end
   end
 
-  describe 'post #save_email_oauth' do
+  describe "post #save_email_oauth" do
     context "with valid attributes" do
       let(:save_email_oauth) { post :save_email_oauth, { email: "test@test.com" }, uid: "12345", provider: "twitter" }
 
@@ -31,7 +31,7 @@ RSpec.describe OauthServicesController, type: :controller do
     end
   end
 
-  describe 'get #confirm_email #confirm_web' do
+  describe "get #confirm_email #confirm_web" do
     context "with valid attributes" do
       let!(:auth) { create(:authorization) }
       let!(:old_hash) { auth.confirmation_hash }
@@ -60,7 +60,7 @@ RSpec.describe OauthServicesController, type: :controller do
     end
   end
 
-  describe 'get #confirm_web' do
+  describe "get #confirm_web" do
     it "render confirm_web view" do
       get :confirm_web
       expect(response).to render_template :confirm_web

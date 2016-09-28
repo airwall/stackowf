@@ -85,7 +85,7 @@ describe "Answers API" do
     end
   end
 
-  describe 'POST #create' do
+  describe "POST #create" do
     let!(:question) { create(:question) }
 
     context "with valid params" do

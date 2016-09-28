@@ -1,6 +1,6 @@
 require "rails_helper"
 shared_examples "comments" do
-  describe 'POST #create' do
+  describe "POST #create" do
     let(:user) { create(:user) }
     let(:post_comment) { post :create, xhr: true, params: { comment: attributes_for(:comment) }.merge(shared_object) }
     let(:post_invalid_comment) { post :create, xhr: true, params: { comment: attributes_for(:invalid_comment) }.merge(shared_object) }

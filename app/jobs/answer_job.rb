@@ -3,6 +3,6 @@ class AnswerJob < ApplicationJob
 
   def perform(answer)
     ActionCable.server.broadcast "questions:#{answer.question_id}:answers",
-                                 answer: AnswersContrller.render(partial: "answers/answer", locals: {answer: answer} )
+                                 answer: attrs
   end
 end

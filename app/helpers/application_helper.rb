@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   class HTMLwithPygments < Redcarpet::Render::HTML
     def block_code(code, language)
       Pygments.highlight(code, lexer: language)
@@ -34,7 +33,7 @@ module ApplicationHelper
 
   def count_posts(question)
     count = question.answers.count
-    return count < 10 ? "#{count.to_s} Post" : "#{count.to_s} Posts"
+    count < 10 ? "#{count} Post" : "#{count} Posts"
   end
 
   def question_solved?(question)
@@ -46,8 +45,8 @@ module ApplicationHelper
   end
 
   def set_body_content_block(answer, question)
-    border = answer.best? ? 'best-border' : ''
-    background = answer.user.author_of?(question) ? 'author' : ''
-    return "#{border} #{background}"
+    border = answer.best? ? "best-border" : ""
+    background = answer.user.author_of?(question) ? "author" : ""
+    "#{border} #{background}"
   end
 end

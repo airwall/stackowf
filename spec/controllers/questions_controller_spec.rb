@@ -9,7 +9,7 @@ RSpec.describe QuestionsController do
     let(:votable) { create(:question, user: user) }
   end
 
-  describe 'GET #index' do
+  describe "GET #index" do
     let(:questions) { create_list(:question, 2) }
     before { get :index }
 
@@ -22,7 +22,7 @@ RSpec.describe QuestionsController do
     end
   end
 
-  describe 'GET #show' do
+  describe "GET #show" do
     before { get :show, params: { id: question } }
 
     it "assigns the requested question to @question" do
@@ -34,7 +34,7 @@ RSpec.describe QuestionsController do
     end
   end
 
-  describe 'GET #new' do
+  describe "GET #new" do
     before { get :new }
 
     it "assign new Question to @question" do
@@ -46,7 +46,7 @@ RSpec.describe QuestionsController do
     end
   end
 
-  describe 'POST #create' do
+  describe "POST #create" do
     context "With valide attributes" do
       it "saves the new questions in the database and assignes to current user" do
         expect { post :create, params: { question: attributes_for(:question) } }.to change(@user.questions, :count).by(1)
@@ -70,7 +70,7 @@ RSpec.describe QuestionsController do
     end
   end
 
-  describe 'PATCH #update' do
+  describe "PATCH #update" do
     let!(:question) { create(:question, user: @user) }
     let(:valid_update) { patch :update, params: { id: question, question: { body: "12345678910" } }, format: :js }
 
@@ -123,7 +123,7 @@ RSpec.describe QuestionsController do
     end
   end
 
-  describe 'DELETE #destroy' do
+  describe "DELETE #destroy" do
     before { question }
     context "Author" do
       it "deletes question" do
