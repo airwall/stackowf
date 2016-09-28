@@ -18,9 +18,9 @@ class AnswersController < ApplicationController
   end
 
   def best
-    question = @answer.question
+    @question = @answer.question
     @answer.best!
-    respond_with @answers = question.answers.includes(:user).order("best DESC, created_at ASC")
+    respond_with @answers = @question.answers.includes(:user).order("best DESC, created_at ASC")
   end
 
   def destroy

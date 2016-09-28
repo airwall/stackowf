@@ -1,0 +1,7 @@
+.best
+  - if answer.best?
+    p Solved
+  - elsif policy(answer).best?
+    = link_to 'Best!', best_answer_path(answer), method: :patch, remote: true, class: 'btn btn-danger btn-xs'
+  - else
+    = nil

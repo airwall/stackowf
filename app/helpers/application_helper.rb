@@ -28,16 +28,6 @@ module ApplicationHelper
     user_signed_in? && current_user.author_of?(object)
   end
 
-  def views_action(object)
-    if user_signed_in? && current_user.author_of?(object)
-      render "layouts/views_action", object: object
-    end
-  end
-
-  def add_icon_to_attachment(f)
-    %w(jpg jpeg png gif).any? { |str| f.downcase.include? str } ? "glyphicon glyphicon-picture" : "glyphicon glyphicon-file"
-  end
-
   def login_options
     @redirect_path ? { redirect_to: request.path } : {}
   end
@@ -55,4 +45,9 @@ module ApplicationHelper
     user.admin? ? "admin" : "member"
   end
 
+  def set_body_content_block(answer, question)
+    border = answer.best? ? 'best-border' : ''
+    background = answer.user.author_of?(question) ? 'author' : ''
+    return "#{border} #{background}"
+  end
 end

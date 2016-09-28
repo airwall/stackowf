@@ -3,7 +3,7 @@
     - cache question do
       h1 = simple_format question.title
       hr
-      .row.body-content
+      .row.question-body-content
         .col-xs-1.left-block
           = render 'votes/vote', votable: question
         .col-xs-9.right-block
@@ -19,10 +19,12 @@
                 - question.attachments.each_with_index do |a, index|
                   p = link_to "#{a.file.to_s.split('/').last}", a.file.url
       .row
-        - if policy(@question).destroy?
-          .col-xs-1.pull-right
-            = link_to 'Comment', '', class: 'add-comment-link action-link', data: {commentable_id: question.id, commentable_type: question.class.name.downcase}
-          .col-xs-1.pull-right
+        - if policy(question).destroy?
+          .col-xs-2.col-sm-2.col-md-1
+            = link_to 'Edit', '', class: 'edit-question-link action-link', data: { question_id: question.id }
+          .col-xs-2.col-sm-2.col-md-1
+            = link_to "Delete", question, class: "action-link", method: :delete
+          .col-xs-2.col-sm-2.col-md-1
             - if policy(Subscription).create?
               .vtop.subscription
                 - if @subscription.present?
@@ -31,10 +33,9 @@
                 - else
                   = link_to 'Unsubscribe', unsubscribe_question_path(question), class: 'button btn btn-danger btn-xs hide', id: 'subscribed', remote: true, method: :delete, data: {type: :json}
                   = link_to 'Subscribe', subscribe_question_path(question), class: 'button btn btn-success btn-xs', id: 'unsubscribed', remote: true, method: :post, data: {type: :json}
-          .col-xs-1
-            = link_to 'Edit', '', class: 'edit-question-link action-link', data: { question_id: question.id }
-          .col-xs-1
-            = link_to "Delete", question, class: "action-link", method: :delete
+        - if user_signed_in?
+          .col-xs-2.col-md-1.pull-right
+            = link_to 'Comment', '', class: 'add-comment-link action-link', data: {commentable_id: question.id, commentable_type: question.class.name.downcase}
 
 
     .edit_question_form id="edit-question-#{question.id}"

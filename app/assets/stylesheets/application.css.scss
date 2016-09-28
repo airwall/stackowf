@@ -79,20 +79,6 @@
      margin-bottom: 10px;
    }
 
-   .vtop {
-     margin-bottom: 5px;
-   }
-   .green{
-     color: #5EBA7D;
-     margin-top: 15px;
-     font-size: 1.2em;
-   }
-
-   .red{
-     color: #dd6e6e;
-     margin-top: 15px;
-     font-size: 1.2em;
-   }
 
 
    .icon span {
@@ -131,7 +117,9 @@
 
  /* Votable CSS */
     .vote  {
-     text-align: center;
+      text-align: center;
+      padding-right: 10px;
+      padding-bottom: 5px;
    }
 
     .voting-idle {
@@ -174,30 +162,6 @@
      margin-top: 3px;
    }
 
-   /* Attachment CSS */
-    .thumbnails {
-     background-color: #E0EAF1;
-     padding: 2px;
-     width: 200px;
-     float: right;
-     padding-right: 5px;
-   }
-
-    .thumbnails span {
-     color: #858C93;
-     padding-left: 3px;
-     font-size: 1.2em;
-     float: right;
-     padding-bottom: 4px;
-   }
-
-    .thumbnails a:hover {
-     text-decoration: inherit;
-   }
-
-    .fa-calendar {
-     margin-right: 2px;
-   }
 
     .best-answer-link {
      text-decoration: none;
@@ -214,33 +178,4 @@
 
     .fa-thumbs-up {
    margin-right: 3px;
-   }
-
-
-    .media-detail li {
-   	color:#535A60;
-   	font-size:12px;
-   	padding-right: 10px;
-   	font-weight:400;
-     list-style-type: disc;
-   }
-
-    .media-detail a {
-     color: #0077DD;
-   }
-
-    .media-detail a:hover {
-     color: #3AF;
- 	  text-decoration: inherit;
-    }
-
-    .media img {
- 	   max-width:50px;
-   }
-
-    .media > .pull-left {
-     margin-right: 40px;
-   }
-    .line-answer {
-     border-top: 1px solid #DDDDDD;
    }

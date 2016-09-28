@@ -1,6 +1,6 @@
 .row
-  = render 'question', question: @question
   .top-alert
+  = render 'question', question: @question
 #answers.row
   = render @question.answers.includes(:user).order("best DESC, created_at ASC")
 .answers-errors

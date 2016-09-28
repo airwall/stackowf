@@ -3,6 +3,7 @@ $(document).ready ->
     e.preventDefault();
     commentable_id = $(this).data('commentableId')
     commentable_type = $(this).data('commentableType')
+    console.log($("#form-comment-" + commentable_type + '-' + commentable_id))
     $("#form-comment-" + commentable_type + '-' + commentable_id).fadeIn(400)
   # $(document).on 'ajax:success', '.new_comment', (e, data, status, xhr) ->
   #   response = $.parseJSON(xhr.responseText)
