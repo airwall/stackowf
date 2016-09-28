@@ -5,12 +5,13 @@
 pre{
 	background-color: #eee;
 	padding: 10px;
-	-webkit-border-radius: 5px;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
+	-webkit-border-radius: 2px;
+	-moz-border-radius: 2px;
+	border-radius: 2px;
 	overflow: auto;
   max-width: 700px;
 }
+
 code{
 	background-color: #eee;
 	padding: 1px 3px;
@@ -23,14 +24,16 @@ h1{
 	color: #999;
 	font-weight: bold;
 }
+
 h2{
-	border-bottom: 1px dotted #aaa;
 	margin-bottom: 1em;
 	color: #333;
 }
+
 h3{
 	color: #666;
 }
+
 .shadow{
 	-webkit-box-shadow:0 5px 15px #000;
 	-moz-box-shadow:0 5px 15px #000;

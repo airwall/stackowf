@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
   include Voted
 
   def index
-    respond_with(@questions = Question.includes(:user).all)
+    respond_with(@questions = Question.includes(:user).all.order("created_at DESC"))
   end
 
   def show
