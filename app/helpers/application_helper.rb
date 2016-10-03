@@ -53,4 +53,8 @@ module ApplicationHelper
   def show_avatar(object)
     object.user.avatar.present? ? object.user.avatar.thumb.url : "default_avatar.png"
   end
+
+  def show_attachment_name(a)
+    a.file.to_s.split('/').last.split('').last(10).join('').to_s
+  end
 end

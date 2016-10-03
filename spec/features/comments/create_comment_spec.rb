@@ -56,7 +56,7 @@ feature "Create comment", '
         expect(page).to have_link "Comment"
         click_on "Comment"
         fill_in "Body", with: "CommentTestAnswer"
-        click_on "Submit"
+        click_button "Submit"
         expect(page).to have_content "CommentTestAnswer"
         expect(page).to_not have_field("Body")
       end

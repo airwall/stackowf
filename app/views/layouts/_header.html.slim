@@ -18,7 +18,9 @@ nav.navbar.navbar-findcond.navbar-fixed-top
           li.active
             = link_to 'New Question', new_question_path
           li.active
-            = link_to "@#{current_user.username}", edit_user_registration_path
+            = link_to(edit_user_registration_path) do
+              | #{image_tag(current_user.avatar.present? ? current_user.avatar.thumb.url : "default_avatar.png", class: 'avatar-index')}@#{current_user.username}
+            end
           li.active
             = link_to destroy_user_session_path, data: { confirm: 'Are you certain you want sign out?' }, :method => :delete, class: "signout" do
               span.glyphicon.glyphicon-log-out
