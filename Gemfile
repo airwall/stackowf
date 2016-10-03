@@ -42,6 +42,7 @@ gem 'record_tag_helper'
 
 #FileUploader
 gem 'carrierwave'
+gem "mini_magick"
 #Permit AJAX to file upload
 gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms

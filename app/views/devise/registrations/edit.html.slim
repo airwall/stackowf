@@ -12,14 +12,16 @@
         = f.label :email
         = f.email_field :email, autofocus: true, class: "form-control"
       .form-grup
-        = f.label :avatar do
+        - if current_user.avatar.present?
+          = image_tag(current_user.avatar.url, class: 'avatar-sign')
+          .form-grup
+            = f.label :remove_avatar
+            = f.check_box :remove_avatar
+            hr
+        .form-grup
           = f.file_field :avatar
           = f.hidden_field :avatar_cache
-      .form-grup
-        - if current_user.avatar.present?
-          = image_tag(current_user.avatar.url)
-          = f.label :remove_avatar do
-            = f.check_box :remove_avatar
+          br
       .form-group
         = f.label :password
         i

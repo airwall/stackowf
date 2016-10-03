@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  mount_uploader :avatar, FileUploader
+  mount_uploader :avatar, AvatarUploader
   attr_accessor :login
   has_many :questions, dependent: :destroy
   has_many :answers, dependent: :destroy
