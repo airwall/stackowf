@@ -27,7 +27,7 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    @question.update!(question_params)
+    @question.update(question_params)
     respond_with @question
   end
 
