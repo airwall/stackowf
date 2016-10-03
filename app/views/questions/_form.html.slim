@@ -25,3 +25,5 @@
             = link_to_add_association 'Add File', f, :attachments, partial: 'attachments/attachment_fields'
   button.btn.btn-normal.pull-left[type="submit"]
     | Submit
+  | &nbsp;&nbsp;
+  = link_to "Cancel", '', class: "cancel-question-form btn btn-danger", data: { question_id: question.id} if !question.new_record?
