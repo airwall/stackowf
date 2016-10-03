@@ -42,7 +42,7 @@ gem 'record_tag_helper'
 
 #FileUploader
 gem 'aws-sdk', '~> 2'
-gem "fog-aws"
+gem "fog"
 gem 'carrierwave'
 gem "mini_magick"
 gem 'file_validators'
