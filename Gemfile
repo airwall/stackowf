@@ -41,6 +41,7 @@ gem 'devise-bootstrap-views'
 gem 'record_tag_helper'
 
 #FileUploader
+gem 'aws-sdk', '~> 2'
 gem 'carrierwave'
 gem "mini_magick"
 gem 'file_validators'
