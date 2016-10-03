@@ -13,7 +13,7 @@
         = f.email_field :email, autofocus: true, class: "form-control"
       .form-grup
         - if current_user.avatar.present?
-          = image_tag(current_user.avatar.url, class: 'avatar-sign')
+          = image_tag(current_user.avatar.resized.url, class: 'avatar-sign')
           .form-grup
             = f.label :remove_avatar
             = f.check_box :remove_avatar

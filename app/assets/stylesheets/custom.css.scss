@@ -90,7 +90,27 @@
 
 .avatar-sign {
   margin: 10px;
-  border-radius: 10px;
+  border-radius: 5px;
   max-width: 100px;
   max-height: 100px;
+}
+
+.avatar-index {
+  border-radius: 20px;
+  max-width: 20px;
+  max-height: 20px;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
+
+.avatar-show img {
+  width: 50px;
+	height: 50px;
+	-webkit-border-radius: 30px;
+	border-radius: 30px;
+}
+
+
+.avatar-show {
+  margin-bottom: 30px;
 }

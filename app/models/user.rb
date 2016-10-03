@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_many :subscriptions, dependent: :destroy
   validates :username, presence: true
   validates :username, uniqueness: true
+  validates :avatar, file_size: { less_than_or_equal_to: 500.kilobytes }
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
