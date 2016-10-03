@@ -5,7 +5,7 @@
       .items
         ul.list-unstyled.pull-left
           li
-            | #{image_tag(question.user.avatar.thumb.url, class: 'avatar-index')}@#{show_username(question)} asked #{time_ago_in_words(question.created_at)}
+            | #{image_tag(show_avatar(question), class: 'avatar-index')}@#{show_username(question)} asked #{time_ago_in_words(question.created_at)}
         ul.list-unstyled.pull-right
           li.posts-count
             = count_posts(question)

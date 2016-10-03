@@ -3,8 +3,7 @@
     hr
     .row.answer-body-content.div class="#{set_body_content_block(answer, @question)}"
       .col-xs-1.left-block
-        .avatar-show
-          = image_tag( show_avatar(answer), class: 'avatar-show')
+        = image_tag( show_avatar(answer), class: 'avatar-show')
         = render 'votes/vote', votable: answer
         = render 'shared/best', answer: answer
       .col-xs-11.right-block

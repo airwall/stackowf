@@ -5,8 +5,7 @@
       hr
       .row.question-body-content
         .col-xs-1.left-block
-          .avatar-show
-            = image_tag(show_avatar(question), class: 'avatar-show')
+          = image_tag(show_avatar(question), class: 'avatar-show')
           = render 'votes/vote', votable: question
         .col-xs-11.right-block
           p

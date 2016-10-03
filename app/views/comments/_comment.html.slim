@@ -1,5 +1,6 @@
 .comment
   .line-info
+    | #{image_tag(show_avatar(comment), class: 'avatar-index')}
     strong @#{comment.user.username}&nbsp;
     small commented on #{comment.created_at.strftime("%B %d, %Y:")}
   = markdown(comment.body)
