@@ -49,4 +49,8 @@ module ApplicationHelper
     background = answer.user.author_of?(question) ? "author" : ""
     "#{border} #{background}"
   end
+
+  def show_avatar(object)
+    object.user.avatar.present? ? object.user.avatar.thumb.url : "default_avatar.png"
+  end
 end
