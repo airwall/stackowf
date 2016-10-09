@@ -3,6 +3,7 @@
     hr
     .row.answer-body-content.div class="#{set_body_content_block(answer, @question)}"
       .col-xs-1.left-block
+        = image_tag( show_avatar(answer), class: 'avatar-show')
         = render 'votes/vote', votable: answer
         = render 'shared/best', answer: answer
       .col-xs-11.right-block
@@ -16,7 +17,7 @@
             hr
             .col-md-offset-10.col-md-3.attachments
               - answer.attachments.each_with_index do |a, index|
-                p = link_to "#{a.file.to_s.split('/').last}", a.file.url
+                p = link_to "#{show_attachment_name(a)}", a.file.url
     .row
       - if policy(answer).destroy?
         .col-xs-2.col-sm-2.col-md-1
@@ -47,3 +48,4 @@
       = link_to "Cancel", '', class: "cancel-answer-form btn btn-danger", data: { answer_id: answer.id}
     .row
       = render 'comments/comments', commentable: answer
+  .alert

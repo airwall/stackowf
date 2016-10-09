@@ -14,11 +14,12 @@ feature "Destroy Answer", '
     sign_in(user)
     answer.reload
     visit question_path(question)
-
+    expect(page).to have_css("#answer_#{answer.id}")
     within "#answer_#{answer.id}" do
       click_on "Delete"
-      expect(page).to_not have_content "Answer was successfully destroyed."
     end
+
+    expect(page).to_not have_css("#answer_#{answer.id}")
   end
 
   scenario "Authenticated user ties deletes not his answer", js: true do

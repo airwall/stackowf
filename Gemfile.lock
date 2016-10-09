@@ -8,6 +8,7 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    CFPropertyList (2.3.3)
     actioncable (5.0.0.rc1)
       actionpack (= 5.0.0.rc1)
       nio4r (~> 1.2)
@@ -51,29 +52,35 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     addressable (2.4.0)
-    airbrussh (1.1.0)
+    airbrussh (1.1.1)
       sshkit (>= 1.6.1, != 1.7.0)
-    arel (7.1.1)
+    arel (7.1.2)
     ast (2.3.0)
-    autoprefixer-rails (6.4.0.3)
+    autoprefixer-rails (6.5.0.1)
       execjs
+    aws-sdk (2.6.5)
+      aws-sdk-resources (= 2.6.5)
+    aws-sdk-core (2.6.5)
+      jmespath (~> 1.0)
+    aws-sdk-resources (2.6.5)
+      aws-sdk-core (= 2.6.5)
     bcrypt (3.1.11)
     bootstrap-sass (3.3.7)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
     builder (3.2.2)
-    byebug (9.0.5)
+    byebug (9.0.6)
     capistrano (3.6.1)
       airbrussh (>= 1.0.0)
       capistrano-harrow
       i18n
       rake (>= 10.0.0)
       sshkit (>= 1.9.0)
-    capistrano-bundler (1.1.4)
+    capistrano-bundler (1.2.0)
       capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-harrow (0.5.3)
-    capistrano-rails (1.1.7)
+    capistrano-rails (1.1.8)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
     capistrano-rvm (0.1.2)
@@ -84,7 +91,7 @@ GEM
       sidekiq (>= 3.4)
     capistrano3-unicorn (0.2.1)
       capistrano (~> 3.1, >= 3.1.0)
-    capybara (2.8.1)
+    capybara (2.9.2)
       addressable
       mime-types (>= 1.16)
       nokogiri (>= 1.3.3)
@@ -94,15 +101,14 @@ GEM
     capybara-email (2.5.0)
       capybara (~> 2.4)
       mail
-    capybara-screenshot (1.0.13)
+    capybara-screenshot (1.0.14)
       capybara (>= 1.0, < 3)
       launchy
-    carrierwave (0.11.2)
+    carrierwave (0.10.0)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
       json (>= 1.7)
       mime-types (>= 1.16)
-      mimemagic (>= 0.3.0)
     chronic (0.10.2)
     cliver (0.3.2)
     cocoon (1.2.9)
@@ -132,6 +138,7 @@ GEM
       dotenv (= 2.1.1)
       railties (>= 4.0, < 5.1)
     erubis (2.7.0)
+    excon (0.53.0)
     execjs (2.7.0)
     factory_girl (4.7.0)
       activesupport (>= 3.0.0)
@@ -141,12 +148,143 @@ GEM
     faraday (0.9.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.14)
+    file_validators (2.1.0)
+      activemodel (>= 3.0)
+      mime-types (>= 1.0)
+    fission (0.5.0)
+      CFPropertyList (~> 2.2)
     flying-sphinx (1.2.0)
       faraday (>= 0.9)
       multi_json (>= 1.3.0)
       pusher-client (~> 0.3)
       riddle (>= 1.5.6)
       thinking-sphinx
+    fog (1.38.0)
+      fog-aliyun (>= 0.1.0)
+      fog-atmos
+      fog-aws (>= 0.6.0)
+      fog-brightbox (~> 0.4)
+      fog-cloudatcost (~> 0.1.0)
+      fog-core (~> 1.32)
+      fog-dynect (~> 0.0.2)
+      fog-ecloud (~> 0.1)
+      fog-google (<= 0.1.0)
+      fog-json
+      fog-local
+      fog-openstack
+      fog-powerdns (>= 0.1.1)
+      fog-profitbricks
+      fog-rackspace
+      fog-radosgw (>= 0.0.2)
+      fog-riakcs
+      fog-sakuracloud (>= 0.0.4)
+      fog-serverlove
+      fog-softlayer
+      fog-storm_on_demand
+      fog-terremark
+      fog-vmfusion
+      fog-voxel
+      fog-vsphere (>= 0.4.0)
+      fog-xenserver
+      fog-xml (~> 0.1.1)
+      ipaddress (~> 0.5)
+    fog-aliyun (0.1.0)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      ipaddress (~> 0.8)
+      xml-simple (~> 1.1)
+    fog-atmos (0.1.0)
+      fog-core
+      fog-xml
+    fog-aws (0.12.0)
+      fog-core (~> 1.38)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-brightbox (0.11.0)
+      fog-core (~> 1.22)
+      fog-json
+      inflecto (~> 0.0.2)
+    fog-cloudatcost (0.1.2)
+      fog-core (~> 1.36)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (1.43.0)
+      builder
+      excon (~> 0.49)
+      formatador (~> 0.2)
+    fog-dynect (0.0.3)
+      fog-core
+      fog-json
+      fog-xml
+    fog-ecloud (0.3.0)
+      fog-core
+      fog-xml
+    fog-google (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-local (0.3.0)
+      fog-core (~> 1.27)
+    fog-openstack (0.1.12)
+      fog-core (>= 1.40)
+      fog-json (>= 1.0)
+      ipaddress (>= 0.8)
+    fog-powerdns (0.1.1)
+      fog-core (~> 1.27)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+    fog-profitbricks (2.0.1)
+      fog-core (~> 1.42)
+      fog-json (~> 1.0)
+    fog-rackspace (0.1.1)
+      fog-core (>= 1.35)
+      fog-json (>= 1.0)
+      fog-xml (>= 0.1)
+      ipaddress (>= 0.8)
+    fog-radosgw (0.0.5)
+      fog-core (>= 1.21.0)
+      fog-json
+      fog-xml (>= 0.0.1)
+    fog-riakcs (0.1.0)
+      fog-core
+      fog-json
+      fog-xml
+    fog-sakuracloud (1.7.5)
+      fog-core
+      fog-json
+    fog-serverlove (0.1.2)
+      fog-core
+      fog-json
+    fog-softlayer (1.1.4)
+      fog-core
+      fog-json
+    fog-storm_on_demand (0.1.1)
+      fog-core
+      fog-json
+    fog-terremark (0.1.0)
+      fog-core
+      fog-xml
+    fog-vmfusion (0.1.0)
+      fission
+      fog-core
+    fog-voxel (0.1.0)
+      fog-core
+      fog-xml
+    fog-vsphere (1.2.0)
+      fog-core
+      rbvmomi (~> 1.8.0)
+    fog-xenserver (0.2.3)
+      fog-core
+      fog-xml
+    fog-xml (0.1.2)
+      fog-core
+      nokogiri (~> 1.5, >= 1.5.11)
+    formatador (0.2.5)
     globalid (0.3.7)
       activesupport (>= 4.1.0)
     gon (6.1.0)
@@ -154,12 +292,15 @@ GEM
       json
       multi_json
       request_store (>= 1.0)
-    hashie (3.4.4)
+    hashie (3.4.6)
     i18n (0.7.0)
+    inflecto (0.0.2)
     innertube (1.1.0)
+    ipaddress (0.8.3)
     jbuilder (2.6.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
+    jmespath (1.3.1)
     joiner (0.3.4)
       activerecord (>= 4.1.0)
     jquery-rails (4.2.1)
@@ -170,9 +311,12 @@ GEM
     json_spec (1.1.4)
       multi_json (~> 1.0)
       rspec (>= 2.0, < 4.0)
-    jsonapi (0.1.1.beta2)
-      json (~> 1.8)
-    jwt (1.5.4)
+    jsonapi (0.1.1.beta4)
+      jsonapi-parser (= 0.1.1.beta2)
+      jsonapi-renderer (= 0.1.1.beta1)
+    jsonapi-parser (0.1.1.beta2)
+    jsonapi-renderer (0.1.1.beta1)
+    jwt (1.5.6)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -193,9 +337,9 @@ GEM
     mime-types (3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
-    mimemagic (0.3.2)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
-    minitest (5.9.0)
+    minitest (5.9.1)
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -214,7 +358,7 @@ GEM
       multi_json (~> 1.3)
       multi_xml (~> 0.5)
       rack (>= 1.2, < 3)
-    oj (2.17.3)
+    oj (2.17.4)
     oj_mimic_json (1.0.1)
     omniauth (1.3.1)
       hashie (>= 1.2, < 4)
@@ -232,11 +376,11 @@ GEM
       omniauth-oauth (~> 1.1)
     orm_adapter (0.5.0)
     parallel (1.9.0)
-    parallel_tests (2.7.1)
+    parallel_tests (2.9.0)
       parallel
-    parser (2.3.1.2)
+    parser (2.3.1.4)
       ast (~> 2.2)
-    pg (0.18.4)
+    pg (0.19.0)
     pkg-config (1.1.7)
     poltergeist (1.10.0)
       capybara (~> 2.1)
@@ -261,6 +405,8 @@ GEM
       posix-spawn (~> 0.3.6)
       yajl-ruby (~> 1.2.0)
     rack (2.0.1)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.rc1)
@@ -300,10 +446,14 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rainbow (2.1.0)
-    rake (11.2.2)
+    rake (11.3.0)
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    rbvmomi (1.8.2)
+      builder
+      nokogiri (>= 1.4.1)
+      trollop
     record_tag_helper (1.0.0)
       actionview (~> 5.x)
     redcarpet (3.3.4)
@@ -328,12 +478,12 @@ GEM
     request_store (1.3.1)
     responders (2.3.0)
       railties (>= 4.2.0, < 5.1)
-    riddle (1.5.12)
+    riddle (2.0.0)
     rspec (3.5.0)
       rspec-core (~> 3.5.0)
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
-    rspec-core (3.5.2)
+    rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -350,7 +500,7 @@ GEM
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
     rspec-support (3.5.0)
-    rubocop (0.42.0)
+    rubocop (0.43.0)
       parser (>= 2.3.1.1, < 3.0)
       powerpack (~> 0.1)
       rainbow (>= 1.99.1, < 3.0)
@@ -368,9 +518,10 @@ GEM
       tilt (>= 1.1, < 3)
     shoulda-matchers (3.1.1)
       activesupport (>= 4.0.0)
-    sidekiq (4.1.2)
+    sidekiq (4.2.2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
+      rack-protection (~> 1.5)
       redis (~> 3.2, >= 3.2.1)
     skim (0.10.0)
       coffee-script
@@ -385,20 +536,21 @@ GEM
       railties (>= 3.1)
       slim (~> 3.0)
     slop (3.6.0)
-    spring (1.7.2)
+    spring (2.0.0)
+      activesupport (>= 4.2)
     spring-commands-rspec (1.0.4)
       spring (>= 0.9.1)
-    spring-watcher-listen (2.0.0)
+    spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
-      spring (~> 1.2)
+      spring (>= 1.2, < 3.0)
     sprockets (3.7.0)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
-    sprockets-rails (3.1.1)
+    sprockets-rails (3.2.0)
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sshkit (1.11.2)
+    sshkit (1.11.3)
       net-scp (>= 1.1.2)
       net-ssh (>= 2.8.0)
     temple (0.7.7)
@@ -415,6 +567,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (2.0.5)
+    trollop (2.1.2)
     turbolinks (5.0.1)
       turbolinks-source (~> 5)
     turbolinks-source (5.0.0)
@@ -422,7 +575,7 @@ GEM
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
-    unicode-display_width (1.1.0)
+    unicode-display_width (1.1.1)
     warden (1.2.6)
       rack (>= 1.0)
     websocket (1.2.3)
@@ -433,6 +586,7 @@ GEM
       chronic (>= 0.6.3)
     with_model (1.2.1)
       activerecord (>= 3.0)
+    xml-simple (1.1.5)
     xpath (2.0.0)
       nokogiri (~> 1.3)
     yajl-ruby (1.2.1)
@@ -442,6 +596,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.10.0)
+  aws-sdk (~> 2)
   bootstrap-sass (~> 3.3.6)
   capistrano
   capistrano-bundler
@@ -461,13 +616,16 @@ DEPENDENCIES
   doorkeeper
   dotenv-rails
   factory_girl_rails
+  file_validators
   flying-sphinx
+  fog
   gon
   jbuilder (~> 2.0)
   jquery-rails
   json_spec (~> 1.1, >= 1.1.4)
   letter_opener_web (~> 1.2.0)
   listen (~> 3.0.5)
+  mini_magick
   mysql2
   oj
   oj_mimic_json

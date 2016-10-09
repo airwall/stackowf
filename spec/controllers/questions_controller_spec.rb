@@ -112,7 +112,7 @@ RSpec.describe QuestionsController do
     context "with invalid attributes by author" do
       before { patch :update, params: { id: question, question: { body: nil } }, format: :js }
 
-      it "does not change answer attributes" do
+      it "does not change question attributes" do
         question.reload
         expect(question.body).to_not eq nil
       end

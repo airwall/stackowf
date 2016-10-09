@@ -41,7 +41,11 @@ gem 'devise-bootstrap-views'
 gem 'record_tag_helper'
 
 #FileUploader
+gem 'aws-sdk', '~> 2'
+gem "fog"
 gem 'carrierwave'
+gem "mini_magick"
+gem 'file_validators'
 #Permit AJAX to file upload
 gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms

@@ -3,5 +3,5 @@
     h1
       | Questions
     hr
-    - @questions.order("created_at DESC")).each do |question|
+    - @questions.order("created_at DESC").each do |question|
       = render 'questions/question_index', question: question

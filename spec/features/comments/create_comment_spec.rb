@@ -56,7 +56,7 @@ feature "Create comment", '
         expect(page).to have_link "Comment"
         click_on "Comment"
         fill_in "Body", with: "CommentTestAnswer"
-        click_on "Submit"
+        click_button "Submit"
         expect(page).to have_content "CommentTestAnswer"
         expect(page).to_not have_field("Body")
       end
@@ -66,8 +66,8 @@ feature "Create comment", '
       sign_in(user)
       answer.reload
       visit question_path(question)
-      within "#answer_#{answer.id}" do
-        expect(page).to have_content answer.body
+      within "#question_#{question.id}" do
+        expect(page).to have_content question.body
         expect(page).to have_link "Comment"
         click_on "Comment"
         fill_in "Body", with: nil

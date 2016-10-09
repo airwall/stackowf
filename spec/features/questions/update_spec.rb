@@ -34,7 +34,7 @@ feature "Edit question", '
       sign_in(user)
       visit question_path(question)
 
-      expect(page).to have_content "spec_helper.rb"
+      expect(page).to have_content "spec_helper.rb".split('').last(10).join('').to_s
       expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
 
       click_on "Edit"
@@ -49,14 +49,14 @@ feature "Edit question", '
       sign_in(user)
       visit question_path(question)
 
-      expect(page).to_not have_content "spec_helper.rb"
+      expect(page).to_not have_content "spec_helper.rb".split('').last(10).join('').to_s
       click_on "Edit"
       within (".edit_question_form") do
         click_on "Add File"
         attach_file "File", "#{Rails.root}/spec/spec_helper.rb"
         click_on "Submit"
       end
-      expect(page).to have_content "spec_helper.rb"
+      expect(page).to have_content "spec_helper.rb".split('').last(10).join('').to_s
       expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
     end
   end

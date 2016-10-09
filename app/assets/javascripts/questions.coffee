@@ -6,3 +6,7 @@ $(document).ready ->
     e.preventDefault();
     question_id = $(this).data('questionId');
     $('#edit-question-' + question_id).fadeIn('slow');
+  $(document).on 'click', '.cancel-question-form', (e) ->
+    e.preventDefault();
+    question_id = $(this).data('questionId')
+    $("#edit-question-" + question_id ).fadeOut(400)

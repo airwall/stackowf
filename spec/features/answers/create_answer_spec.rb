@@ -52,7 +52,7 @@ feature "Create answer", '
 
     click_on "Submit"
 
-    expect(page).to have_content "features_helper.rb"
+    expect(page).to have_content "features_helper.rb".split('').last(10).join('').to_s
     expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/1/spec_helper.rb"]')
     expect(page).to have_selector(:css, 'a[href="/uploads/attachment/file/2/features_helper.rb"]')
   end
