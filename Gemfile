@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0.rc1'
+gem 'rails', '~> 5.0.0.1' # This change was made via Snyk to fix a vulnerability
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -31,14 +31,14 @@ gem 'redis', '~> 3.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'slim-rails'
-gem 'devise'
+gem 'devise', '~> 4.2.0' # This change was made via Snyk to fix a vulnerability
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter'
 gem 'devise-bootstrap-views'
 
 #Add unique ID's to div tag
-gem 'record_tag_helper'
+gem 'record_tag_helper', '~> 1.0.0' # This change was made via Snyk to fix a vulnerability
 
 #FileUploader
 gem 'carrierwave'
@@ -47,19 +47,19 @@ gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms
 gem "cocoon"
 
-gem "responders"
+gem "responders", "~> 2.3.0" # This change was made via Snyk to fix a vulnerability
 #JS templates
 gem 'skim'
-gem 'gon'
+gem 'gon', '~> 6.1.0' # This change was made via Snyk to fix a vulnerability
 
 #authorization
 gem "pundit"
 
 #REST API
-gem 'doorkeeper'
+gem 'doorkeeper', '~> 4.2.0' # This change was made via Snyk to fix a vulnerability
 
 #Serializer
-gem 'active_model_serializers', '~> 0.10.0'
+gem 'active_model_serializers', '~> 0.10.2' # This change was made via Snyk to fix a vulnerability
 gem 'oj'
 gem 'oj_mimic_json'
 
@@ -91,7 +91,7 @@ group :test do
   gem 'database_cleaner'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'poltergeist'
-  gem 'with_model'
+  gem 'with_model', '~> 1.2.1' # This change was made via Snyk to fix a vulnerability
   gem 'rails-controller-testing'
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
@@ -103,7 +103,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'rspec', '~> 3.5.0.beta3'
   gem 'rspec-rails', '~> 3.5.0beta3'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', '~> 4.7.0' # This change was made via Snyk to fix a vulnerability
   gem 'spring-commands-rspec'
   gem 'parallel_tests'
   gem 'capybara-email'
@@ -122,7 +122,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'letter_opener_web', '~> 1.2.0'
+  gem 'letter_opener_web', '~> 1.2.3' # This change was made via Snyk to fix a vulnerability
 end
 
 group :production do
