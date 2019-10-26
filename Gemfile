@@ -2,23 +2,23 @@ source 'https://rubygems.org'
 
 ruby '2.3.1'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '5.0.0.rc1'
+gem 'rails', '5.0.0'
 # Use sqlite3 as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 5.0', '>= 5.0.6'
 gem 'bootstrap-sass', '~> 3.3.6'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails', '~> 4.1.1'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.2.1'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5.x'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -30,15 +30,15 @@ gem 'redis', '~> 3.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'slim-rails'
-gem 'devise'
+gem 'slim-rails', '>= 3.1.1'
+gem 'devise', '>= 4.2.0'
 gem 'omniauth', '~> 1.3', '>= 1.3.1'
 gem 'omniauth-facebook', '~> 3.0'
 gem 'omniauth-twitter'
 gem 'devise-bootstrap-views'
 
 #Add unique ID's to div tag
-gem 'record_tag_helper'
+gem 'record_tag_helper', '>= 1.0.0'
 
 #FileUploader
 gem 'carrierwave'
@@ -47,19 +47,19 @@ gem 'remotipart', github: 'urielhdz/remotipart', ref: 'master'
 #Nested forms
 gem "cocoon"
 
-gem "responders"
+gem "responders", ">= 2.3.0"
 #JS templates
 gem 'skim'
-gem 'gon'
+gem 'gon', '>= 6.1.0'
 
 #authorization
 gem "pundit"
 
 #REST API
-gem 'doorkeeper'
+gem 'doorkeeper', '>= 4.2.0'
 
 #Serializer
-gem 'active_model_serializers', '~> 0.10.0'
+gem 'active_model_serializers', '~> 0.10.2'
 gem 'oj'
 gem 'oj_mimic_json'
 
@@ -71,7 +71,7 @@ gem 'whenever'
 gem 'mysql2'
 gem 'thinking-sphinx'
 
-gem 'dotenv-rails'
+gem 'dotenv-rails', '>= 2.1.1'
 gem 'therubyracer'
 
 #markdown
@@ -80,7 +80,7 @@ gem 'pygments.rb'
 gem 'rails-bootstrap-markdown'
 
 #caching
-gem 'redis-rails'
+gem 'redis-rails', '>= 5.0.1'
 
 #heroku sphinx
 gem 'flying-sphinx'
@@ -92,7 +92,7 @@ group :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'poltergeist'
   gem 'with_model'
-  gem 'rails-controller-testing'
+  gem 'rails-controller-testing', '>= 1.0.1'
   gem 'rubocop', require: false
   gem 'rubocop-rspec'
   gem 'json_spec', '~> 1.1', '>= 1.1.4'
@@ -102,8 +102,8 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry-byebug'
   gem 'rspec', '~> 3.5.0.beta3'
-  gem 'rspec-rails', '~> 3.5.0beta3'
-  gem 'factory_girl_rails'
+  gem 'rspec-rails', '~> 3.5.2'
+  gem 'factory_girl_rails', '>= 4.7.0'
   gem 'spring-commands-rspec'
   gem 'parallel_tests'
   gem 'capybara-email'
@@ -122,7 +122,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'letter_opener_web', '~> 1.2.0'
+  gem 'letter_opener_web', '~> 1.2.3'
 end
 
 group :production do
